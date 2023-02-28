@@ -1,0 +1,111 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;0,500;1,100&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+.container_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93%;
+}
+
+.container_form_general{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    height: 85%;
+}
+
+
+.container_form_general_infographics{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 55%;
+}
+
+.container_form_general_infographics_picture{
+    height: 90%;
+    width: 100%;
+}
+
+.container_form_general_infographics_shell{
+    text-align: center;
+    height: 8%;
+    margin-top: 3px;
+    width: 100%;
+}
+
+.container_form_general_infographics_shell_signature{
+    font-family: 'Alegreya Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #F2E3D0;
+}
+
+.container_form_general_enter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container_form_general_enter_card{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    align-self: center;
+    padding: 24px 24px 17px 24px;
+    margin-top: -10%;
+    
+    width: 348px;
+    height: 295px;
+
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.12) 100%), #121212;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+.container_form_general_enter_card_buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.container_form_general_registration{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid olivedrab;
+}
+
+.container_form_general_registration_card{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    align-self: center;
+    padding: 24px 24px 17px 24px;
+    margin-top: -15%;
+    
+    width: 348px;
+    height: 85%;
+
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.12) 100%), #121212;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+.container_form_general_registration_card_buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
