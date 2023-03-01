@@ -6,7 +6,6 @@ import {loginRoutes, publicRoutes} from './routes';
 export default function AppRouter () {
     const {user} = useContext(Context)
     console.log(user)
-    console.log("ПРИВЕТ ДАРОВА")
     return (
         <Routes>
             {user._isAuth == true && loginRoutes.map(({path, Component}) => 
