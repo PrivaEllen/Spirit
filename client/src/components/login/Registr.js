@@ -1,18 +1,17 @@
 import React from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { InputAdornment, IconButton, Input, InputLabel, FormControl, Alert } from '@mui/material';
+import { InputAdornment, IconButton, Input, InputLabel, FormControl, Alert, Link } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {useState, useContext} from 'react';
-import { NavLink } from "react-router-dom";
 import { LOGIN, MAIN } from "../../router/utils";
 import { Context } from "../..";
 import { observer } from "mobx-react-lite";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-export default function Registr(){
+function Registr(){
     const {user} = useContext(Context) 
     const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/
     const formik = useFormik({
@@ -50,9 +49,9 @@ export default function Registr(){
         <div className="container_form_general_registration">
             <form className="container_form_general_registration_card" style={{display: 'flex'}} onSubmit={formik.handleSubmit}>
                 <TextField
-                    id="name"
-                    name="name"
-                    type="name"
+                    id="Name"
+                    name="Name"
+                    type="Name"
                     variant="standard"
                     size="medium"
                     label="Имя"
@@ -61,12 +60,12 @@ export default function Registr(){
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.Name}
-                    //color={formik.errors.email || user._error? 'error': ''}
+                    color={formik.errors.Name && formik.touched.Name ? 'error': ''}
                 />
                 <TextField
-                    id="surname"
-                    name="surname"
-                    type="surname"
+                    id="Surname"
+                    name="Surname"
+                    type="Surname"
                     variant="standard"
                     size="medium"
                     label="Фамилия"
@@ -75,6 +74,7 @@ export default function Registr(){
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.Surname}
+                    color={formik.errors.Surname && formik.touched.Surname ? 'error': ''}
                 />
                 <TextField
                     id="email"
@@ -88,10 +88,10 @@ export default function Registr(){
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
-                    //color={formik.errors.email || user._error? 'error': ''}
+                    color={(formik.errors.email && formik.touched.email) || user._error ? 'error' : ''}
                 />
                 <FormControl sx={{ width: '100%' }} variant="standard">
-                    <InputLabel htmlFor="password" color={formik.errors.password && formik.touched.password ? 'error': ''}>Пароль</InputLabel>
+                    <InputLabel htmlFor="password" color={(formik.errors.password && formik.touched.password) || (formik.values.password != formik.values.repeat_password) ? 'error': ''}>Пароль</InputLabel>
                     <Input
                         id="password"
                         name='password'
@@ -101,7 +101,7 @@ export default function Registr(){
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.password}
-                        color={formik.errors.password && formik.touched.password ? 'error': ''}
+                        color={(formik.errors.password && formik.touched.password) || (formik.values.password != formik.values.repeat_password) ? 'error': ''}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
@@ -116,7 +116,7 @@ export default function Registr(){
                     />
                 </FormControl>
                 <FormControl sx={{ width: '100%' }} variant="standard">
-                    <InputLabel htmlFor="repeat_password" color={formik.errors.repeat_password && formik.touched.repeat_password ? 'error': ''}>Повторите пароль</InputLabel>
+                    <InputLabel htmlFor="repeat_password" color={(formik.errors.repeat_password && formik.touched.repeat_password) || (formik.values.password != formik.values.repeat_password) ? 'error': ''}>Повторите пароль</InputLabel>
                     <Input
                         id="repeat_password"
                         name='repeat_password'
@@ -126,7 +126,7 @@ export default function Registr(){
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.repeat_password}
-                        //color={formik.errors.password && formik.touched.password ? 'error': ''}
+                        color={(formik.errors.repeat_password && formik.touched.repeat_password) || (formik.values.password != formik.values.repeat_password) ? 'error': ''}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
@@ -140,21 +140,19 @@ export default function Registr(){
                         }
                     />
                 </FormControl>
-                <Button type="submit" variant='contained' size='large' fullWidth='true' onClick={() => user.registration(formik.values.Name, formik.values.Surname, formik.values.email, formik.values.password)} sx={{ marginTop: '16px', fontWeight: 'bold' }}>Зарегистрироваться</Button>
+                <Button type="submit" disabled={!formik.values.Name || !formik.values.Surname || !formik.values.email || !formik.values.password || !formik.values.repeat_password} variant='contained' size='large' fullWidth='true' onClick={() => user.registration(formik.values.Name, formik.values.Surname, formik.values.email, formik.values.password)} sx={{ marginTop: '16px', fontWeight: 'bold' }}>Зарегистрироваться</Button>
                 <div className='container_form_general_registration_card_buttons'>
-                    <NavLink style={{ textDecoration: 'none' }} to={MAIN}>
-                        <Button variant='text' size='small' sx={{ marginTop: '8px', textTransform: 'revert', color: 'white' }}>На главную</Button>\
-                    </NavLink>
-                    <NavLink to={LOGIN}>
-                        <Button variant='text' size='small' sx={{ marginTop: '9px', textTransform: 'revert', color: 'white' }}>Уже есть аккаунт?</Button>
-                    </NavLink>
+                    <Button variant='text' size='small' sx={{ marginTop: '8px', textTransform: 'revert', color: 'white' }} onClick={() => window.location.assign(MAIN)}>На главную</Button>
+                    <Link component="button" variant='body2' underline="hover" sx={{ marginTop: '11px', textTransform: 'revert', fontSize: '13px', color: 'white' }} onClick={() => window.location.assign(LOGIN)}>Уже есть аккаунт?</Link>
                 </div>
             </form>
-            {user._error === '' ? ''
+            {user._registrError === '' ? ''
                 :
-                <Alert severity="error" sx={{marginTop: '16px', borderRadius: '4px'}}>{user._error}</Alert>
+                <Alert severity="error" sx={{marginTop: '16px', borderRadius: '4px'}}>{user._registrError}</Alert>
             }
         </div>
         
     )
 }
+
+export default observer(Registr);

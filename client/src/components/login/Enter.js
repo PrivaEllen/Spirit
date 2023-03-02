@@ -5,8 +5,8 @@ import { InputAdornment, IconButton, Input, InputLabel, FormControl, Alert } fro
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {useState} from 'react';
-import { NavLink } from "react-router-dom";
-import { MAIN, REGISTRATION } from "../../router/utils";
+import { Link, NavLink } from "react-router-dom";
+import { MAIN, TESTS, REGISTRATION, LOGIN } from "../../router/utils";
 import { observer } from "mobx-react-lite";
 import { Context } from "../..";
 import { useFormik } from 'formik';
@@ -14,8 +14,8 @@ import * as Yup from 'yup';
 
 function Enter(){
     const {user} = useContext(Context)
-
     const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/
+
     const formik = useFormik({
         initialValues: {
         email: '',
@@ -36,6 +36,7 @@ function Enter(){
 
     const [showPassword, setShowPassword] = useState(false)
     const handleClickShowPassword = () => setShowPassword((show) => !show);
+
     return(
         <div className="container_form_general_enter">
             <form className='container_form_general_enter_card' style={{display: 'flex'}} onSubmit={formik.handleSubmit}>
@@ -51,7 +52,7 @@ function Enter(){
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
-                    color={formik.errors.email || user._error? 'error': ''}
+                    color={formik.errors.email ? 'error': ''}
                 />
                 <FormControl sx={{ width: '100%' }} variant="standard">
                     <InputLabel htmlFor="password" color={formik.errors.password && formik.touched.password ? 'error': ''}>Пароль</InputLabel>
@@ -79,19 +80,15 @@ function Enter(){
                     />
                 </FormControl>
                 <Button variant='text' size="small" sx={{ marginTop: '-5px', textTransform: 'revert', color: 'white' }}>Забыли пароль?</Button>
-                <Button type="submit" variant='contained' size='large' fullWidth='true' sx={{ fontWeight: 'bold' }} onClick={() => user.login(formik.values.email, formik.values.password)}>Вход</Button>
+                <Button type="submit" disabled={!formik.values.email || !formik.values.password} variant='contained' size='large' fullWidth='true' sx={{ fontWeight: 'bold' }} onClick={() => user.login(formik.values.email, formik.values.password)}>Вход</Button>
                 <div className='container_form_general_enter_card_buttons'>
-                    <NavLink style={{ textDecoration: 'none' }} to={MAIN}>
-                        <Button variant='text' size='small' sx={{ textTransform: 'revert', color: 'white' }}>На главную</Button>
-                    </NavLink>
-                    <NavLink style={{ textDecoration: 'none' }} to={REGISTRATION}>
-                        <Button variant='text' size='small' sx={{ textTransform: 'capitalize', color: 'white' }}>Зарегистрироваться</Button>
-                    </NavLink>
+                    <Button variant='text' size='small' sx={{ textTransform: 'revert', color: 'white' }} onClick={() => window.location.assign(MAIN)}>На главную</Button>
+                    <Button variant='text' size='small' sx={{ textTransform: 'capitalize', color: 'white' }} onClick={() => window.location.assign(REGISTRATION)}>Зарегистрироваться</Button>
                 </div>
             </form>
-            {user._error === '' ? ''
+            {user._authError === '' ? ''
                 :
-                <Alert severity="error" sx={{marginTop: '16px', borderRadius: '4px'}}>{user._error}</Alert>
+                <Alert severity="error" sx={{marginTop: '16px', borderRadius: '4px'}}>{user._authError}</Alert>
             }
         </div>
         

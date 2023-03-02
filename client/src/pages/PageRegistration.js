@@ -4,6 +4,7 @@ import Header from "../components/login/Header";
 import SlidePictures from "../components/login/SlidePictures";
 import SlideSigns from "../components/login/SlideSigns";
 import Registr from "../components/login/Registr";
+import { observer } from "mobx-react-lite";
 
 const darkTheme = createTheme({
   palette: {
@@ -11,7 +12,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function Registration() {
+function Registration() {
     return (
         <>
             <div className='container'>
@@ -31,3 +32,5 @@ export default function Registration() {
         </>
     )
 }
+
+export default observer(Registration);

@@ -4,7 +4,6 @@ import Header from "../components/login/Header";
 import SlidePictures from "../components/login/SlidePictures";
 import SlideSigns from "../components/login/SlideSigns";
 import Enter from "../components/login/Enter";
-import { Context } from "../index"
 import { observer } from "mobx-react-lite";
 
 const darkTheme = createTheme({
@@ -14,12 +13,6 @@ const darkTheme = createTheme({
 });
 
 function Login() {
-    const {user} = useContext(Context)
-    useEffect(() => {
-        if (localStorage.getItem('token')){
-            user.check()
-        }
-    }, [])
     return (
         <>
             <div className='container'>
@@ -31,8 +24,6 @@ function Login() {
                                 <SlidePictures />
                                 <SlideSigns />
                             </div>
-                            {/* <h1>{user._isAuth ? 'Авторизован' : 'Не авторизован'}</h1>
-                            <h1>{user._user?.isActivated ? "yes" : "no"}</h1> */}
                             <Enter />
                         </div>
                      </div>

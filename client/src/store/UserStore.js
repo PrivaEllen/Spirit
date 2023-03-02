@@ -2,12 +2,14 @@ import {makeAutoObservable} from 'mobx';
 import AuthService from '../services/AuthService';
 import axios from 'axios'
 import { SERVER_URL } from '../http/http';
+import { REGISTRATION, TESTS } from '../router/utils';
 
 export default class UserStore{
     constructor(){
         this._isAuth = false
         this._user = {}
-        this._error = ''
+        this._authError = ''
+        this._registrError = ''
         makeAutoObservable(this)
     }
 
@@ -19,8 +21,12 @@ export default class UserStore{
         this._user = user
     }
 
-    setError(str){
-        this._error = str
+    setAuthError(str){
+        this._authError = str
+    }
+
+    setRegistrError(str){
+        this._registrError = str
     }
 
     async login(email, password){
@@ -30,11 +36,13 @@ export default class UserStore{
             localStorage.setItem('token', response.data.accessToken)
             this.setIsAuth(true)
             this.setUser(response.data.user)
-            this.setError('')
+            this.setAuthError('')
+            window.location.assign(TESTS);
         }
         catch(e){
-            this.setError('Логин или пароль не совпадают')
-            console.log(e.response)
+            this.setIsAuth(false)
+            this.setAuthError('Логин или пароль не совпадают')
+            console.log(e.response?.data?.message)
         }
     }
 
@@ -45,10 +53,12 @@ export default class UserStore{
             localStorage.setItem('token', response.data.accessToken)
             this.setIsAuth(true)
             this.setUser(response.data.user)
-            this.setError('')
+            this.setRegistrError('')
+            window.location.assign(REGISTRATION)
         }
         catch(e){
-            this.setError('Даннная почта уже занята')
+            this.setIsAuth(false)
+            this.setRegistrError('Данная почта уже занята')
             console.log(e.response?.data?.message)
         }
     }
@@ -74,7 +84,7 @@ export default class UserStore{
             this.setUser(response.data.dataUser)
         }
         catch(e){
-            console.log(e.response?.data?.message)
+            console.log(e.response)
         }
     }
 }

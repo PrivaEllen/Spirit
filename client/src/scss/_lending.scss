@@ -1,0 +1,271 @@
+$BDcolor: #F2E3D0;
+$Hcolor : #1C1C1F;
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100;400&family=Poiret+One&display=swap');
+
+@mixin text ()
+{
+    font-family: 'Alegreya Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 150%;
+    width: 30%;
+    padding-left:5%;    
+            text-align: justify;
+    letter-spacing: -0.011em;
+}
+
+@mixin block()
+{
+    background-color: $Hcolor;
+    width: 70%;
+    height: 550px;
+    margin-left: 15%;
+    margin-top:100px;
+    border-radius: 43px;
+    color:$BDcolor;
+}
+body
+{
+    margin: 0%;
+    padding: 0%;
+    background-color: $BDcolor;
+    flex-direction: column;
+    align-items: center;
+}
+#header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: $Hcolor;
+    height: 80px;
+        display: flex;
+   justify-content: space-around;
+   flex-direction: row;
+   align-items: center;
+   box-shadow: 0px 144px 57px rgba(0, 0, 0, 0.04), 0px 81px 48px rgba(0, 0, 0, 0.13), 0px 36px 36px rgba(0, 0, 0, 0.21), 0px 9px 20px rgba(0, 0, 0, 0.25), 0px 0px 0px rgba(0, 0, 0, 0.25);
+
+}
+#logo
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: lighter;
+     color: $BDcolor;
+    font-size: 36px;
+    width: 50%;
+    letter-spacing: 0.07em;
+    font-family: 'Alegreya Sans', sans-serif;
+    >img
+    {
+        margin-right: 2%;
+    }
+   
+    
+}
+#info
+{
+    width: 50%;
+    font-size: 24px;
+    line-height: 29px;
+    font-family: 'Alegreya Sans';
+    font-style: normal;
+    color: $BDcolor;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    >a
+    {
+        color: $BDcolor;
+        text-decoration: none;
+        margin-left: 5%;
+        &:hover
+        {
+            color: darken($color: $BDcolor, $amount: 20);
+        }
+    }
+    #start
+    {
+        background-color: #B1C7DE;
+        color: $Hcolor;
+        font-weight:bolder;
+        border-radius: 10px;
+        width: 17%;
+        line-height: 50px;
+        text-align: center;
+        &:hover
+        {
+            background-color: darken($color:  #B1C7DE, $amount: 15);
+        }
+    }
+}
+
+#buy
+{
+ @include block();
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: flex-end;
+    
+    >div
+    {
+        @include text();
+    }
+
+    >span
+    {
+        font-family: 'Poiret One';
+font-style: normal;
+font-weight: 200;
+font-size: 96px;
+line-height: 100%;
+text-transform: uppercase;
+
+background: linear-gradient(0deg, #F2E3D0, #F2E3D0);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin: 5%;
+margin-top: 10%;
+    }
+}
+#info2
+{
+    height: 280px;
+    width: 50%;
+margin-top:5%;
+margin-left: 25%;
+display:flex;
+flex-direction: row;
+justify-content: space-around;
+margin-bottom: 5%;
+>div
+{
+    font-family: 'Alegreya Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 36px;
+line-height: 43px;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+align-items: center;
+text-align: center;
+}
+}
+#buy2
+{
+    
+    @include block();
+    width: 98.5%;
+    margin-left:0.75%;
+    height: 800px;
+    display: flex;
+    justify-content: space-between;
+  
+    >div
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 3%;
+        >span
+        {
+            @include text();
+            width: 50%;
+        }
+        >a
+        {
+            padding-left:5%;  
+            font-family: 'Alegreya Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 48px;
+line-height: 76%;
+width: 100%;
+letter-spacing: 0.004em;
+font-variant: small-caps;
+
+color: #808080;
+
+
+        }
+    }
+
+    .d
+    {
+        display: flex;
+        height: 60%;
+        justify-content: space-between;
+        >a
+        {
+            color:$BDcolor;
+        }
+    }
+}
+
+#frame
+{
+    background-color: #808080;
+    width: 72%;
+    margin-left: 14%;
+    height: 1700px;
+    border-radius: 43px;
+    background: linear-gradient(180deg, rgba(28, 28, 31, 0) 10.94%, #7C7D81 49.48%);
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    >span
+    {
+        font-family: 'Alegreya Sans';
+font-style: normal;
+font-weight: 500;
+font-size: 40px;
+line-height: 48px;
+letter-spacing: 0.07em;
+text-transform: uppercase;
+color: $BDcolor;
+margin: 5%;
+    }
+    #us
+    {
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 18%;
+        >div
+        {
+            height: 330px;
+            width: 20%;
+            border: 1px solid #F2E3D0;
+            border-radius: 26px;
+            margin: 1%;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 1%;
+            >span
+            {
+                font-family: 'Alegreya Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 102%;
+/* or 20px */
+
+letter-spacing: 0.01em;
+
+color: #1C1C1F;
+
+            }
+        }
+    }
+}
