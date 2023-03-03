@@ -1,3 +1,7 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;0,500;1,100&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap);
+
 * {
   box-sizing: border-box;
 }
@@ -16,3 +20,5 @@ body {
 
 @import "_header.scss";
 @import "_form.scss";
+@import "test-header";
+@import "components";
