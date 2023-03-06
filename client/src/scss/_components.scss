@@ -1,0 +1,41 @@
+.textfield{
+    color: #fff;
+    width: 300px;
+    height: 30px;
+    vertical-align: middle;
+    border-bottom: 1px solid #fff;
+    p{
+        margin: 0;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 24px;
+        letter-spacing: 0.15px;
+        cursor: default;
+    }
+}
+
+.small-icon{
+    height: 64px;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+        padding: 0;
+        width: 48px;
+        height: 48px;
+        &:hover{
+            background-color: rgba($color: #fff, $alpha: 0.1);
+            path{
+                fill: #121212;
+            }
+        }
+    }
+    path{
+        font-size: 48;
+        fill: #fff;
+        fill-opacity: 0.56;
+    }
+}
