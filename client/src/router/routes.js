@@ -1,5 +1,5 @@
-import { MAIN, LOGIN, REGISTRATION, TESTS} from './utils';
-import Main from '../pages/Main';
+import { MAIN, LOGIN, REGISTRATION, TESTS, CREATE_TEST} from './utils';
+import Land from '../pages/landing';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';
 import Tests from '../pages/Tests';
@@ -16,7 +16,7 @@ export const loginRoutes = [
 export const publicRoutes = [
     {
         path: MAIN,
-        Component: Main
+        Component: Land
     },
     {
         path: REGISTRATION,
