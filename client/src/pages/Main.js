@@ -1,15 +1,20 @@
 import { Button } from "@mui/material";
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { LOGIN } from "../router/utils";
+import React, { useContext } from "react";
+import { LOGIN, TESTS } from "../router/utils";
+import { observer } from "mobx-react-lite";
+import { Context } from "..";
 
-export default function Main() {
+
+function Main() {
+    const {user} = useContext(Context)
+    console.log(user)
     return (
         <div>
-            Main Page
-            <NavLink to={LOGIN}>
-                <Button>Start</Button>
-            </NavLink>
+            <h1 style={{color: 'beige'}}>Main</h1>
+            <Button variant='text' size='small' sx={{ textTransform: 'revert', color: 'white' }} onClick={() => window.location.assign(user._isAuth ? TESTS : LOGIN)}>Start</Button>
+            
         </div>
     )
 }
+
+export default observer(Main)

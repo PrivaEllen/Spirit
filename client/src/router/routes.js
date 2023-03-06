@@ -1,20 +1,15 @@
-import { MAIN, LOGIN, REGISTRATION} from './utils';
+import { MAIN, LOGIN, REGISTRATION, TESTS} from './utils';
 import Main from '../pages/Main';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';
+import Tests from '../pages/Tests';
+import TestCreate from '../pages/TestCreate';
+
 
 export const loginRoutes = [
     {
-        path: MAIN,
-        Component: Main
-    },
-    {
-        path: REGISTRATION,
-        Component: Registration
-    },
-    {
-        path: LOGIN,
-        Component: Login
+        path: TESTS,
+        Component: Tests
     }
 ]
 
@@ -30,5 +25,10 @@ export const publicRoutes = [
     {
         path: LOGIN,
         Component: Login
-    }
+    },
+    // Этот роут должен быть непубличным!
+    {
+        path: CREATE_TEST,
+        Component: TestCreate
+    },
 ]
