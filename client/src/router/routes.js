@@ -1,21 +1,15 @@
-import {MAIN, LOGIN, REGISTRATION, CREATE_TEST} from './utils';
+import { MAIN, LOGIN, REGISTRATION, TESTS} from './utils';
 import Main from '../pages/Main';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';
+import Tests from '../pages/Tests';
 import TestCreate from '../pages/TestCreate';
+
 
 export const loginRoutes = [
     {
-        path: MAIN,
-        Component: Main
-    },
-    {
-        path: REGISTRATION,
-        Component: Registration
-    },
-    {
-        path: LOGIN,
-        Component: Login
+        path: TESTS,
+        Component: Tests
     }
 ]
 

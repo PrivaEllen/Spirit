@@ -2,8 +2,8 @@ import React from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from "../components/login/Header";
 import SlidePictures from "../components/login/SlidePictures";
-import SlideSigns from "../components/login/SlideSigns";
 import Registr from "../components/login/Registr";
+import { observer } from "mobx-react-lite";
 
 const darkTheme = createTheme({
   palette: {
@@ -11,7 +11,7 @@ const darkTheme = createTheme({
   },
 });
 
-export default function Registration() {
+function Registration() {
     return (
         <>
             <div className='container'>
@@ -21,7 +21,6 @@ export default function Registration() {
                         <div className='container_form_general'>
                             <div className='container_form_general_infographics'>
                                 <SlidePictures />
-                                <SlideSigns />
                             </div>
                             <Registr />
                         </div>
@@ -31,3 +30,5 @@ export default function Registration() {
         </>
     )
 }
+
+export default observer(Registration);

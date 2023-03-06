@@ -1,19 +1,27 @@
-import React, { useContext } from "react";
-import { Routes, Route, useInRouterContext } from 'react-router-dom';
+import { observer } from "mobx-react-lite";
+import React, { useContext, useEffect } from "react";
+import { Routes, Route } from 'react-router-dom';
 import { Context } from '../index'
 import {loginRoutes, publicRoutes} from './routes';
 
-export default function AppRouter () {
+function AppRouter () {
     const {user} = useContext(Context)
-    console.log(user)
+    useEffect(() => {
+        if (localStorage.getItem('token')){
+            user.check()
+        }
+    }, [])
     return (
         <Routes>
-            {user._isAuth == true && loginRoutes.map(({path, Component}) => 
+            {user._isAuth && loginRoutes.map(({path, Component}) => 
                 <Route key={path} path={path} element={<Component />}/>
             )}
             {publicRoutes.map(({path, Component}) => 
                 <Route key={path} path={path} element={<Component />}/>
             )}
+            
         </Routes>
     );
 };
+
+export default observer(AppRouter);
