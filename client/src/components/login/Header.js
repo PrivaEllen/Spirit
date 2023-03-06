@@ -8,5 +8,5 @@ export default function Header(){
           <span className='container_header_general_name'>spirit</span>
         </div>
       </header>
-    )
+    )//
 }
