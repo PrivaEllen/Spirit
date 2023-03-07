@@ -14,7 +14,7 @@ function Main() {
             <Button variant='text' size='small' sx={{ textTransform: 'revert', color: 'white' }} onClick={() => window.location.assign(user._isAuth ? TESTS : LOGIN)}>Start</Button>
             
         </div>
-    )
+    )//
 }
 
 export default observer(Main)
