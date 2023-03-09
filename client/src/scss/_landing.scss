@@ -29,6 +29,7 @@ $Hcolor : #1C1C1F;
 }
 body
 {
+    font-family: 'Roboto', sans-serif;
     margin: 0%;
     padding: 0%;
     background-color: $BDcolor;
@@ -108,33 +109,25 @@ body
 #buy
 {
  @include block();
-    display: flex;
-    flex-direction: column;
-    align-items:flex-start;
-    justify-content: flex-end;
-    
-    >div
+ padding: 150px 140px 80px 75px;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ align-items: flex-start;
+    .buy__subtext
     {
-        @include text();
-    }
+        width: 35%;
+        font-weight: 400;
+font-size: 18px;
+line-height: 24px;
+text-align: justify;
+letter-spacing: 0.15px;
 
-    >span
-    {
-        font-family: 'Poiret One';
-font-style: normal;
-font-weight: 200;
-font-size: 96px;
-line-height: 100%;
-text-transform: uppercase;
-
-background: linear-gradient(0deg, #F2E3D0, #F2E3D0);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-margin: 5%;
-margin-top: 10%;
     }
 }
+
+
+
 #info2
 {
     height: 280px;
