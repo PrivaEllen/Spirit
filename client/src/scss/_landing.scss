@@ -98,6 +98,7 @@ body
         width: 17%;
         line-height: 50px;
         text-align: center;
+        cursor:pointer;
         &:hover
         {
             background-color: darken($color:  #B1C7DE, $amount: 15);

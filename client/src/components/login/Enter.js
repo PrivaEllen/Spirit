@@ -19,7 +19,7 @@ function Enter(){
         password: Yup.string().min(8).max(255).matches(passwordRules, {message: 'Пожалуйста, придумайте более надежный пароль'}).typeError('Должно быть строкой').required('Введите пароль'),
     })
 
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState(true)
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     
     return(
@@ -51,11 +51,11 @@ function Enter(){
                             error={user._authError ? true: false}
                         />
                         <FormControl sx={{ width: '100%' }} variant="standard">
-                            <InputLabel htmlFor="password" error={touched.password && errors.password ? true: false}>Пароль</InputLabel>
+                            <InputLabel htmlFor="password" error={user._authError ? true: false}>Пароль</InputLabel>
                             <Input
                                 id="password"
                                 name='password'
-                                type={showPassword ? 'text' : 'password'}
+                                type={showPassword ? 'password' : 'text'}
                                 size="medium"
                                 margin='none'
                                 onChange={handleChange}

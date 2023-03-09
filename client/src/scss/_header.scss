@@ -1,10 +1,39 @@
 @import url(https://fonts.googleapis.com/css?family=Dorsa);
 @import url(https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;0,500;1,100&display=swap);
 
+@media (max-height: 800px) {
+    .container_header{
+        height: 60px;
+    }
+
+    .container_header_general_logo{
+        width: 60px;
+        height: 60px;
+    }
+
+    .container_header_general_name{
+        font-size: 28px;
+    }
+}
+
+@media (min-height: 801px) {
+    .container_header{
+        height: 80px;
+    }
+
+    .container_header_general_logo{
+        width: 80px;
+        height: 80px;
+    }
+
+    .container_header_general_name{
+        font-size: 36px;
+    }
+}
+
 .container_header{
     display: flex;
     justify-content: center;
-    height: 9%;
     background-color: #121212;
 }
 
@@ -13,22 +42,16 @@
     flex-direction: row;
     width: 70%;
     justify-content: flex-start;
-}
-
-.container_header_general_logo{
-    width: 60px;
-    height: 60px;
+    align-items: center;
 }
 
 .container_header_general_name{
-    align-items: baseline;
-    margin: auto 0px auto 10px;
+    margin: auto 0px auto 20px;
 
     font-family: 'Alegreya Sans';
     font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    letter-spacing: 0.2em;
+    font-weight: 300;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
 
     color: #F2E3D0;
