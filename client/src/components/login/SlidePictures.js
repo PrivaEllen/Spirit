@@ -9,51 +9,62 @@ import pictureForth from '../../images/pictureForth.png';
 import pictureFifth from '../../images/pictureFifth.png';
 
 export default function SlidePictures() {
-  const renderPictures = () =>
-    [pictureFirst, pictureSecond, pictureThird, pictureForth, pictureFifth].map(num => (
-      <div>
-        <img src={num} alt='infographic' style={{height: '444px', width: '100%'}}></img>
-    </div>
-  ));
-
-  const renderSigns = () =>
-    ['spirit для мобильных устройств',
-      'настройте сайт под компанию',
-      'сортируйте тесты по категориям',
-      'мгновенная аналитика тестов',
-      'следите за всеми участниками'].map(num => (
-    <div>
-      <span className='container_form_general_infographics_shell_signature'>{num}</span>
-    </div>
-  ));
-  
   return(
-    <>
-      <div className="container_form_general_infographics_picture">
-        <Slider
-          dots={false}
-          arrows={false}
-          slidesToShow={1}
-          slidesToScroll={1}
-          autoplay={true}
-          autoplaySpeed={10000}
-        >
-        {renderPictures()}
-        </Slider>
-      </div>
-      <div className='container_form_general_infographics_shell'>
-        <Slider
-            dots={false}
-            arrows={false}
-            slidesToShow={1}
-            slidesToScroll={1}
-            autoplay={true}
-            autoplaySpeed={10000}
-        >
-        {renderSigns()}
-        </Slider>
-      </div>
-    </>
-    
+    <div className="container_form_general_infographics_picture">
+      <Slider
+        dots={false}
+        arrows={false}
+        slidesToShow={1}
+        slidesToScroll={1}
+        autoplay={true}
+        autoplaySpeed={10000}
+        className={"container_form_general_infographics_picture_slider"}
+      >
+        <div>
+          <div>
+            <img src={pictureFirst} className='container_form_general_infographics_picture_slider_img'></img>
+          </div>
+          <div className='container_form_general_infographics_picture_slider_shell'>
+            <span className='container_form_general_infographics_picture_slider_shell_signature'>spirit для мобильных устройств</span>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <img src={pictureSecond} className='container_form_general_infographics_picture_slider_img'></img>
+          </div>
+          <div className='container_form_general_infographics_picture_slider_shell'>
+            <span className='container_form_general_infographics_picture_slider_shell_signature'>настройте сайт под компанию</span>
+          </div>
+        </div>
+        
+        <div>
+          <div>
+            <img src={pictureThird} className='container_form_general_infographics_picture_slider_img'></img>
+          </div>
+          <div className='container_form_general_infographics_picture_slider_shell'>
+            <span className='container_form_general_infographics_picture_slider_shell_signature'>сортируйте тесты по категориям</span>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <img src={pictureForth} className='container_form_general_infographics_picture_slider_img'></img>
+          </div>
+          <div className='container_form_general_infographics_picture_slider_shell'>
+            <span className='container_form_general_infographics_picture_slider_shell_signature'>мгновенная аналитика тестов</span>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <img src={pictureFifth} className='container_form_general_infographics_picture_slider_img'></img>
+          </div>
+          <div className='container_form_general_infographics_picture_slider_shell'>
+            <span className='container_form_general_infographics_picture_slider_shell_signature'>следите за всеми участниками</span>
+          </div>
+        </div>
+      </Slider>
+    </div>
   )
 }
