@@ -1,5 +1,6 @@
 $BDcolor: #F2E3D0;
 $Hcolor : #1C1C1F;
+$FontForBuyHeader: 60px;
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100;400&family=Poiret+One&display=swap');
@@ -107,23 +108,88 @@ body
     }
 }
 
+
+@media screen and (max-width: 1000px){
+    .buy__subtext
+    {
+        width: 100%;
+    }
+    .buy__header
+    {
+        font-size: 24px;
+    }
+}
+@media screen and (min-width: 1000px){
+    .buy__subtext
+    {
+        width: 60%;
+    }
+    .buy__header
+    {
+        font-size: 33px;
+    }
+}
+
+@media  screen and (min-width: 1440px){
+    .buy__subtext
+    {
+        width: 55%;
+    }
+    .buy__header
+    {
+        font-size: 45px;
+    }
+}
+
+@media  screen and (min-width: 1852px){
+    .buy__subtext
+    {
+        width: 45%;
+    }
+    .buy__header
+    {
+        font-size: 60px;
+    }
+}
+
+@media  screen and (min-width: 2000px)
+{
+    .buy__subtext
+    {
+        width: 30%;
+    }
+    .buy__header
+    {
+        font-size: 80px;
+    }
+}
 #buy
 {
  @include block();
- padding: 150px 140px 80px 75px;
+ padding: 5% 7% 3% 3%;
+ height: 600px;
  display: flex;
  flex-direction: column;
  justify-content: space-between;
  align-items: flex-start;
     .buy__subtext
     {
-        width: 35%;
+       
         font-weight: 400;
 font-size: 18px;
 line-height: 24px;
 text-align: justify;
 letter-spacing: 0.15px;
-
+    }
+    .buy__header
+    {
+        font-family: 'Poiret One';
+        font-style: normal;
+        font-weight: 400;
+      
+      
+        text-transform: uppercase;
+      
     }
 }
 
@@ -170,6 +236,11 @@ text-align: center;
         align-items: flex-start;
         justify-content: center;
         margin: 3%;
+        >img
+        {
+            width: 100%;
+            height: 100%;
+        }
         >span
         {
             @include text();
@@ -210,7 +281,7 @@ color: #808080;
     background-color: #808080;
     width: 72%;
     margin-left: 14%;
-    height: 1700px;
+
     border-radius: 43px;
     background: linear-gradient(180deg, rgba(28, 28, 31, 0) 10.94%, #7C7D81 49.48%);
     margin-bottom: 100px;
@@ -246,6 +317,7 @@ margin: 5%;
             flex-direction: column;
             justify-content: space-around;
             padding: 1%;
+           
             >span
             {
                 font-family: 'Alegreya Sans';
