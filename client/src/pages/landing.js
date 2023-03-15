@@ -15,7 +15,7 @@ class Land extends React.Component
                 <Infotext_1 />
                 <Buy_pictures />
                 <Infotext_2 />
-                <Carousel/>
+              
             </div>
       
         )

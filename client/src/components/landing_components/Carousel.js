@@ -1,32 +1,46 @@
 import React from 'react';
 
 import exmpl1 from './images/exmpl1.png';
-import exmpl2 from './images/exmpl2.jpg';
-import exmpl3 from './images/exmpl3.jpg';
+import exmpl2 from './images/exmpl2.png';
+import exmpl3 from './images/exmpl3.png';
 import Slider from 'react-slick'
 
 export default function Carousel() 
 {
-    const renderPictures = () =>
-      [exmpl1, exmpl2, exmpl3].map(num => (
+  return(
+    <div className="container_pictures">
+      <Slider
+        dots={false}
+        arrows={false}
+        slidesToShow={1}
+        slidesToScroll={1}
+        autoplay={true}
+        autoplaySpeed={10000}
+        className={"container_picture_slider"}
+      >
         <div>
-          <img src={num} ></img>
-      </div>
-    ));
+          <div>
+            <img src={exmpl1} className='container_picture_slider_img'></img>
+          </div>
+         
+        </div>
+        <div>
+          <div>
+            <img src={exmpl2} className='container_picture_slider_img'></img>
+          </div>
+         
+        </div>
+        <div>
+          <div>
+            <img src={exmpl3} className='container_picture_slider_img'></img>
+          </div>
+         
+        </div>
+
     
-    return(
-      <div>
-        <Slider
-          dots={false}
-          arrows={false}
-          slidesToShow={1}
-          slidesToScroll={1}
-          autoplay={true}
-          autoplaySpeed={10000}
-        >
-        {renderPictures()}
-        </Slider>
-      </div>
+
+      </Slider>
+    </div>
     )
 }
 

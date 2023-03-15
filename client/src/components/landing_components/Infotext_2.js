@@ -8,7 +8,7 @@ import Alexina from './images/Photo (5).png'
 import Markova from './images/Photo (6).png'
 import Stusova from './images/Photo (7).png'
 import Rudenko from './images/Photo (8).png'
-import eggs from './images/exmpl2.jpg'
+
 
 
 class Infotext_2 extends React.Component
@@ -16,10 +16,11 @@ class Infotext_2 extends React.Component
     render()
     {return(
     <div id = "frame">
+
     <div id="buy2">
-       <div class ="d">
-        <a>АДАПТИРУЕМ ПОД ВАС</a>
-        <img src={eggs}/>
+       <div class ="text_slider">
+        <div><span>АДАПТИРУЕМ ПОД ВАС</span></div>
+        <div> <Carousel/></div>
        </div>
         <div>
             <span>Мы предлагаем подстроить наш продукт под потребности вашей команды.</span> <br/>
