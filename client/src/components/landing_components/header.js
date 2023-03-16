@@ -13,14 +13,14 @@ function Header()
     return(
        <div id = "header">
             <div id="logo">
-            <img src = {logo} />
+            <img id="logo_img" src = {logo} />
                 <span >SPIRIT</span>
             </div>
             <div id = "info">
-                <a href="#buy">ГЛАВНАЯ</a>
-                <a href="#buy2">КУПИТЬ</a>
-                <a href ="#team">О КОМАНДЕ</a>
-                <a id = "start"  onClick={() => window.location.assign(user._isAuth ? TESTS : LOGIN)}>НАЧАТЬ</a>
+                <a href="#buy" className='InfoText'>ГЛАВНАЯ</a>
+                <a href="#buy2" className='InfoText'>КУПИТЬ</a>
+                <a href ="#team" className='InfoText'>О КОМАНДЕ</a>
+                <a className='InfoText' id = "start"  onClick={() => window.location.assign(user._isAuth ? TESTS : LOGIN)}>НАЧАТЬ</a>
             </div>
     </div>
     )

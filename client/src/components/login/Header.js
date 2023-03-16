@@ -7,6 +7,6 @@ export default function Header(){
           <img src={require('../../images/logo.png')} className='container_header_general_logo'></img>
           <span className='container_header_general_name'>spirit</span>
         </div>
-      </header>//
+      </header>
     )
 }
