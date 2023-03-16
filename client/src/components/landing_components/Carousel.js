@@ -5,13 +5,15 @@ import exmpl2 from './images/exmpl2.png';
 import exmpl3 from './images/exmpl3.png';
 import Slider from 'react-slick'
 
+
 export default function Carousel() 
 {
   return(
     <div className="container_pictures">
       <Slider
         dots={false}
-        arrows={false}
+        arrows={true}
+     
         slidesToShow={1}
         slidesToScroll={1}
         autoplay={true}

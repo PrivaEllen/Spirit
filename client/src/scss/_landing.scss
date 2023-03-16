@@ -39,6 +39,7 @@ body
 }
 #header
 {
+    z-index: 100;
     position: fixed;
     top: 0;
     left: 0;
@@ -59,7 +60,6 @@ body
     justify-content: center;
     font-weight: lighter;
      color: $BDcolor;
-    font-size: 36px;
     width: 50%;
     letter-spacing: 0.07em;
     font-family: 'Alegreya Sans', sans-serif;
@@ -73,10 +73,13 @@ body
 #info
 {
     width: 50%;
-    font-size: 24px;
-    line-height: 29px;
-    font-family: 'Alegreya Sans';
+
+    font-family: 'Roboto';
     font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    letter-spacing: 0.15px;
+
     color: $BDcolor;
     display: flex;
     align-items: center;
@@ -119,12 +122,48 @@ body
         font-size: 24px;
     }
     .container_picture_slider_img{
-        height: 150px;
         width: 200px;
     }
-
+    .Header_buy2
+    {
+        font-size: 25px;
+    }
+    .Text_buy2
+    {
+        font-size: 8px;
+    }
+    .profile_photo
+    {
+        height: 70px;
+        width: 70px;
+    }
+    .card
+    {
+        height: 180px;
+    }
+    .SmallUs
+    {
+        font-size: 6px;
+    }
+    .LargeUs
+    {
+        font-size: 13px;
+    }
+#logo
+{
+    font-size: 24px;
 }
-@media screen and (min-width: 1000px){
+.InfoText
+{
+    font-size: 10px;
+}
+
+#logo_img
+{
+    width: 30px;
+}
+}
+@media screen and (min-width: 1000px) and (max-width: 1439px){
     .buy__subtext
     {
         width: 60%;
@@ -134,12 +173,49 @@ body
         font-size: 33px;
     }
     .container_picture_slider_img{
-        height: 200px;
         width: 290px;
     }
+    .Header_buy2
+    {
+        font-size: 30px;
+    }
+    .Text_buy2
+    {
+        font-size: 12px;
+    }
+    .profile_photo
+    {
+        height: 110px;
+        width: 110px;
+    }
+    .card
+    {
+        height: 250px;
+    }
+    .SmallUs
+    {
+        font-size: 8px;
+    }
+    .LargeUs
+    {
+        font-size: 15px;
+    }
+    #logo
+{
+    font-size: 30px;
+}
+.InfoText
+{
+    font-size: 14px;
 }
 
-@media  screen and (min-width: 1440px){
+#logo_img
+{
+    width: 45px;
+}
+}
+
+@media  screen and (min-width: 1440px) and (max-width: 1560px){
     .buy__subtext
     {
         width: 55%;
@@ -149,12 +225,104 @@ body
         font-size: 45px;
     }
     .container_picture_slider_img{
-        height: 290px;
         width: 408px;
     }
+    .Header_buy2
+    {
+        font-size: 35px;
+    }
+    .Text_buy2
+    {
+        font-size: 15px;
+    }
+    .profile_photo
+    {
+        height: 150px;
+        width: 150px;
+    }
+    .card
+    {
+        height: 350px;
+    }
+    .SmallUs
+    {
+        font-size: 10px;
+    }
+    .LargeUs
+    {
+        font-size: 19px;
+    }
+    #logo
+{
+    font-size: 38px;
+}
+.InfoText
+{
+    font-size: 18px;
 }
 
-@media  screen and (min-width: 1852px){
+#logo_img
+{
+    width: 55px;
+}
+}
+
+@media  screen and (min-width: 1561px) and (max-width: 1851px){
+    .buy__subtext
+    {
+        width: 50%;
+    }
+    .buy__header
+    {
+        font-size: 52px;
+    }
+    .container_picture_slider_img
+    {
+        width: 500px;
+    }
+    .Header_buy2
+    {
+        font-size: 37px;
+    }
+
+    .Text_buy2
+    {
+        font-size: 16px;
+    }
+    .profile_photo
+    {
+        height: 170px;
+        width: 170px;
+    }
+    .card
+    {
+        height: 375px;
+    }
+    .SmallUs
+    {
+        font-size: 11.5px;
+    }
+    .LargeUs
+    {
+        font-size: 21px;
+    }
+    #logo
+{
+    font-size: 43px;
+}
+.InfoText
+{
+    font-size: 20px;
+}
+
+#logo_img
+{
+    width: 60px;
+}
+}
+
+
+@media  screen and (min-width: 1852px) and (max-width: 1999px){
     .buy__subtext
     {
         width: 45%;
@@ -163,10 +331,49 @@ body
     {
         font-size: 60px;
     }
-    .container_picture_slider_img{
-        height: 340px;
+    .container_picture_slider_img
+    {
         width: 545px;
     }
+    .Header_buy2
+    {
+        font-size: 40px;
+    }
+
+    .Text_buy2
+    {
+        font-size: 18px;
+    }
+    .profile_photo
+    {
+        height: 200px;
+        width: 200px;
+    }
+    .card
+    {
+        height: 400px;
+    }
+    .SmallUs
+    {
+        font-size: 13px;
+    }
+    .LargeUs
+    {
+        font-size: 24px;
+    }
+    #logo
+{
+    font-size: 48px;
+}
+.InfoText
+{
+    font-size: 24px;
+}
+
+#logo_img
+{
+    width: 60px;
+}
 }
 
 @media  screen and (min-width: 2000px)
@@ -180,9 +387,47 @@ body
         font-size: 80px;
     }
     .container_picture_slider_img{
-        height: 350px;
-        width: 578px;
+        width: 726px;
     }
+
+    .Header_buy2
+    {
+        font-size: 50px;
+    }
+    .Text_buy2
+    {
+        font-size: 25px;
+    }
+    .profile_photo
+    {
+        height: 250px;
+        width: 250px;
+    }
+    .card
+    {
+        height: 475px;
+    }
+    .SmallUs
+    {
+        font-size: 16px;
+    }
+    .LargeUs
+    {
+        font-size: 30px;
+    }
+    #logo
+{
+    font-size: 54px;
+}
+.InfoText
+{
+    font-size: 27px;
+}
+
+#logo_img
+{
+    width: 67px;
+}
 }
 #buy
 {
@@ -260,22 +505,25 @@ text-align: center;
        
         >span
         {
-            @include text();
-            width: 50%;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+         
+            line-height: 24px;
+            
+            letter-spacing: 0.15px;
+            
+            color: #F2E3D0;
+            
         }
         >a
         {
-            padding-left:5%;  
-            font-family: 'Alegreya Sans';
-font-style: normal;
-font-weight: 500;
-font-size: 48px;
-line-height: 76%;
-width: 100%;
-letter-spacing: 0.004em;
-font-variant: small-caps;
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            line-height: 116.7%;
+            color: #B0C7DD;
 
-color: #808080;
 
 
         }
@@ -284,18 +532,21 @@ color: #808080;
     .text_slider
 
     {
+        margin-top: 10%;
         display: flex;
         height: 60%;
         width: 40%;
-        justify-content: space-between;
+        justify-content: space-around;
         >div>span
         {
             font-family: 'Roboto';
 font-style: normal;
 font-weight: 400;
-font-size: 40px;
+
 line-height: 116.7%;
             color:$BDcolor;
+            
+       
         }
     }
 }
@@ -311,15 +562,14 @@ line-height: 116.7%;
     margin-bottom: 100px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     >span
     {
-        font-family: 'Alegreya Sans';
-font-style: normal;
-font-weight: 500;
-font-size: 40px;
-line-height: 48px;
-letter-spacing: 0.07em;
-text-transform: uppercase;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+      
+        line-height: 116.7%;
 color: $BDcolor;
 margin: 5%;
     }
@@ -328,38 +578,46 @@ margin: 5%;
         width: 80%;
         display: flex;
         flex-wrap: wrap;
-        margin-left: 18%;
-        >div
+        color: #1C1C1F;
+        .card
         {
-            height: 330px;
-            width: 20%;
+           
+            width: 23%;
             border: 1px solid #F2E3D0;
             border-radius: 26px;
             margin: 1%;
+            padding: 0.5%;
             display: flex;
             align-items: flex-start;
             flex-direction: column;
             justify-content: space-around;
-            padding: 1%;
-           
-            >span
-            {
-                font-family: 'Alegreya Sans';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 102%;
-/* or 20px */
-
-letter-spacing: 0.01em;
-
-color: #1C1C1F;
-
+            
+          .right_photo
+          {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+          }
             }
-        }
+           
     }
 }
-
+#team
+{
+    width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  >span
+  {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+  
+    line-height: 116.7%;
+color: $BDcolor;
+margin: 3%;
+  }
+}
 .container_picture{
     height: 100%;
     width: 100%;
@@ -375,3 +633,39 @@ color: #1C1C1F;
     height: 100%;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+#connect
+{
+    
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    >div
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 2%;
+        .LargeUs
+        {
+            font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: 400;
+
+line-height: 133.4%;
+text-transform: lowercase;
+        }
+        .SmallUs
+        {
+            font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+
+line-height: 12px;
+
+
+letter-spacing: 0.15px;
+        }
+    }
+}
