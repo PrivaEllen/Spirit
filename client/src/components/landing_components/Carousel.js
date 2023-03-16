@@ -1,5 +1,6 @@
 import React from 'react';
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import exmpl1 from './images/exmpl1.png';
 import exmpl2 from './images/exmpl2.png';
 import exmpl3 from './images/exmpl3.png';
