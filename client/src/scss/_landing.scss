@@ -28,15 +28,7 @@ $FontForBuyHeader: 60px;
     border-radius: 43px;
     color:$BDcolor;
 }
-body
-{
-    font-family: 'Roboto', sans-serif;
-    margin: 0%;
-    padding: 0%;
-    background-color: $BDcolor;
-    flex-direction: column;
-    align-items: center;
-}
+
 #header
 {
     z-index: 100;
@@ -440,7 +432,8 @@ body
  align-items: flex-start;
     .buy__subtext
     {
-       
+        font-family: 'Roboto';
+        font-style: normal;
         font-weight: 400;
 font-size: 18px;
 line-height: 24px;

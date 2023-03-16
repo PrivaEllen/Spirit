@@ -8,8 +8,15 @@ class Land extends React.Component
 {
     render()
     {
+        const divStyle = {
+            margin: '0%',
+            padding: '0%',
+            background: '#F2E3D0',
+            display: 'flex', 
+            flexDirection: 'column',
+          };
         return (
-            <div>
+            <div style={ divStyle}>
                 <Header />
                 <Infotext_1 />
                 <Buy_pictures />
