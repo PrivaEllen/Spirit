@@ -4,7 +4,7 @@ class TextOnLine extends React.Component {
   render() {
     return (
         <div className="textfield">
-            <p>{this.props.text}</p>
+          <input type="text" defaultValue={this.props.text}></input>
         </div>
     )
   }

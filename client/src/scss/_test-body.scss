@@ -33,3 +33,94 @@
         border-bottom: 1px dotted #ffffff56;
     }
 }
+
+.question{
+    padding: 4px 8px 8px 8px;
+    .question__header{
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .question__select{
+            &>div{
+                color: #fff;
+                border: 1px solid #ffffff56;
+                &>div{
+                    border: #fff;
+                    display: flex;
+                    align-items: center;
+                    svg{
+                        margin-right: 0.4rem;
+                    }
+                }
+                svg{
+                    fill: #ffffff56;
+                }
+                fieldset{
+                    border: none;
+                }
+            }
+            &>div.Mui-focused{
+                border: 2px solid #90CAF9;
+            }
+        }
+        .question__buttons{
+            display: flex;
+            align-items: center;
+            span{
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 150%;
+                & .MuiSwitch-switchBase{
+                    color: #fff;
+                }
+                & .MuiSwitch-switchBase.Mui-checked{
+                    color: #90CAF9;
+                    & +.MuiSwitch-track{
+                        background-color: #90CAF990;    
+                    }
+                }
+                & .MuiSwitch-track{
+                    background-color: #E0E0E0;
+                }
+            }
+            &> *{
+                margin-right: 8px;
+                &:nth-child(1){
+                    margin-right: 0;
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }   
+    }
+    .question__content{
+        .question__title{
+            display: flex;
+            span{
+                margin-right: 1rem;
+            }
+            .textfield{
+                width: 100%;
+            }
+        }
+    }
+}
+
+#menu-{
+    .MuiPaper-root{
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.12) 100%), #121212;
+        box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        ul>li{
+            color: #fff;
+            font-weight: 400;
+            font-size: 16px;
+            letter-spacing: 0.15px;
+            svg{
+                margin-right: 2rem;
+            }
+        }
+    }
+}

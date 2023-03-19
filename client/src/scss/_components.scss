@@ -1,18 +1,15 @@
 .textfield{
     color: #fff;
-    width: 300px;
     height: 30px;
     vertical-align: middle;
     border-bottom: 1px solid #fff;
-    p{
-        margin: 0;
-        font-family: 'Roboto';
-        font-style: normal;
+    input{
+        all: unset;
+        width: 100%;
         font-weight: 400;
         font-size: 18px;
         line-height: 24px;
         letter-spacing: 0.15px;
-        cursor: default;
     }
 }
 
@@ -38,4 +35,8 @@
         fill: #fff;
         fill-opacity: 0.56;
     }
+}
+
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+    color:#fff;
 }
