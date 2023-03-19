@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 @import url(https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,300;0,500;1,100&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 
 * {
   box-sizing: border-box;
@@ -24,3 +25,6 @@ body {
 @import "components";
 @import "test-body";
 @import "landing";
+@import "set_header";
+@import "set_pattern-set";
+@import "set_UserTests";

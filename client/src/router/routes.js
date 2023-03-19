@@ -1,9 +1,10 @@
-import { MAIN, LOGIN, REGISTRATION, TESTS, CREATE_TEST} from './utils';
+import { MAIN, LOGIN, REGISTRATION, TESTS, CREATE_TEST, TEST_SET} from './utils';
 import Land from '../pages/landing';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';
 import Tests from '../pages/Tests';
 import TestCreate from '../pages/TestCreate';
+import TestSet from '../pages/PageTestSet'
 
 
 export const loginRoutes = [
@@ -30,5 +31,9 @@ export const publicRoutes = [
     {
         path: CREATE_TEST,
         Component: TestCreate
+    },
+    {
+       path: TEST_SET,
+       Component: TestSet
     },
 ]
