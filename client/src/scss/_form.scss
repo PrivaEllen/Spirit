@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+
 .container_form{
     display: flex;
     justify-content: center;
@@ -24,23 +26,53 @@
 }
 
 .container_form_general_infographics_picture{
-    height: 92%;
+    height: 100%;
     width: 100%;
 }
 
-.container_form_general_infographics_shell{
+.container_form_general_infographics_picture_slider {
+    width: 100%;
+    height: 100%;
+}
+
+.container_form_general_infographics_picture_slider > .slick-list {
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-height: 801px) and (min-width: 1501px) {
+    .container_form_general_infographics_picture_slider_img{
+        height: 700px;
+        width: 670px;
+    }
+    .container_form_general_infographics_picture_slider_shell{
+        font-weight: 700;
+        font-size: 32px;
+    }
+}
+
+@media (max-height: 800px) and (max-width: 1500px) {
+    .container_form_general_infographics_picture_slider_img{
+        height: 450px;
+        width: 510px;
+    }
+
+    .container_form_general_infographics_picture_slider_shell{
+        font-weight: 500;
+        font-size: 28px;
+    }
+}
+
+
+.container_form_general_infographics_picture_slider_shell{
     text-align: center;
-    height: 8%;
     margin-top: 3px;
     width: 100%;
 }
 
-.container_form_general_infographics_shell_signature{
-    font-family: 'Alegreya Sans';
+.container_form_general_infographics_picture_slider_shell_signature{
+    font-family: 'Oswald';
     font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    letter-spacing: 0.05em;
     text-transform: uppercase;
     color: #F2E3D0;
 }
@@ -58,7 +90,7 @@
     justify-content: space-around;
     align-self: center;
     padding: 24px 24px 17px 24px;
-    margin-top: -10%;
+    margin-top: -8%;
     
     width: 348px;
     height: 295px;
@@ -81,6 +113,20 @@
     align-items: center;
 }
 
+@media (max-height: 800px) {
+    .container_form_general_registration_card{
+        width: 348px;
+        height: 408px;
+    }
+}
+
+@media (min-height: 800px) {
+    .container_form_general_registration_card{
+        width: 348px;
+        height: 457px;
+    }
+}
+
 .container_form_general_registration_card{
     display: flex;
     flex-direction: column;
@@ -88,10 +134,7 @@
     justify-content: space-around;
     align-self: center;
     padding: 24px 24px 17px 24px;
-    margin-top: -5%;
-    
-    width: 348px;
-    height: 85%;
+    margin-top: -12%;
 
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.12) 100%), #121212;
     box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);

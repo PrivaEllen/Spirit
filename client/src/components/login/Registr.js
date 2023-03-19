@@ -22,7 +22,7 @@ function Registr(){
         repeat_password: Yup.string().oneOf([Yup.ref('password')], 'Пароли не совпадают').required('Обязательно'),
     })
 
-    const [showPassword, setShowPassword] = useState(false)
+    const [showPassword, setShowPassword] = useState(true)
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     return(
@@ -42,7 +42,7 @@ function Registr(){
             {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
                 <>
                     {touched.password && errors.password && 
-                    <Alert severity="warning" sx={{borderRadius: '4px', textAlign: 'center', marginBottom: '30px', marginTop: '-30px'}}>Недостаточно надежный пароль</Alert>}
+                    <Alert severity="warning" sx={{borderRadius: '4px', textAlign: 'center', marginBottom: '56px', marginTop: '-30px'}}>Недостаточно надежный пароль</Alert>}
 
                     <div className="container_form_general_registration_card" style={{display: 'flex'}} onSubmit={handleSubmit}>
                         <TextField
@@ -89,17 +89,17 @@ function Registr(){
                             error={touched.email && errors.email || user._registrError ? true: false}
                         />
                         <FormControl sx={{ width: '100%' }} variant="standard">
-                            <InputLabel htmlFor="password" error={touched.password && errors.password ? true: false}>Пароль</InputLabel>
+                            <InputLabel htmlFor="password" error={touched.password && errors.password || (errors.repeat_password && touched.repeat_password) ? true: false}>Пароль</InputLabel>
                             <Input
                                 id="password"
                                 name='password'
-                                type={showPassword ? 'text' : 'password'}
+                                type={showPassword ? 'password' : 'text'}
                                 size="medium"
                                 margin='none'
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
-                                error={touched.password && errors.password ? true: false}
+                                error={(touched.password && errors.password) || (errors.repeat_password && touched.repeat_password) ? true: false}
                                 endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
@@ -118,7 +118,7 @@ function Registr(){
                             <Input
                                 id="repeat_password"
                                 name='repeat_password'
-                                type={showPassword ? 'text' : 'password'}
+                                type={showPassword ? 'password' : 'text'}
                                 size="medium"
                                 margin='none'
                                 onChange={handleChange}
