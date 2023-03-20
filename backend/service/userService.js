@@ -4,7 +4,12 @@ const uuid = require('uuid');
 const mailService = require('./mailService');
 const tokenService = require('./tokenService');
 const Errors = require('../middlewear/errors')
-const userDto = require('../dto/userDto')
+const userDto = require('../dto/userDto');
+const Tests = require('../models/Tests');
+const Questions = require('../models/Questions');
+const Answers = require('../models/Answers');
+const Sections = require('../models/Sections');
+
 class userService {
     async registration(Name, Surname, email, password, Photo) {
         let check = await HrUser.findOne({
@@ -102,6 +107,37 @@ class userService {
             ...token,
             dataUser: dataUser
        }
+    }
+
+    async getUserTests(idCreator){
+        const userTests = await Tests.findAll({
+            where: {
+                idCreator: idCreator
+            }
+        })
+        return {
+            userTests: userTests
+        }
+    }
+
+    async getTest(testId){
+        const userTest = await Tests.findOne({
+            where: {
+                testId: testId
+            },
+            include: [{
+                model: Sections,
+                include: [{
+                    model: Questions,
+                    include: [{
+                        model: Answers,
+                    }]
+                }]
+            }]
+        })    
+        return {
+            userTest: userTest
+        }
     }
 }
 

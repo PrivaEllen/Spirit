@@ -1,21 +1,14 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/database');
 
-class Tests extends Model {}
-Tests.init({
-  testId: {
+class HrInterns extends Model {}
+HrInterns.init({
+  HrInternsId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
-  name: {
-    type: DataTypes.STRING(100),
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.TEXT
-  },
-  idCreator: {
+  idHr: {
     type: DataTypes.INTEGER,
     references: {
       model: 'HrUser',
@@ -23,20 +16,19 @@ Tests.init({
     },
     onDelete: 'CASCADE'
   },
-  type: {
-    type: DataTypes.ENUM,
-    values: ['public', 'private'],
-    allowNull: false,
-  },
-  countSections: {
+  id_intern: {
     type: DataTypes.INTEGER,
-    defaultValue: 0
+    references: {
+      model: 'Interns',
+      key: 'internId'
+    },
+    onDelete: 'CASCADE'
   }
 }, {
   sequelize, 
-  modelName: 'Tests',
+  modelName: 'HrInterns',
   timestamps: false,
-  tableName: 'Tests'
+  tableName: 'HrInterns'
 });
 
-module.exports = Tests
+module.exports = HrInterns

@@ -1,4 +1,5 @@
 const userService = require('../service/userService');
+const testService = require('../service/testService')
 const {validationResult} = require('express-validator');
 const Errors = require('../middlewear/errors');
 
@@ -18,6 +19,7 @@ class UserController{
             next(e);
         }
     }
+
     async login (req, res, next){
         try{
             const {email, password} = req.body
@@ -29,6 +31,7 @@ class UserController{
             next(e);
         }
     }
+
     async logout (req, res, next){
         try{
             const {refreshToken} = req.cookies
@@ -40,6 +43,7 @@ class UserController{
             next(e);
         }
     }
+
     async activate (req, res, next){
         try{
             const activationLink = req.params.link 
@@ -50,15 +54,83 @@ class UserController{
             next(e);
         }
     }
+
     async refresh (req, res, next){
         try{
             const {refreshToken} = req.cookies
+            console.log(refreshToken);
             const user = await userService.refresh(refreshToken)
             res.cookie('refreshToken', user.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
             return res.json(user)
         }
         catch(e){
             next(e);
+        }
+    }
+
+    async test (req, res, next){
+        try{
+            const {name, description, idCreator, type} = req.body
+            const test = await testService.createTest(name, description, idCreator, type)
+            return res.json(test)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async section (req, res, next){
+        try{
+            const {name, description, id_test} = req.body
+            const test = await testService.createSection(name, description, id_test)
+            return res.json(test)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async question (req, res, next){
+        try{
+            const {questionText, idSection, type} = req.body
+            const question = await testService.createQuestion(questionText, idSection, type)
+            return res.json(question)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async answer (req, res, next){
+        try{
+            const {text, idQuestion} = req.body
+            const answer = await testService.createAnswer(text, idQuestion)
+            return res.json(answer)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async getUserTests(req, res, next){
+        try{
+            const {idCreator} = req.body
+            const userTests = await userService.getUserTests(idCreator)
+            return res.json(userTests)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async getTest(req, res, next){
+        try{
+            const {testId} = req.body
+            const userTest = await userService.getTest(testId)
+            return res.json(userTest)
+        }
+        catch(e){
+            next(e)
         }
     }
 }

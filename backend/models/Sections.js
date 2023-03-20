@@ -1,9 +1,9 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/database');
 
-class Tests extends Model {}
-Tests.init({
-  testId: {
+class Sections extends Model {}
+Sections.init({
+  sectionId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -15,28 +15,19 @@ Tests.init({
   description: {
     type: DataTypes.TEXT
   },
-  idCreator: {
+  id_test: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'HrUser',
-      key: 'id'
+      model: 'Tests',
+      key: 'testId'
     },
     onDelete: 'CASCADE'
-  },
-  type: {
-    type: DataTypes.ENUM,
-    values: ['public', 'private'],
-    allowNull: false,
-  },
-  countSections: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0
   }
 }, {
   sequelize, 
-  modelName: 'Tests',
+  modelName: 'Sections',
   timestamps: false,
-  tableName: 'Tests'
+  tableName: 'Sections'
 });
 
-module.exports = Tests
+module.exports = Sections

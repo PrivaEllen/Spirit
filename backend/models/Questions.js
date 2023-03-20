@@ -3,7 +3,7 @@ const sequelize = require('../database/database');
 
 class Questions extends Model {}
 Questions.init({
-  id: {
+  questionId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -12,18 +12,22 @@ Questions.init({
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  idTest: {
+  idSection: {
     type: DataTypes.INTEGER,
     references: {
-      model: 'Tests',
-      key: 'id'
+      model: 'Sections',
+      key: 'sectionId'
     },
     onDelete: 'CASCADE'
   },
   type: {
     type: DataTypes.ENUM,
-    values: ['oneOfList', 'severalOfList', 'Text'],
+    values: ['oneOfList', 'severalOfList', 'text'],
     allowNull: false,
+  },
+  obligatory: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false  
   }
 }, {
   sequelize, 
