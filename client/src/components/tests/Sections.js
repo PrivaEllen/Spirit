@@ -1,5 +1,4 @@
 import React from "react";
-import {v4 as uuidv4} from 'uuid';
 import TextOnLine from "./TextOnLine"
 import sq from "../../store/SectionsQuestions";
 import Select from '@mui/material/Select';
@@ -8,24 +7,23 @@ import Switch from '@mui/material/Switch';
 import { observer } from "mobx-react-lite";
 import SmallIcon from "./SmallIcon";
 
-
-const Sections = observer((props) =>  {
+const Sections = observer((props) => {
     return (
       <div>
           {sq.sections.map((s, index) => {
             return(
-              <div key={uuidv4()}>
+              <div key={s.id}>
                 <div className="test-block">
                     <h2>Раздел {index+1} из {sq.sections.length}</h2>
                     {/* <div className="textfield">
                       <input type="text" name="title" value={s.title} onChange={(e) => sq.changeSectionTitle(s.id, e)}></input>
                     </div> */}
-                    <TextOnLine text={s.title}/>
-                    <TextOnLine text={s.description}/>
+                    <TextOnLine onChange={props.setTitle} text={(index === 0)? props.title : s.title}/>
+                    <TextOnLine text={s.description} placeholder={"Описание (необязательно)"}/> 
                 </div>
                 {s.questions.map((q, index) => {
                   return (
-                    <div className="test-block question" key={uuidv4()}>
+                    <div className="test-block question" key={q.id}>
                       <div className="question__header">
                         <div className="question__select">
                           <Select
