@@ -2,7 +2,6 @@
     color: #fff;
     height: 30px;
     vertical-align: middle;
-    border-bottom: 1px solid #fff;
     input{
         all: unset;
         width: 100%;
@@ -10,6 +9,8 @@
         font-size: 18px;
         line-height: 24px;
         letter-spacing: 0.15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #fff;
     }
 }
 

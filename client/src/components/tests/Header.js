@@ -1,10 +1,10 @@
 import React from "react";
 import logo from "../../images/logo.png"
-import TextOnLine from "./TextOnLine"
 import SmallIcon from "./SmallIcon"
-import {Divider, Avatar, Popover} from '@mui/material';
+import {Divider, Avatar, Popover, Tooltip} from '@mui/material';
 import { observer } from "mobx-react-lite";
 import TestTools from "../../store/TestTools";
+import backgroundButtons from "../../scripts/change_background";
 
 const Header = observer((props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,19 +15,28 @@ const Header = observer((props) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    let rounds = document.getElementsByClassName("round");
+    for (const e of rounds){
+      if (e.classList.contains("round_active"))
+        var color = e.id; 
+    }
+    props.setBgColor(color);
   };
-
+  
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
+
 
   return (
     <header className="header">
       <div className="header__container"> 
           <div className="header__side">
             <div className="logo">
-              <div onClick={() => {props.setModalActive(true); TestTools.showExitMenu()}}>
-                <img src={logo} alt="logo"/>
-              </div>
+              <Tooltip title="Главный экран Spirit">
+                <div onClick={() => {props.setModalActive(true); TestTools.showExitMenu()}}>
+                  <img src={logo} alt="logo"/>
+                </div>
+              </Tooltip>
             </div>
             <div className="header__delete">
               <SmallIcon onClick={() => {props.setModalActive(true); TestTools.showDeleteMenu()}} title="Удалить тест" svg={
@@ -36,7 +45,9 @@ const Header = observer((props) => {
                 </svg>
               }/>
             </div>
-            <TextOnLine text={"Первое знакомство"}/>
+            <div className="header__test-title">
+              <h1>{props.testTitle}</h1>
+            </div>
           </div>
           <div className="header__side">
             <SmallIcon onClick={() => {props.addQuestion()}} title="Создать вопрос" svg={
@@ -83,7 +94,38 @@ const Header = observer((props) => {
             }}
             sx={{ "& .MuiPopover-paper": {background: "none"} }}
           >
-            <div className="popover"></div>
+            <div className="popover">
+              <div className="popover__title">
+                <span>Фон</span>
+              </div>
+              <div className="popover__content bacground-select">
+                <div onClick={backgroundButtons.setBackgroundDark} className={"round" + ((props.bgColor === "round_dark") ? " round_active" : "")} id="round_dark">
+                  <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.46253 8.56773L1.16128 5.26648L0.0371094 6.38273L4.46253 10.8081L13.9625 1.30814L12.8463 0.191895L4.46253 8.56773Z" fill="white" fillOpacity="0.56"/>
+                  </svg>
+                </div>
+                <div onClick={backgroundButtons.setBackgroundGreen} className={"round" + ((props.bgColor === "round_green") ? " round_active" : "")} id="round_green">
+                  <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.46253 8.56773L1.16128 5.26648L0.0371094 6.38273L4.46253 10.8081L13.9625 1.30814L12.8463 0.191895L4.46253 8.56773Z" fill="white" fillOpacity="0.56"/>
+                  </svg>
+                </div>
+                <div onClick={backgroundButtons.setBackgroundPurple} className={"round" + ((props.bgColor === "round_purple") ? " round_active" : "")} id="round_purple">
+                  <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.46253 8.56773L1.16128 5.26648L0.0371094 6.38273L4.46253 10.8081L13.9625 1.30814L12.8463 0.191895L4.46253 8.56773Z" fill="white" fillOpacity="0.56"/>
+                  </svg>
+                </div>
+                <div onClick={backgroundButtons.setBackgroundBlue} className={"round" + ((props.bgColor === "round_blue") ? " round_active" : "")} id="round_blue">
+                  <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.46253 8.56773L1.16128 5.26648L0.0371094 6.38273L4.46253 10.8081L13.9625 1.30814L12.8463 0.191895L4.46253 8.56773Z" fill="white" fillOpacity="0.56"/>
+                  </svg>
+                </div>
+                <div onClick={backgroundButtons.setBackgroundRed} className={"round" + ((props.bgColor === "round_red") ? " round_active" : "")} id="round_red">
+                  <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.46253 8.56773L1.16128 5.26648L0.0371094 6.38273L4.46253 10.8081L13.9625 1.30814L12.8463 0.191895L4.46253 8.56773Z" fill="white" fillOpacity="0.56"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </Popover>
             <SmallIcon title="Просмотр от лица пользователя" svg = {
               <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">

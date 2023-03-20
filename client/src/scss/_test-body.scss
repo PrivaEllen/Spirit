@@ -6,6 +6,7 @@
     width: 100%;
     .test-body__container{
         width: 55%;
+        margin-top: 65px;
     }
 }
 
@@ -30,7 +31,12 @@
         }
     }
     .textfield{
-        border-bottom: 1px dotted #ffffff56;
+        input{
+            border-bottom: 1px dotted #ffffff56;
+            &:focus{
+                border-bottom: 1px solid #ffffff;
+            }
+        }
     }
 }
 

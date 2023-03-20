@@ -6,16 +6,13 @@ class TestEdit extends React.Component {
     return (
       <div className="test-body">
         <div className="test-body__container">
-          <Sections sections={this.props.sections}/>
+          <Sections
+            sections={this.props.sections} 
+            title={this.props.testTitle}
+            setTitle={this.props.setTestTitle}
+          />
         </div>
       </div>
-    )
-  }
-
-  addQuestion(sectionId) {
-    let questionsLength = this.state.sections[sectionId]['questions'].length
-    this.state.sections[sectionId]['questions'].push(
-      {id:questionsLength+1, title:"Загаловок вопроса", isImportant: false}
     )
   }
 }
