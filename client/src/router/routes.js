@@ -1,4 +1,4 @@
-import { MAIN, LOGIN, REGISTRATION, TESTS, CREATE_TEST} from './utils';
+import { MAIN, LOGIN, REGISTRATION, TESTS, CREATE_TEST } from './utils';
 import Land from '../pages/landing';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';
