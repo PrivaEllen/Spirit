@@ -3,7 +3,6 @@ import Header from "../components/tests/Header"
 import TestEdit from "../components/tests/TestEdit"
 import Modal from "../components/Modal/Modal"
 import TestTools from "../store/TestTools";
-import sq from "../store/SectionsQuestions";
 
 export default function TestCreate(props) {
     // модальное окно
@@ -17,7 +16,9 @@ export default function TestCreate(props) {
         "round_blue": "#162831",
         "round_red": "#311f21",
     }
-    var sections = useState([...sq.sections])
+    // Разделы и вопросы
+    // const [sections, setSections] = useState([...sq.sections])
+
     // Название теста
     const [testTitle, setTestTitle] = useState("Название теста")
     return (
@@ -25,22 +26,16 @@ export default function TestCreate(props) {
             <style>{ `body {background-color: ${color[bgColor]}}` }</style>
             <Header 
                 setModalActive={setModalActive}
-                addQuestion={addQuestion} 
                 bgColor={bgColor} 
                 setBgColor={setBgColor}
                 testTitle={testTitle}
                 setTestTitle={setTestTitle}
             />
             <TestEdit
-                sections={sections}
                 testTitle={testTitle}
                 setTestTitle={setTestTitle}
             />
             <Modal active={modalActive} setActive={setModalActive}>{TestTools.innerContent}</Modal>
         </div>
     )
-}
-
-function addQuestion(){
-    console.log(1);
 }
