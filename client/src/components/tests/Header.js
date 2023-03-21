@@ -5,6 +5,7 @@ import {Divider, Avatar, Popover, Tooltip} from '@mui/material';
 import { observer } from "mobx-react-lite";
 import TestTools from "../../store/TestTools";
 import backgroundButtons from "../../scripts/change_background";
+import sq from "../../store/SectionsQuestions";
 
 const Header = observer((props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,7 +23,7 @@ const Header = observer((props) => {
     }
     props.setBgColor(color);
   };
-  
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -50,12 +51,12 @@ const Header = observer((props) => {
             </div>
           </div>
           <div className="header__side">
-            <SmallIcon onClick={() => {props.addQuestion()}} title="Создать вопрос" svg={
+            <SmallIcon onClick={() => {sq.addQuestion()}} title="Создать вопрос" svg={
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="white"/>
             </svg>
             }/>
-            <SmallIcon title="Создать раздел" svg = {<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <SmallIcon onClick={() => sq.addSection()} title="Создать раздел" svg = {<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.801562 23.9218C0.515625 23.8187 0.178125 23.4718 0.0796875 23.1812C0.009375 22.9796 0 22.6796 0 20.6921C0 18.5452 0.0046875 18.414 0.09375 18.1749C0.201562 17.8843 0.45 17.6265 0.75 17.4905C0.960937 17.3968 1.00312 17.3921 12 17.3921H23.0391L23.2781 17.5046C23.4047 17.5655 23.5875 17.7015 23.6859 17.814C24 18.1843 24 18.1796 24 20.6968C24 23.2796 24.0047 23.2515 23.625 23.6265C23.2172 24.039 24.3562 24.0015 11.9812 23.9968C2.1375 23.9968 0.984375 23.9874 0.801562 23.9218Z" fill="white"/>
             <path d="M11.3063 15.5969C10.8375 15.1234 10.7812 15.0531 10.7812 14.9031C10.7812 14.5703 11.0953 14.4015 11.4 14.5703L11.5781 14.664V13.5437V12.4233H11.3438C11.0859 12.4233 10.8563 12.3296 10.8094 12.2124C10.7719 12.1139 10.7719 11.8889 10.8094 11.7905C10.8563 11.6733 11.0859 11.5795 11.3438 11.5795H11.5781V10.4545V9.32476L11.4 9.42789C11.0953 9.60602 10.7812 9.43258 10.7812 9.09507C10.7812 8.94506 10.8328 8.87943 11.3109 8.40129C12.0188 7.69814 11.9859 7.69814 12.6938 8.40598C13.1625 8.87943 13.2188 8.94975 13.2188 9.09975C13.2188 9.43258 12.9047 9.60133 12.6 9.42789L12.4219 9.32476V10.4545V11.5795H12.6563C12.9141 11.5795 13.1438 11.6733 13.1906 11.7905C13.2281 11.8889 13.2281 12.1139 13.1906 12.2124C13.1438 12.3296 12.9141 12.4233 12.6563 12.4233H12.4219V13.5484V14.6781L12.6 14.575C12.9047 14.3968 13.2188 14.5703 13.2188 14.9078C13.2188 15.0578 13.1672 15.1234 12.6891 15.6016C11.9813 16.3047 12.0141 16.3047 11.3063 15.5969Z" fill="white"/>
             <path d="M0.988672 12.3015C0.782422 12.128 0.782422 11.8749 0.988672 11.7015L1.13398 11.5796H2.04336C3.06055 11.5796 3.18711 11.6077 3.27148 11.8608C3.30898 11.9593 3.30898 12.0437 3.27148 12.1421C3.18711 12.3952 3.06055 12.4233 2.04336 12.4233H1.13398L0.988672 12.3015Z" fill="white"/>

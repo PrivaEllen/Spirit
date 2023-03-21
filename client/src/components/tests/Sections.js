@@ -1,9 +1,7 @@
 import React from "react";
 import TextOnLine from "./TextOnLine"
 import sq from "../../store/SectionsQuestions";
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import Switch from '@mui/material/Switch';
+import {Select, MenuItem, Switch, IconButton} from '@mui/material';
 import { observer } from "mobx-react-lite";
 import SmallIcon from "./SmallIcon";
 
@@ -12,13 +10,20 @@ const Sections = observer((props) => {
       <div>
           {sq.sections.map((s, index) => {
             return(
-              <div key={s.id}>
-                <div className="test-block">
-                    <h2>Раздел {index+1} из {sq.sections.length}</h2>
-                    {/* <div className="textfield">
-                      <input type="text" name="title" value={s.title} onChange={(e) => sq.changeSectionTitle(s.id, e)}></input>
-                    </div> */}
-                    <TextOnLine onChange={props.setTitle} text={(index === 0)? props.title : s.title}/>
+              <div className="section-block" key={s.id}>
+                <div className="test-block section">
+                    <div className="section__header">
+                      <h2>Раздел {index+1} из {sq.sections.length}</h2>
+                      {(index === 0)? 
+                      null
+                      :
+                      <SmallIcon onClick={() => sq.removeSection(s.id)} title="Удалить Секцию" svg={
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 31C18 32.1 18.9 33 20 33H28C29.1 33 30 32.1 30 31V19H18V31ZM31 16H27.5L26.5 15H21.5L20.5 16H17V18H31V16Z"/>
+                        </svg>
+                      }/>}
+                    </div>
+                    <TextOnLine onChange={props.setTitle} text={(index === 0)? props.title : s.title} placeholder={"Название раздела"}/>
                     <TextOnLine text={s.description} placeholder={"Описание (необязательно)"}/> 
                 </div>
                 {s.questions.map((q, index) => {
@@ -55,35 +60,55 @@ const Sections = observer((props) => {
                               <span>Текст</span>
                             </MenuItem>
                           </Select>
-                        </div>
-                        <div className="question__buttons">
-                        <Switch />
-                        <span>Обязательный вопрос</span>
-                        <SmallIcon title="Добавить фото" svg={
-                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18 16V2C18 0.9 17.1 0 16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16ZM5.5 10.5L8 13.51L11.5 9L16 15H2L5.5 10.5Z"/>
-                            </svg>                          
+                          </div>
+                          <div className="question__buttons">
+                          <Switch />
+                          <span>Обязательный вопрос</span>
+                          <SmallIcon title="Добавить фото" svg={
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M18 16V2C18 0.9 17.1 0 16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16ZM5.5 10.5L8 13.51L11.5 9L16 15H2L5.5 10.5Z"/>
+                              </svg>                          
                           }/>
-                        <SmallIcon title="Удалить вопрос" svg={
+                          <SmallIcon onClick={() => sq.removeQuestion(s.id, q.id)} title="Удалить вопрос" svg={
                             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18 31C18 32.1 18.9 33 20 33H28C29.1 33 30 32.1 30 31V19H18V31ZM31 16H27.5L26.5 15H21.5L20.5 16H17V18H31V16Z"/>
                             </svg>
                           }/>
-                          <SmallIcon title="Выше" svg={
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 8L1.41 9.41L7 3.83V16H9V3.83L14.58 9.42L16 8L8 0L0 8Z"/>
-                            </svg>                                                    
-                          }/>
-                          <SmallIcon title="Ниже" svg={
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z"/>
-                            </svg>                                                                            
-                          }/>
+                          {(index === 0)?
+                            <div className="small-icon small-icon_disabled">
+                                <IconButton disabled={true} aria-label="delete" color="inherit">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 8L1.41 9.41L7 3.83V16H9V3.83L14.58 9.42L16 8L8 0L0 8Z"/>
+                                </svg>
+                                </IconButton>
+                            </div> 
+                            :
+                            <SmallIcon onClick={() => sq.moveQuestionTop(s.id, index)} title="Выше" svg={
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M0 8L1.41 9.41L7 3.83V16H9V3.83L14.58 9.42L16 8L8 0L0 8Z"/>
+                              </svg>                                                    
+                            }/>
+                          }
+                          {(index === s.questions.length-1)?
+                            <div className="small-icon small-icon_disabled">
+                                <IconButton disabled={true} aria-label="delete" color="inherit">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z"/>
+                                </svg>
+                                </IconButton>
+                            </div> 
+                            :
+                            <SmallIcon onClick={() => sq.moveQuestionDown(s.id, index)} title="Ниже" svg={
+                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z"/>
+                              </svg>                                                                            
+                            }/>
+                          }
                         </div>
                       </div>
                       <div className="question__content">
                           <div className="question__title">
-                            <span>{q.id}.</span>
+                            <span>{index+1}.</span>
                             <TextOnLine text={q.title}/>
                           </div>
                           <div className="question_var">
