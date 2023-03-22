@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const router = require('./router/router')
 const initDatabase = require("./models/models");
 const except = require('./middlewear/errorMiddleware');
+const fileUpload = require('express-fileupload');
+const path = require('path');
 
 const port = process.env.PORT || 5000
 const app = express()
@@ -12,6 +14,8 @@ const app = express()
 initDatabase()
 
 app.use(express.json())
+// app.use(express.static(path.resolve(__dirname, 'static')))
+// app.use(fileUpload({}))
 app.use(cookieParser())
 app.use(cors({
     credentials: true,

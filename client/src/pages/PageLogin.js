@@ -17,7 +17,6 @@ function Login() {
     return (
         <>
             <div className='container'>
-                {/* <h1>{user._user.id}</h1> */}
                 <ThemeProvider theme={darkTheme}>
                     <Header />
                     <div className='container_form'>

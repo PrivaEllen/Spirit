@@ -2,6 +2,8 @@ const userService = require('../service/userService');
 const testService = require('../service/testService')
 const {validationResult} = require('express-validator');
 const Errors = require('../middlewear/errors');
+const uuid = require('uuid');
+const path = require('path');
 
 class UserController{
     async registration (req, res, next){
@@ -70,8 +72,8 @@ class UserController{
 
     async test (req, res, next){
         try{
-            const {name, description, idCreator, type} = req.body
-            const test = await testService.createTest(name, description, idCreator, type)
+            const {name, description, idCreator, type, category} = req.body
+            const test = await testService.createTest(name, description, idCreator, type, category)
             return res.json(test)
         }
         catch(e){
@@ -114,7 +116,8 @@ class UserController{
 
     async getUserTests(req, res, next){
         try{
-            const {idCreator} = req.body
+            const idCreator = req.params.idCreator
+            console.log(idCreator)
             const userTests = await userService.getUserTests(idCreator)
             return res.json(userTests)
         }

@@ -13,7 +13,8 @@ Tests.init({
     allowNull: false,
   },
   description: {
-    type: DataTypes.TEXT
+    type: DataTypes.TEXT,
+    allowNull: true
   },
   idCreator: {
     type: DataTypes.INTEGER,
@@ -28,10 +29,26 @@ Tests.init({
     values: ['public', 'private'],
     allowNull: false,
   },
+  dateOfCreate: {
+    type: DataTypes.DATEONLY,
+    allowNull: false,
+    defaultValue: DataTypes.NOW
+  },
+  category: {
+    type: DataTypes.ENUM,
+    values: ['template', 'user'],
+    allowNull: false,
+    defaultValue: 'user'
+  },
   countSections: {
     type: DataTypes.INTEGER,
+    allowNull: false,
     defaultValue: 0
-  }
+  },
+  // img: {
+  //   type: DataTypes.TEXT,
+  //   defaultValue: './static/defaultPat.png'
+  // }
 }, {
   sequelize, 
   modelName: 'Tests',

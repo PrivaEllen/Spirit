@@ -34,7 +34,19 @@ HrUser.init({
   },
   activationLink: {
     type: DataTypes.STRING(255)
-  }
+  },
+  company: {
+    type: DataTypes.STRING(100),
+    allowNull: true
+  },
+  phone: {
+    type: DataTypes.STRING(15),
+    allowNull: true
+  },
+  emailForFeedback: {
+    type: DataTypes.STRING(255),
+  },
+
 
 }, {
   sequelize, 

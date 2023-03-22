@@ -17,7 +17,7 @@ router.post('/create/test', authMiddleware, UserController.test)
 router.post('/create/section', authMiddleware, UserController.section)
 router.post('/create/question', authMiddleware, UserController.question)
 router.post('/create/answer', authMiddleware, UserController.answer)
-router.get('/user/tests', authMiddleware, UserController.getUserTests)
-router.get('/user/test', authMiddleware, UserController.getTest)
+router.get('/user/tests/:idCreator', authMiddleware, UserController.getUserTests)
+router.get('/user/test/:testId', authMiddleware, UserController.getTest)
 
 module.exports = router
