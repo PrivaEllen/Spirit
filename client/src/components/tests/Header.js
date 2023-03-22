@@ -29,7 +29,7 @@ const Header = observer((props) => {
 
 
   return (
-    <header className="header">
+    <header id="testPageHeader" className="header">
       <div className="header__container"> 
           <div className="header__side">
             <div className="logo">
