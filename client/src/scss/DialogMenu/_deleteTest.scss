@@ -1,0 +1,36 @@
+.inner-content{
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    .inner-content__header{
+        margin-bottom: 24px;
+        h2{
+            font-weight: 500;
+            font-size: 20px;
+            letter-spacing: 0.15px;
+        }
+    }
+    .inner-content__subtext{
+        margin-bottom: 24px;
+        p{
+            font-weight: 400;
+            font-size: 16px;
+            letter-spacing: 0.15px;
+        }
+    }
+    .inner-content__buttons{
+        display: flex;
+        justify-content: flex-end;
+        button{
+            color: #90CAF9; 
+            &:hover{
+                background-color:  #90CAF910;
+            }
+        }
+        &> *{
+            margin-right: 16px;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+}
