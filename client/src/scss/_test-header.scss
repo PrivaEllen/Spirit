@@ -1,10 +1,12 @@
 header{
+    position: fixed;
     background-color: #222430;
     height: 64px;
     width: 100%;
     display: flex;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
+    z-index: 999;
     .header__container {
         width: 90%;
         height: 100%;
@@ -13,6 +15,16 @@ header{
         .header__side {
             display: flex;
             align-items: center;
+            .header__test-title{
+                width: 300px;
+                h1{
+                    color: #fff;
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 24px;
+                    letter-spacing: 0.15px;
+                }
+            }
         }
         .header__delete{
             margin: 0 8px;
@@ -46,5 +58,75 @@ header{
     cursor: pointer;
     &:hover{
         background-color:#49a9f8;
+    }
+}
+
+.MuiPopover-paper{
+    .popover{
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212;
+        box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        width: 200px;
+        height: 77px;
+    }
+}
+
+.popover{
+    padding: 8px 16px;
+    .popover__title{
+        height: 50%;
+        span{
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 24px;
+            letter-spacing: 0.15px;
+        }
+    }
+    .popover__content{
+        height: 50%;
+    }
+    .bacground-select{
+        display: flex;
+        justify-content: space-around;
+        button{
+            width: 25px;
+            height: 25px;
+            padding: 0;
+        }
+        .round{
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            svg{
+                opacity: 0;
+            }
+        }
+        #round_dark{
+            background-color: #121212;
+        }
+        #round_green{
+            background-color: #203A27;
+        }
+        #round_purple{
+            background-color: #430047;
+        }
+        #round_blue{
+            background-color: #043F5D;
+        }
+        #round_red{
+            background-color: #5E2129;
+        }
+        .round_active {
+            cursor: default;
+            svg{
+                opacity: 1;
+            }
+        }
     }
 }
