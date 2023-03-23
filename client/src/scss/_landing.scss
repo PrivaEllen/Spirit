@@ -7,7 +7,7 @@ $FontForBuyHeader: 60px;
 
 @mixin text ()
 {
-    font-family: 'Alegreya Sans';
+    font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -54,7 +54,8 @@ $FontForBuyHeader: 60px;
      color: $BDcolor;
     width: 50%;
     letter-spacing: 0.07em;
-    font-family: 'Alegreya Sans', sans-serif;
+    font-family: 'Roboto';
+    font-style: normal;
     >img
     {
         margin-right: 2%;
@@ -428,7 +429,7 @@ $FontForBuyHeader: 60px;
  height: 600px;
  display: flex;
  flex-direction: column;
- justify-content: space-between;
+ justify-content: space-around;
  align-items: flex-start;
     .buy__subtext
     {
@@ -444,7 +445,7 @@ letter-spacing: 0.15px;
     {
         font-family: 'Poiret One';
         font-style: normal;
-        font-weight: 400;
+        font-weight: 500;
       
       
         text-transform: uppercase;
@@ -466,8 +467,8 @@ justify-content: space-around;
 margin-bottom: 5%;
 >div
 {
-    font-family: 'Alegreya Sans';
-font-style: normal;
+    font-family: 'Roboto';
+    font-style: normal;
 font-weight: 500;
 font-size: 36px;
 line-height: 43px;
