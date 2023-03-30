@@ -3,24 +3,57 @@ import SearchForm from "./SearchForm";
 import Avatar from '@mui/material/Avatar';
 import { observer } from "mobx-react-lite";
 import { Context } from "../..";
+import Popover from '@mui/material/Popover';
+import AccWin from "./AccWin";
 
 function Header(){
   const {user} = useContext(Context);
-  return(
-      <header className="SetPageHeader">
-      <div className="header__logo">
-        <img src={require('../../images/logo.png') } alt="Our logo" className='header__logo__photo'></img>
-        <span className='header__logo__text'>spirit</span>
-      </div>
-      <SearchForm/>
-      <div className="header__account">
-        <span className="header__account__name">{user._user.Surname} {user._user.Name}</span>
-        <div className="avatar">
-          <Avatar src="../../../../backend/static/60753431-616e-45a3-a203-2269feced218.png" sx={{ bgcolor: "#90CAF9", width: "49px", height: "49px" }}></Avatar>
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+    return(
+        <header className="SetPageHeader">
+        <div className="header__logo">
+          <img src={require('../../images/logo.png') } alt="Our logo" className='header__logo__photo'></img>
+          <span className='header__logo__text'>spirit</span>
         </div>
-      </div>
-    </header>
-  )
+        <SearchForm/>
+        <div className="header__account">
+            <span className="header__account__name">{user._user.Surname} {user._user.Name}</span>
+            <div className="avatar">
+                <Avatar  onClick={handleClick} sx={{  width: "49px", height: "49px" }} />
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  }}
+                  transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                sx={{ "& .MuiPopover-paper": {background: "none"} }}
+                >
+                <AccWin/>
+              </Popover>
+            </div>
+        </div>
+      </header>
+    )
 }
 
 export default observer(Header);

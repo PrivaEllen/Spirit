@@ -15,6 +15,7 @@
 }
 
 .Pattern_text{
+    user-select: none;
     text-align: center;
     padding-left: 12px;
 
@@ -36,7 +37,8 @@
 .Pattern__container{
     width: 65%;
     background: #121212;
-    gap: 67px;
+    column-gap: 67px;
+    row-gap: 30px;
 
     display: flex;
     justify-content: flex-start;
@@ -49,6 +51,13 @@
     height: 176px;
     margin-bottom: 16px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), #222430;
+    border-radius: 2px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.14)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.12));
+    img{
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+    }
 }
 
 .pattern__photo{
@@ -68,6 +77,7 @@
 }
 
 .pattern-box__text{
+    user-select: none;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
