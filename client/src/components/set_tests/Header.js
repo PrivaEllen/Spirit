@@ -2,8 +2,7 @@ import React from "react";
 import SearchForm from "./SearchForm";
 import Avatar from '@mui/material/Avatar';
 import Popover from '@mui/material/Popover';
-
-
+import AccWin from "./AccWin";
 
 export default function Header(){
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -45,12 +44,7 @@ export default function Header(){
                 }}
                 sx={{ "& .MuiPopover-paper": {background: "none"} }}
                 >
-                <div className="popover-test">
-                  <div className="option__container">
-                  
-                  </div>
-
-                </div>
+                <AccWin/>
               </Popover>
             </div>
         </div>

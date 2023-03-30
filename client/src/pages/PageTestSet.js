@@ -34,7 +34,7 @@ function TestSet() {
                 <div className='Pattern-body'>
                     <div className='Pattern__container'>
                         <AddTest/>
-                        <UserTest TestName = "Тест на IQ" TestTime = "23 фев. 2023г" image = 'pat1'/>
+                        <UserTest TestName = "Тест на IQ" TestTime = "23 фев. 2023г" image = 'pat1' privacy = "privat"/>
                         <UserTest/>
                     </div>
                 </div>

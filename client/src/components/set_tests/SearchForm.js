@@ -47,17 +47,25 @@ export default function SearchForm() {
           vertical: 'top',
           horizontal: 'right',
         }}
-        sx={{ "& .MuiPopover-paper": {background: "none"} }}
+        sx={{ "& .MuiPopover-paper": {background: "none"}}}
+        
       >
         <div className="popover-test">
           <div className="option__container">
           <FormGroup>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Все тесты" className="option__text" />
-            <FormControlLabel control={<Checkbox />} label="Видимые" className="option__text"/>
-            <FormControlLabel control={<Checkbox />} label="Скрытые" className="option__text"/>
+            <FormControlLabel control={<Checkbox  sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Все тесты" className="option__text" />
+            <FormControlLabel control={<Checkbox  sx={{ color: "#808080","margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Видимые" className="option__text"/>
+            <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Скрытые" className="option__text"/>
           </FormGroup>
           </div>
-        </div>
+          <div className="option__container" >
+          <FormGroup>
+          <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Первый раунд" className="option__text" />
+            <FormControlLabel control={<Checkbox sx={{ color: "#808080","margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Второй раунд" className="option__text"/>
+            <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Финал" className="option__text"/>
+          </FormGroup>
+          </div>
+          </div>
       </Popover>
         
     </div>
