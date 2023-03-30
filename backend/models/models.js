@@ -8,12 +8,16 @@ const internsAnswers = require("./internsAnswers");
 const Interns = require("./Interns");
 const Sections = require("./Sections");
 const HrInterns = require("./HrandInterns");
+const Types = require("./TypesOfTests");
 
 Token.belongsTo(HrUser, {foreignKey: 'id'})
 HrUser.hasOne(Token, {foreignKey: 'id'})
 
 Tests.belongsTo(HrUser, {foreignKey: 'idCreator'})
 HrUser.hasMany(Tests, {foreignKey: 'idCreator'})
+
+Tests.belongsTo(Types, {foreignKey: 'type'})
+Types.hasMany(Tests, {foreignKey: 'type'})
 
 Sections.belongsTo(Tests, {foreignKey: 'id_test'})
 Tests.hasMany(Sections, {foreignKey: 'id_test'})

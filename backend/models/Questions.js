@@ -28,6 +28,10 @@ Questions.init({
   obligatory: {
     type: DataTypes.BOOLEAN,
     defaultValue: false  
+  },
+  img: {
+    type: DataTypes.TEXT,
+    defaultValue: ''
   }
 }, {
   sequelize, 

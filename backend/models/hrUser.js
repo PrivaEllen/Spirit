@@ -26,7 +26,8 @@ HrUser.init({
     allowNull: false
   },
   Photo: {
-    type: DataTypes.STRING(100)
+    type: DataTypes.TEXT,
+    defaultValue: './static/defaultIcon.png'
   },
   isActivated: {
     type: DataTypes.BOOLEAN,
@@ -45,9 +46,7 @@ HrUser.init({
   },
   emailForFeedback: {
     type: DataTypes.STRING(255),
-  },
-
-
+  }
 }, {
   sequelize, 
   modelName: 'HrUser',

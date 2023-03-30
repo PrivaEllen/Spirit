@@ -4,6 +4,7 @@ const {validationResult} = require('express-validator');
 const Errors = require('../middlewear/errors');
 const uuid = require('uuid');
 const path = require('path');
+const Types = require('../models/TypesOfTests');
 
 class UserController{
     async registration (req, res, next){
@@ -70,10 +71,38 @@ class UserController{
         }
     }
 
-    async test (req, res, next){
+    async saveChanges(req, res, next){
         try{
-            const {name, description, idCreator, type, category} = req.body
-            const test = await testService.createTest(name, description, idCreator, type, category)
+            const {id, Name, Surname, company, phone, emailForFeedback} = req.body
+            const {Photo} = req.files
+            let fileName = uuid.v4() + ".png"
+            Photo.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const hrUser = await userService.saveChanges({id, Name, Surname, company, phone, emailForFeedback, Photo: fileName})
+            return res.json(hrUser)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async createTypeOfTest(req, res, next){
+        try{
+            const {name} = req.body
+            const type = await userService.createTypeOfTest(name)
+            return res.json(type)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async createTest (req, res, next){
+        try{
+            const {name, description, idCreator, category, privat, typeId} = req.body
+            const {img} = req.files
+            let fileName = uuid.v4() + ".png"
+            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const test = await testService.createTest({name, description, idCreator, category, privat, typeId, img: fileName})
             return res.json(test)
         }
         catch(e){
@@ -81,7 +110,40 @@ class UserController{
         }
     }
 
-    async section (req, res, next){
+    async renameTest(req, res, next){
+        try{
+            const {testId, name} = req.body
+            const newTest = await userService.renameTest(testId, name)
+            return res.json(newTest)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async changePrivateOfTest(req, res, next){
+        try{
+            const {testId} = req.body
+            const newTest = await userService.changePrivateOfTest(testId)
+            return res.json(newTest)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async deleteTest(req, res, next){
+        try{
+            const {testId} = req.body
+            const test = await userService.deleteTest(testId)
+            return res.json(test)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async createSection (req, res, next){
         try{
             const {name, description, id_test} = req.body
             const test = await testService.createSection(name, description, id_test)
@@ -92,10 +154,13 @@ class UserController{
         }
     }
 
-    async question (req, res, next){
+    async createQuestion (req, res, next){
         try{
             const {questionText, idSection, type} = req.body
-            const question = await testService.createQuestion(questionText, idSection, type)
+            const {img} = req.files
+            let fileName = uuid.v4() + ".png"
+            img.mv(path.resolve(__dirname, '..', 'static', fileName))
+            const question = await testService.createQuestion({questionText, idSection, type, img: fileName})
             return res.json(question)
         }
         catch(e){
@@ -103,7 +168,7 @@ class UserController{
         }
     }
 
-    async answer (req, res, next){
+    async createAnswer (req, res, next){
         try{
             const {text, idQuestion} = req.body
             const answer = await testService.createAnswer(text, idQuestion)

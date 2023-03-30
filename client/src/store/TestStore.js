@@ -7,6 +7,7 @@ import { REGISTRATION, TEST_SET } from '../router/utils';
 export default class TestStore{
     constructor(){
         this._tests = []
+        this._templates = []
         makeAutoObservable(this)
     }
 
@@ -14,4 +15,7 @@ export default class TestStore{
         this._tests = test
     }
 
+    setTemplates(templates){
+        this._templates = templates
+    }
 }

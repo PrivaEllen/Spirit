@@ -1,4 +1,4 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import AuthService from '../services/AuthService';
 import axios from 'axios'
 import { SERVER_URL } from '../http/http';
@@ -84,12 +84,14 @@ export default class UserStore{
         try{
             const response = await axios.get(`${SERVER_URL}/refresh`, {withCredentials: true})
             localStorage.setItem('token', response.data.accessToken)
-            this.setIsAuth(true)
-            this.setUser(response.data.dataUser)
             console.log(1)
+            runInAction(() => {
+                this.setIsAuth(true)
+                this.setUser(response.data.dataUser)
+            })
         }
         catch(e){
-            console.log(e.response?.data?.message)
+            console.log(e)
             console.log(2)
         }
     }

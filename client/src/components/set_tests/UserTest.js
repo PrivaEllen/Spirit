@@ -1,11 +1,10 @@
 import React from 'react'
 
-
 export default function UserTest(props) {
   return (
     <>
       <div className='pattern-block'>
-      <img src={require(`../../images/${props.image}.png`) } alt="The first" className='pattern__photo'></img>
+      <img src={require(`../../../../backend/static/${props.image}`) } alt="The first" className='pattern__photo'></img>
       <div className='pattern-box'><span className='pattern-box__text'>{props.TestName}</span></div>
       <div className='pattern-box'>
         <svg fill="grey" width="22px" height="22px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" >

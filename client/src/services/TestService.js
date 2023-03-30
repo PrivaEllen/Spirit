@@ -1,7 +1,7 @@
 import $api from "../http/http";
 
-export const createTest = async (name, description, idCreator, type) => {
-    return $api.post('/create/test', {name, description, idCreator, type})
+export const createTest = async (name, description, idCreator, privat, typeId) => {
+    return $api.post('/create/test', {name, description, idCreator, privat, typeId})
 }
 
 export const createSection = async (name, description, id_test) => {
@@ -17,6 +17,7 @@ export const createAnswer = async (text, idQuestion) => {
 }
 
 export const getUserTests = async (idCreator) => {
+    console.log('getUserTestsId', idCreator);
     const {data} = await $api.get('/user/tests/' + idCreator)
     return data
 }

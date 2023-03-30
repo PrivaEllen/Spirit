@@ -24,31 +24,40 @@ Tests.init({
     },
     onDelete: 'CASCADE'
   },
-  type: {
-    type: DataTypes.ENUM,
-    values: ['public', 'private'],
-    allowNull: false,
-  },
-  dateOfCreate: {
-    type: DataTypes.DATEONLY,
-    allowNull: false,
-    defaultValue: DataTypes.NOW
-  },
   category: {
     type: DataTypes.ENUM,
     values: ['template', 'user'],
     allowNull: false,
     defaultValue: 'user'
   },
+  private: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+  },
+  type: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Types',
+      key: 'typeId'
+    },
+    onDelete: 'CASCADE',
+    allowNull: true
+  },
+  dateOfCreate: {
+    type: DataTypes.DATEONLY,
+    allowNull: false,
+    defaultValue: DataTypes.NOW
+  },
   countSections: {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue: 0
   },
-  // img: {
-  //   type: DataTypes.TEXT,
-  //   defaultValue: './static/defaultPat.png'
-  // }
+  img: {
+    type: DataTypes.TEXT,
+    defaultValue: './static/defaultPat.png'
+  }
 }, {
   sequelize, 
   modelName: 'Tests',
