@@ -8,6 +8,8 @@
 
 body {
   margin: 0;
+  overflow: auto !important;
+  padding-right: 0 !important;
 }
 
 .container {
@@ -21,6 +23,6 @@ body {
 @import "_header.scss";
 @import "_form.scss";
 @import "test-header";
-@import "components";
 @import "test-body";
+@import "components";
 @import "landing";
