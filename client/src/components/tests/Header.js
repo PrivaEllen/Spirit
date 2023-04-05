@@ -87,7 +87,7 @@ const Header = observer((props) => {
             onClose={handleClose}
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'left',
+              horizontal: 'left', 
             }}
             transformOrigin={{
               vertical: 'top',
