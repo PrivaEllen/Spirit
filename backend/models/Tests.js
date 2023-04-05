@@ -56,7 +56,7 @@ Tests.init({
   },
   img: {
     type: DataTypes.TEXT,
-    defaultValue: './static/defaultPat.png'
+    defaultValue: 'defaultPat.png'
   }
 }, {
   sequelize, 

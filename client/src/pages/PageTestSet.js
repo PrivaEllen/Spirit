@@ -5,7 +5,7 @@ import UserTest from "../components/set_tests/UserTest";
 import AddTest from "../components/set_tests/AddTest";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
-import { getUserTests } from "../services/TestService";
+import { getTypes, getUserTests } from "../services/TestService";
 
 function TestSet() {
     const {user, test} = useContext(Context)
@@ -13,6 +13,7 @@ function TestSet() {
     useEffect(() => {
         getUserTests(1).then(data => test.setTemplates(data.userTests))
         getUserTests(user._user.id).then(data => test.setTests(data.userTests))
+        getTypes().then(data => user.setTypes(data.types))
     }, [])
     return (
         <>
@@ -39,7 +40,7 @@ function TestSet() {
                 <div className='Pattern-body'>
                     <div className='Pattern__container'>
                         <AddTest/>
-                        {user._user.id != 1 && test._tests.map(t => <UserTest key={t.id} TestName={t.name} TestTime={t.dateOfCreate} image={t.img}/>)}
+                        {test._tests.map(t => <UserTest key={t.id} TestName={t.name} TestTime={t.dateOfCreate} image={t.img}/>)}
                     </div>
                 </div>
             </div>   

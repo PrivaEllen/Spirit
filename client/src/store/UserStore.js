@@ -10,7 +10,12 @@ export default class UserStore{
         this._user = {}
         this._authError = ''
         this._registrError = ''
+        this._types = []
         makeAutoObservable(this)
+    }
+
+    setTypes(types){
+        this._types = types
     }
 
     setIsAuth(bool){

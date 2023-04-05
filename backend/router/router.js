@@ -26,5 +26,6 @@ router.post('/create/question', authMiddleware, UserController.createQuestion)
 router.post('/create/answer', authMiddleware, UserController.createAnswer)
 router.get('/user/tests/:idCreator', authMiddleware, UserController.getUserTests)
 router.get('/user/test/:testId', authMiddleware, UserController.getTest)
+router.get('/user/types', authMiddleware, UserController.getTypes)
 
 module.exports = router

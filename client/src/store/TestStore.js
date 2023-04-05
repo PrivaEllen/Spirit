@@ -8,6 +8,7 @@ export default class TestStore{
     constructor(){
         this._tests = []
         this._templates = []
+        this._types = []
         makeAutoObservable(this)
     }
 
@@ -18,4 +19,5 @@ export default class TestStore{
     setTemplates(templates){
         this._templates = templates
     }
+    
 }

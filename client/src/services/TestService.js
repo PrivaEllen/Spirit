@@ -17,7 +17,6 @@ export const createAnswer = async (text, idQuestion) => {
 }
 
 export const getUserTests = async (idCreator) => {
-    console.log('getUserTestsId', idCreator);
     const {data} = await $api.get('/user/tests/' + idCreator)
     return data
 }
@@ -25,3 +24,12 @@ export const getUserTests = async (idCreator) => {
 export const getTest = async (testId) => {
     return $api.get('/user/test/' + testId)
 }
+
+export const getTypes = async () => {
+    const {data} = await $api.get('/user/types')
+    return data
+}
+
+// export const saveTest = async (test) => {
+
+// }

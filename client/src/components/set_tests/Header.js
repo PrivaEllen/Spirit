@@ -32,7 +32,7 @@ function Header(){
         <div className="header__account">
             <span className="header__account__name">{user._user.Surname} {user._user.Name}</span>
             <div className="avatar">
-                <Avatar  onClick={handleClick} sx={{  width: "49px", height: "49px" }} />
+                <Avatar  onClick={handleClick} sx={{  width: "49px", height: "49px" }} src={`http://localhost:5000/${user._user.Photo}`}/>
                 <Popover
                   id={id}
                   open={open}

@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SmallIcon from '../tests/SmallIcon'
 import Popover from '@mui/material/Popover';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { Context } from '../..';
 
 
 export default function SearchForm() {
+  
+  const {user} = useContext(Context)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -60,9 +63,7 @@ export default function SearchForm() {
           </div>
           <div className="option__container" >
           <FormGroup>
-          <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Первый раунд" className="option__text" />
-            <FormControlLabel control={<Checkbox sx={{ color: "#808080","margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Второй раунд" className="option__text"/>
-            <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Финал" className="option__text"/>
+            {user._types.map(temp => <FormControlLabel control={<Checkbox sx={{ color: "#808080","margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label={temp.name} className="option__text"/>)}
           </FormGroup>
           </div>
           </div>

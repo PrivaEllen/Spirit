@@ -220,6 +220,13 @@ class userService {
             userTest: userTest
         }
     }
+
+    async getTypes(){
+        const types = await Types.findAll()
+        return {
+            types: types
+        }
+    }
 }
 
 

@@ -27,7 +27,7 @@ HrUser.init({
   },
   Photo: {
     type: DataTypes.TEXT,
-    defaultValue: './static/defaultIcon.png'
+    defaultValue: 'defaultIcon.png'
   },
   isActivated: {
     type: DataTypes.BOOLEAN,

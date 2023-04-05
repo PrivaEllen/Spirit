@@ -5,6 +5,8 @@ const Errors = require('../middlewear/errors');
 const uuid = require('uuid');
 const path = require('path');
 const Types = require('../models/TypesOfTests');
+const Tests = require('../models/Tests');
+const Questions = require('../models/Questions');
 
 class UserController{
     async registration (req, res, next){
@@ -74,11 +76,17 @@ class UserController{
     async saveChanges(req, res, next){
         try{
             const {id, Name, Surname, company, phone, emailForFeedback} = req.body
-            const {Photo} = req.files
-            let fileName = uuid.v4() + ".png"
-            Photo.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const hrUser = await userService.saveChanges({id, Name, Surname, company, phone, emailForFeedback, Photo: fileName})
-            return res.json(hrUser)
+            if (req.files != null){
+                const {Photo} = req.files
+                let fileName = uuid.v4() + ".png"
+                Photo.mv(path.resolve(__dirname, '..', 'static', fileName))
+                const hrUser = await userService.saveChanges({id, Name, Surname, company, phone, emailForFeedback, Photo: fileName})
+                return res.json(hrUser)
+            }
+            else{
+                const hrUser = await userService.saveChanges({id, Name, Surname, company, phone, emailForFeedback})
+                return res.json(hrUser)
+            }
         }
         catch(e){
             next(e)
@@ -99,11 +107,17 @@ class UserController{
     async createTest (req, res, next){
         try{
             const {name, description, idCreator, category, privat, typeId} = req.body
-            const {img} = req.files
-            let fileName = uuid.v4() + ".png"
-            img.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const test = await testService.createTest({name, description, idCreator, category, privat, typeId, img: fileName})
-            return res.json(test)
+            if (req.files != null){
+                const {img} = req.files
+                let fileName = uuid.v4() + ".png"
+                img.mv(path.resolve(__dirname, '..', 'static', fileName))
+                const test = await testService.createTest({name, description, idCreator, category, privat, typeId, img: fileName})
+                return res.json(test)
+            }
+            else{
+                const test = await testService.createTest({name, description, idCreator, category, privat, typeId})
+                return res.json(test)
+            }
         }
         catch(e){
             next(e)
@@ -201,6 +215,72 @@ class UserController{
             next(e)
         }
     }
+
+    async getTypes(req, res, next){
+        try{
+            const types = await userService.getTypes()
+            return res.json(types)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    // async saveChangedTest(req, res, next){
+    //     try{
+    //         const {name, description, idCreator, category, privat, typeId} = req.body
+    //         if (req.files != null){
+    //             const {img} = req.files
+    //             let fileName = uuid.v4() + ".png"
+    //             img.mv(path.resolve(__dirname, '..', 'static', fileName))
+    //             const test = await testService.createTest({name, description, idCreator, category, privat, typeId, img: fileName})
+    //             return res.json(test)
+    //         }
+    //         else{
+    //             const test = await testService.createTest({name, description, idCreator, category, privat, typeId})
+    //             return res.json(test)
+    //         }
+    //     try {
+    //         const {testId, name, description, idCreator, category, privat, typeId, }
+    //         const { test } = req.body
+    //         req.body.sections[]
+    //         const test = {
+    //             testId: testId,
+    //             name: '',
+    //             sections: [
+    //                 {
+    //                     idSection: 2,
+    //                     name: '',
+    //                     description: '',
+    //                     questions: [
+    //                         {
+    //                             idQuestion: 1,
+    //                             name: 'asdas',
+    //                             answers: [
+    //                                 {idAnswer: 123, text: ''}
+    //                             ]
+    //                         }
+    //                     ]
+    //                 }
+    //             ]
+    //         }
+    //         const test = await Tests.findByPk(body.idTest)
+    //         test.name = body.name
+    //         test.save()
+
+    //         body.sections.forEach(section => {
+    //             const section = await Tests.findOrBuild({
+
+    //             })
+    //             section.questions.forEach(q => {
+    //                 await Questions.find
+    //             })                
+    //         })
+    //     }
+    //     catch(e){
+
+    //     }
+    // }
 }
 
 module.exports = new UserController()
