@@ -5,6 +5,17 @@
 
 * {
   box-sizing: border-box;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+html {
+  overflow: visible !important;
 }
 
 body {
@@ -31,3 +42,4 @@ body {
 @import "set_pattern-set";
 @import "set_UserTests";
 @import "set_popovers";
+@import "set_modals";

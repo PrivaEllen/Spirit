@@ -14,6 +14,12 @@
     align-items: center;
 }
 
+.option__container__box{
+    width: 200px;
+    height: 138px;
+    padding: 8px 0;
+}
+
 .MuiPopover-paper{
     .popover-test{
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212;
@@ -21,7 +27,6 @@
         border-radius: 4px;
         width: 200px;
         height: 278px;
-        padding: 8px 16px;
     }
 }
 

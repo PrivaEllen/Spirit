@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from "../components/set_tests/Header";
 import Pattern from "../components/set_tests/Pattern";
 import UserTest from "../components/set_tests/UserTest";
@@ -6,6 +8,12 @@ import AddTest from "../components/set_tests/AddTest";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
 import { getTypes, getUserTests } from "../services/TestService";
+
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 function TestSet() {
     const {user, test} = useContext(Context)
@@ -18,6 +26,7 @@ function TestSet() {
     return (
         <>
         <div className="TestSet">
+        <ThemeProvider theme={darkTheme}>
             <Header/>
             <div>
                 <div className='PatternSet__head'>
@@ -27,7 +36,10 @@ function TestSet() {
                 </div>
                 <div className='Pattern-body' style={{'border-bottom': '1px solid rgba(255, 255, 255, 0.12)'}}>
                     <div className='Pattern__container'>
-                        {test._templates.map(temp => <Pattern key={temp.testId} TestName={temp.name} image={temp.img}/>)}
+                        <Pattern TestName = "Сбор информации" image = "pat3"/>
+                        <Pattern TestName = "Тип личности" image = "pat2"/>
+                        <Pattern TestName = "Куб в пустыне" />
+                        <Pattern />
                     </div>
                 </div>
             </div>
@@ -43,7 +55,8 @@ function TestSet() {
                         {test._tests.map(t => <UserTest key={t.id} TestName={t.name} TestTime={t.dateOfCreate} image={t.img}/>)}
                     </div>
                 </div>
-            </div>   
+            </div>
+            </ThemeProvider>   
         </div>
         </>
     )
