@@ -1,9 +1,11 @@
 import React from 'react'
 import SmallIcon from '../tests/SmallIcon'
 import Popover from '@mui/material/Popover';
-import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControl from '@mui/material/FormControl';
 
 
 export default function SearchForm() {
@@ -52,20 +54,27 @@ export default function SearchForm() {
       >
         <div className="popover-test">
           <div className="option__container">
-          <FormGroup>
-            <FormControlLabel control={<Checkbox  sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Все тесты" className="option__text" />
-            <FormControlLabel control={<Checkbox  sx={{ color: "#808080","margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Видимые" className="option__text"/>
-            <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Скрытые" className="option__text"/>
-          </FormGroup>
+            <div className='option__container__box' style={{"border-bottom":"1px solid rgba(255, 255, 255, 0.12)"}}>
+          <FormControl>
+          <RadioGroup defaultValue={"all"}>
+            <FormControlLabel value="all" control={<Radio  sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Все тесты" className="option__text" />
+            <FormControlLabel value="private" control={<Radio  sx={{ color: "#808080","margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Видимые" className="option__text"/>
+            <FormControlLabel value="visible" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Скрытые" className="option__text"/>
+          </RadioGroup>
+          </FormControl>
           </div>
-          <div className="option__container" >
-          <FormGroup>
-          <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Первый раунд" className="option__text" />
-            <FormControlLabel control={<Checkbox sx={{ color: "#808080","margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Второй раунд" className="option__text"/>
-            <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Финал" className="option__text"/>
-          </FormGroup>
+          <div className='option__container__box'>
+          <FormControl>
+          <RadioGroup>
+            <FormControlLabel value="first round" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Первый раунд" className="option__text" />
+            <FormControlLabel value="second round" control={<Radio sx={{ color: "#808080","margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Второй раунд" className="option__text"/>
+            <FormControlLabel value="final" control={<Radio sx={{ color: "#808080", "margin-right": "10px","margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Финал" className="option__text"/>
+          </RadioGroup>
+          </FormControl>
           </div>
           </div>
+          </div>
+  
       </Popover>
         
     </div>
