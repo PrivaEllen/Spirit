@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import { observer } from 'mobx-react-lite';
+import { Context } from '../..';
 import AccInfo from './AccInfo';
 
 const style = {
@@ -18,7 +20,9 @@ const style = {
   boxShadow: 24
 };
 
-export default function AccWin() {
+function AccWin() {
+  const {user} = useContext(Context);
+
     const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -28,8 +32,8 @@ export default function AccWin() {
       <div className="popover-account">
                   <div className="name__container" style={{"border-bottom":"1px solid rgba(255, 255, 255, 0.12)"}}>
                     <div className="name__container__text">
-                      <span className="name__container__text__FI">Гаврилова Мария</span>
-                      <span className="name__container__text__mail">mag2003tag@gmail.com</span>
+                      <span className="name__container__text__FI">{user._user.Surname} {user._user.Name}</span>
+                      <span className="name__container__text__mail">{user._user.email}</span>
                     </div>
                   </div>
                   <div className="ppp__container" style={{"border-bottom":"1px solid rgba(255, 255, 255, 0.12)"}}>
@@ -70,3 +74,5 @@ export default function AccWin() {
     </div>
   )
 }
+
+export default observer(AccWin);

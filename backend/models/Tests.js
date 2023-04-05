@@ -3,7 +3,7 @@ const sequelize = require('../database/database');
 
 class Tests extends Model {}
 Tests.init({
-  id: {
+  testId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -11,7 +11,10 @@ Tests.init({
   name: {
     type: DataTypes.STRING(100),
     allowNull: false,
-    //unique: true
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: true
   },
   idCreator: {
     type: DataTypes.INTEGER,
@@ -21,13 +24,39 @@ Tests.init({
     },
     onDelete: 'CASCADE'
   },
-  type: {
+  category: {
     type: DataTypes.ENUM,
-    values: ['public', 'private'],
+    values: ['template', 'user'],
     allowNull: false,
+    defaultValue: 'user'
   },
-  idInterns: {
-    type: DataTypes.ARRAY(DataTypes.INTEGER),
+  private: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
+  },
+  type: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Types',
+      key: 'typeId'
+    },
+    onDelete: 'CASCADE',
+    allowNull: true
+  },
+  dateOfCreate: {
+    type: DataTypes.DATEONLY,
+    allowNull: false,
+    defaultValue: DataTypes.NOW
+  },
+  countSections: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
+  img: {
+    type: DataTypes.TEXT,
+    defaultValue: 'defaultPat.png'
   }
 }, {
   sequelize, 

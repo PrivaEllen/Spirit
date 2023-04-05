@@ -17,7 +17,7 @@ HrUser.init({
     allowNull: false
   },
   email: {
-    type: DataTypes.STRING(100),
+    type: DataTypes.STRING(255),
     allowNull: false,
     unique: true
   },
@@ -26,7 +26,8 @@ HrUser.init({
     allowNull: false
   },
   Photo: {
-    type: DataTypes.STRING(100)
+    type: DataTypes.TEXT,
+    defaultValue: 'defaultIcon.png'
   },
   isActivated: {
     type: DataTypes.BOOLEAN,
@@ -34,8 +35,18 @@ HrUser.init({
   },
   activationLink: {
     type: DataTypes.STRING(255)
+  },
+  company: {
+    type: DataTypes.STRING(100),
+    allowNull: true
+  },
+  phone: {
+    type: DataTypes.STRING(15),
+    allowNull: true
+  },
+  emailForFeedback: {
+    type: DataTypes.STRING(255),
   }
-
 }, {
   sequelize, 
   modelName: 'HrUser',

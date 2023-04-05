@@ -6,13 +6,26 @@ const authMiddleware = require('../middlewear/authMiddleware')
 
 router.post('/registration',
             body('email').isEmail(),
-            body('password').isLength({min: 6, max: 100}),
+            body('password').isLength({min: 8, max: 100}),
             UserController.registration
 )
 router.post('/login', UserController.login)
 router.post('/logout', UserController.logout)
 router.get('/activate/:link', UserController.activate)
 router.get('/refresh', UserController.refresh)
-//router.get('/someMethod', authMiddleware, 'userController.someMethod')
+
+router.post('/save/changes', authMiddleware, UserController.saveChanges)
+router.post('/create/type', authMiddleware, UserController.createTypeOfTest)
+router.post('/create/test', authMiddleware, UserController.createTest)
+router.post('/rename/test', authMiddleware, UserController.renameTest)
+router.post('/change/private', authMiddleware, UserController.changePrivateOfTest)
+router.post('/delete/test', authMiddleware, UserController.deleteTest)
+
+router.post('/create/section', authMiddleware, UserController.createSection)
+router.post('/create/question', authMiddleware, UserController.createQuestion)
+router.post('/create/answer', authMiddleware, UserController.createAnswer)
+router.get('/user/tests/:idCreator', authMiddleware, UserController.getUserTests)
+router.get('/user/test/:testId', authMiddleware, UserController.getTest)
+router.get('/user/types', authMiddleware, UserController.getTypes)
 
 module.exports = router

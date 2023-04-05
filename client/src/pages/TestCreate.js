@@ -3,6 +3,9 @@ import Header from "../components/tests/Header"
 import TestEdit from "../components/tests/TestEdit"
 import Modal from "../components/Modal/Modal"
 import TestTools from "../store/TestTools";
+import { Button } from "@mui/material";
+import { saveTest } from "../services/TestService";
+import sq from "../store/SectionsQuestions";
 
 export default function TestCreate(props) {
     // модальное окно
@@ -36,6 +39,11 @@ export default function TestCreate(props) {
                 setTestTitle={setTestTitle}
             />
             <Modal active={modalActive} setActive={setModalActive}>{TestTools.innerContent}</Modal>
+            {/* <Button onClick={() => saveTest({
+                testId: props.testId,
+                testName: testTitle,
+                sections: sq.sections
+            })}>Save</Button> */}
         </div>
     )
 }

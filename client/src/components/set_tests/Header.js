@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import SearchForm from "./SearchForm";
 import Avatar from '@mui/material/Avatar';
+import { observer } from "mobx-react-lite";
+import { Context } from "../..";
 import Popover from '@mui/material/Popover';
 import AccWin from "./AccWin";
 
 
-export default function Header(){
+function Header(){
+  const {user} = useContext(Context);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -27,9 +31,9 @@ export default function Header(){
         </div>
         <SearchForm/>
         <div className="header__account">
-            <span className="header__account__name">Гаврилова Мария</span>
+            <span className="header__account__name">{user._user.Surname} {user._user.Name}</span>
             <div className="avatar">
-                <Avatar  onClick={handleClick} sx={{  width: "49px", height: "49px" }} />
+                <Avatar  onClick={handleClick} sx={{  width: "49px", height: "49px" }} src={`http://localhost:5000/${user._user.Photo}`}/>
                 <Popover
                   id={id}
                   open={open}
@@ -52,3 +56,5 @@ export default function Header(){
       </header>
     )
 }
+
+export default observer(Header);

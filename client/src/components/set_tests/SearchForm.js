@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SmallIcon from '../tests/SmallIcon'
 import Popover from '@mui/material/Popover';
 import FormControlLabel from '@mui/material/FormControlLabel';
-
+import Checkbox from '@mui/material/Checkbox';
+import { Context } from '../..';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 
 
 export default function SearchForm() {
+  
+  const {user} = useContext(Context)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -62,14 +65,12 @@ export default function SearchForm() {
             <FormControlLabel value="private" control={<Radio  sx={{ color: "#808080","margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Видимые" className="option__text"/>
             <FormControlLabel value="visible" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Скрытые" className="option__text"/>
           </div>
-          <div className='option__container__box'>
-            <FormControlLabel value="first round" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Первый раунд" className="option__text" />
-            <FormControlLabel value="second round" control={<Radio sx={{ color: "#808080","margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Второй раунд" className="option__text"/>
-            <FormControlLabel value="final" control={<Radio sx={{ color: "#808080", "margin-right": "10px","margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Финал" className="option__text"/>
-            </div>
-          </RadioGroup>
-          </FormControl>
-          
+          <div className="option__container" >
+          <FormGroup>
+          <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Первый раунд" className="option__text" />
+            <FormControlLabel control={<Checkbox sx={{ color: "#808080","margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Второй раунд" className="option__text"/>
+            <FormControlLabel control={<Checkbox sx={{ color: "#808080", "margin-right": "10px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Финал" className="option__text"/>
+          </FormGroup>
           </div>
           </div>
   
