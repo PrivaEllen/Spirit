@@ -4,9 +4,15 @@ const uuid = require('uuid');
 const mailService = require('./mailService');
 const tokenService = require('./tokenService');
 const Errors = require('../middlewear/errors')
-const userDto = require('../dto/userDto')
+const userDto = require('../dto/userDto');
+const Tests = require('../models/Tests');
+const Questions = require('../models/Questions');
+const Answers = require('../models/Answers');
+const Sections = require('../models/Sections');
+const Types = require('../models/TypesOfTests');
+
 class userService {
-    async registration(Name, Surname, email, password, Photo) {
+    async registration(Name, Surname, email, password) {
         let check = await HrUser.findOne({
             where: {
                 email: email
@@ -20,7 +26,6 @@ class userService {
                 Surname: Surname,
                 email: email,
                 password: password,
-                Photo: Photo,
                 activationLink: activationLink
             })
             await registr.save()
@@ -69,7 +74,6 @@ class userService {
         }
         const user = new userDto(auth)
         const token = tokenService.generateTokens({ ...user })
-        console.log(token.refreshToken)
         await tokenService.saveToken(user.id, token.refreshToken)
         return {
             ...token,
@@ -102,6 +106,126 @@ class userService {
             ...token,
             dataUser: dataUser
        }
+    }
+
+    async saveChanges({id, Name, Surname, company, phone, emailForFeedback, Photo}){
+        const currentHrUser = await HrUser.findOne({
+            where: {
+                id: id
+            }
+        })
+        currentHrUser.Name = Name
+        currentHrUser.Surname = Surname
+        currentHrUser.company = company
+        currentHrUser.phone = phone
+        currentHrUser.emailForFeedback = emailForFeedback
+        currentHrUser.Photo = Photo
+        await currentHrUser.save()
+        return currentHrUser
+    }
+
+    async createTypeOfTest(name){
+        const type = await Types.findOne({
+            where: {
+                name: name
+            }
+        })
+        if (type == null) {
+            const newType = Types.build({
+                name: name
+            })
+            await newType.save()
+            return {
+                type: newType
+            }
+        }
+        else {
+            throw Errors.BadRequest('Такой тип теста уже был создан')
+        }
+    }
+
+    async renameTest(testId, name){
+        const newTest = await Tests.findOne({
+            where: {
+                testId: testId
+            }
+        })
+        newTest.name = name
+        await newTest.save()
+        return {
+            newTest: newTest
+        }
+    }
+
+    async changePrivateOfTest(testId){
+        const newTest = await Tests.findOne({
+            where: {
+                testId: testId
+            }
+        })
+        newTest.private = !newTest.private
+        await newTest.save()
+        return {
+            newTest: newTest
+        }    
+    }
+
+    async deleteTest(testId){
+        const test = await Tests.destroy({
+            where: {
+                testId: testId
+            },
+            include: [{
+                model: Sections,
+                include: [{
+                    model: Questions,
+                    include: [{
+                        model: Answers,
+                    }]
+                }]
+            }]
+        })
+        return {
+            test: test
+        }
+    }
+
+    async getUserTests(idCreator){
+        const userTests = await Tests.findAll({
+            where: {
+                idCreator: idCreator
+            }
+        })
+        return {
+            userTests: userTests
+        }
+    }
+
+    async getTest(testId){
+        const userTest = await Tests.findOne({
+            where: {
+                testId: testId
+            },
+            include: [{
+                model: Sections,
+                include: [{
+                    model: Questions,
+                    include: [{
+                        model: Answers,
+                    }]
+                }]
+            }]
+        })    
+        return {
+            userTest: userTest
+        }
+    }
+
+    async getTypes(){
+        const types = await Types.findAll()
+        return {
+            types: types
+        }
     }
 }
 

@@ -1,0 +1,60 @@
+.add__button{
+    height: 48px;
+    width: 48px;
+    background: transparent;
+    border: none;
+}
+
+.PatternSet .pattern-block{
+    width: 180px;
+    height: 198px;
+    margin-bottom: 44px;
+}
+
+.PatternSet .pattern-box{
+    display: flex;
+    justify-content: flex-start;
+    width: 180px;
+    height: 30px;
+    padding-left: 16px;
+}
+
+.PatternSet .pattern-box__time{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    padding-left: 8px;
+    
+    letter-spacing: 0.15px;
+    
+    color: #808080;
+    
+}
+.pattern-box__info{
+    display: flex;
+    justify-content: space-between;
+    width: 135px;
+}
+.pattern-block__add{
+    width: 180px;
+    height: 198px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.pattern-block__add__text{
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    
+    letter-spacing: 0.15px;
+    
+    color: #FFFFFF;
+}

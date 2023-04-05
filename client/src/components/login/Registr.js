@@ -19,7 +19,7 @@ function Registr(){
         Surname: Yup.string().min(1).max(30).typeError('Должно быть строкой').required('Обязательно'),
         email: Yup.string().email('Введите верную почту').required('Обязательно'),
         password: Yup.string().min(8).max(255).matches(passwordRules, {message: 'Пожалуйста, придумайте более надежный пароль'}).typeError('Должно быть строкой').required('Введите пароль'),
-        repeat_password: Yup.string().oneOf([Yup.ref('password')], 'Пароли не совпадают').required('Обязательно'),
+        repeat_password: Yup.string().oneOf([Yup.ref('password')], 'Пароли не совпадают'),
     })
 
     const [showPassword, setShowPassword] = useState(true)
@@ -41,8 +41,8 @@ function Registr(){
             >
             {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
                 <>
-                    {touched.password && errors.password && 
-                    <Alert severity="warning" sx={{borderRadius: '4px', textAlign: 'center', marginBottom: '56px', marginTop: '-30px'}}>Недостаточно надежный пароль</Alert>}
+                    {touched.password && errors.password && !errors.repeat_password &&
+                    <Alert severity="warning" sx={{borderRadius: '4px', textAlign: 'center', marginBottom: '8px'}}>Недостаточно надежный пароль</Alert>}
 
                     <div className="container_form_general_registration_card" style={{display: 'flex'}} onSubmit={handleSubmit}>
                         <TextField
@@ -138,13 +138,13 @@ function Registr(){
                                 }
                             />
                         </FormControl>
-                        <Button type="submit" disabled={!values.Name || !values.Surname || !values.email || !values.password || !values.repeat_password} variant='contained' size='large' fullWidth='true' onClick={() => user.registration(values.Name, values.Surname, values.email, values.password)} sx={{ marginTop: '16px', fontWeight: 'bold' }}>Зарегистрироваться</Button>
+                        <Button type="submit" disabled={!values.Name || !values.Surname || !values.email || !values.password || !values.repeat_password || errors.repeat_password || errors.password} variant='contained' size='large' fullWidth='true' onClick={() => user.registration(values.Name, values.Surname, values.email, values.password)} sx={{ marginTop: '16px', fontWeight: 'bold' }}>Зарегистрироваться</Button>
                         <div className='container_form_general_registration_card_buttons'>
                             <Button variant='text' size='small' sx={{ marginTop: '8px', textTransform: 'revert', color: 'white' }} onClick={() => window.location.assign(MAIN)}>На главную</Button>
                             <Link component="button" variant='body2' underline="hover" sx={{ marginTop: '11px', textTransform: 'revert', fontSize: '13px', color: 'white' }} onClick={() => window.location.assign(LOGIN)}>Уже есть аккаунт?</Link>
                         </div>
                     </div>
-                    {touched.repeat_password && errors.repeat_password && <Alert severity="error" sx={{marginTop: '16px', borderRadius: '4px'}}>{errors.repeat_password}</Alert>}
+                    {touched.repeat_password && errors.repeat_password && <Alert severity="error" sx={{marginTop: '8px', borderRadius: '4px'}}>{errors.repeat_password}</Alert>}
             </>
             )}
             </Formik>

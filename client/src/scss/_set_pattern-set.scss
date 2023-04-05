@@ -1,0 +1,91 @@
+.PatternSet__head {
+    display: flex;
+    justify-content: space-around;
+    background: #121212;
+
+}
+
+.PatternSet__head__body  {
+    width: 65%;
+    height: 44px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Pattern_text{
+    user-select: none;
+    text-align: center;
+    padding-left: 12px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 133.4%;
+    
+    color: #FFFFFF;
+    
+}
+
+.Pattern-body{
+    display: flex;
+    justify-content: center;
+}
+
+.Pattern__container{
+    width: 65%;
+    background: #121212;
+    column-gap: 67px;
+    row-gap: 30px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap
+}
+
+.pattern-block{
+    width: 180px;
+    height: 176px;
+    margin-bottom: 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), #222430;
+    border-radius: 2px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.14)) drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.12));
+    img{
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+    }
+}
+
+.pattern__photo{
+    object-fit: cover;
+    width: 180px;
+    height: 135px;
+    display: block;
+}
+
+.pattern-box{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 180px;
+    height: 40px;
+    padding-left: 16px;
+}
+
+.pattern-box__text{
+    user-select: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    
+    letter-spacing: 0.15px;
+    
+    color: #FFFFFF;
+    
+}

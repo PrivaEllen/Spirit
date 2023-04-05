@@ -57,6 +57,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 4px;
         .question__select{
             &>div{
                 color: #fff;
@@ -114,12 +115,17 @@
     .question__content{
         .question__title{
             display: flex;
+            height: 48px;
+            align-items: center;
             span{
                 margin-right: 1rem;
             }
             .textfield{
                 width: 100%;
             }
+        }
+        .question__var{
+            margin-left: 16px;
         }
     }
 }
