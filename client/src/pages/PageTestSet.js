@@ -1,5 +1,5 @@
 import React from "react";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from "../components/set_tests/Header";
 import Pattern from "../components/set_tests/Pattern";

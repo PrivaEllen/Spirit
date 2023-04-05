@@ -7,10 +7,10 @@ import TestSet from '../pages/PageTestSet'
 
 
 export const loginRoutes = [
-    {
-        path: TEST_SET,
-        Component: TestSet
-    }
+    //{
+    //    path: TEST_SET,
+    //    Component: TestSet
+    //}
 ]
 
 export const publicRoutes = [
@@ -30,5 +30,9 @@ export const publicRoutes = [
     {
         path: CREATE_TEST,
         Component: TestCreate
+    },
+    {
+        path: TEST_SET,
+        Component: TestSet
     }
 ]

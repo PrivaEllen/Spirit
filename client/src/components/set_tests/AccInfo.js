@@ -17,9 +17,12 @@ export default function AccInfo() {
             </div>
         </div>
         <div className='accInfo__BigBlock'>
-               <AccInfoForm/>
+            <AccInfoForm/>
             <div className='accInfo__forthBlock'>
             <Avatar sx={{  width: "120px", height: "120px", background: "#90CAF9", color: "#121212" }} />
+            <div className='photo__text'><span className='text'>Cменить</span></div>
+            <div className='space'></div>
+            <button>Изменить</button>
             </div>
 
         </div>
