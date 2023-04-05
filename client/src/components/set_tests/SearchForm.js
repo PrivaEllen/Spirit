@@ -54,7 +54,7 @@ export default function SearchForm() {
       >
         <div className="popover-test">
           <div className="option__container">
-            <div className='option__container__box' style={{"border-bottom":"1px solid rgba(255, 255, 255, 0.12)"}}>
+            <div className='option__container__box' >
           <FormControl>
           <RadioGroup defaultValue={"all"}>
             <FormControlLabel value="all" control={<Radio  sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Все тесты" className="option__text" />
