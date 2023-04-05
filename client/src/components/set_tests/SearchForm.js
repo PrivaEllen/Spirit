@@ -54,24 +54,22 @@ export default function SearchForm() {
       >
         <div className="popover-test">
           <div className="option__container">
-            <div className='option__container__box' >
           <FormControl>
+            
           <RadioGroup defaultValue={"all"}>
+          <div className='option__container__box' style={{"border-bottom":"1px solid rgba(255, 255, 255, 0.12)"}}>
             <FormControlLabel value="all" control={<Radio  sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Все тесты" className="option__text" />
             <FormControlLabel value="private" control={<Radio  sx={{ color: "#808080","margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Видимые" className="option__text"/>
             <FormControlLabel value="visible" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Скрытые" className="option__text"/>
-          </RadioGroup>
-          </FormControl>
           </div>
           <div className='option__container__box'>
-          <FormControl>
-          <RadioGroup>
             <FormControlLabel value="first round" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Первый раунд" className="option__text" />
             <FormControlLabel value="second round" control={<Radio sx={{ color: "#808080","margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Второй раунд" className="option__text"/>
             <FormControlLabel value="final" control={<Radio sx={{ color: "#808080", "margin-right": "10px","margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Финал" className="option__text"/>
+            </div>
           </RadioGroup>
           </FormControl>
-          </div>
+          
           </div>
           </div>
   

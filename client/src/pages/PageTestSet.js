@@ -1,14 +1,22 @@
 import React from "react";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from "../components/set_tests/Header";
 import Pattern from "../components/set_tests/Pattern";
 import UserTest from "../components/set_tests/UserTest";
 import AddTest from "../components/set_tests/AddTest";
 import { observer } from "mobx-react-lite";
 
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
 function TestSet() {
     return (
         <>
         <div className="TestSet">
+        <ThemeProvider theme={darkTheme}>
             <Header/>
             <div>
                 <div className='PatternSet__head'>
@@ -42,7 +50,8 @@ function TestSet() {
                         <UserTest/>
                     </div>
                 </div>
-            </div>   
+            </div>
+            </ThemeProvider>   
         </div>
         </>
     )
