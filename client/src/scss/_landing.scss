@@ -54,7 +54,7 @@ $FontForBuyHeader: 60px;
      color: $BDcolor;
     width: 50%;
     letter-spacing: 0.07em;
-    font-family: 'Roboto';
+    font-family: 'Alegreya Sans';
     font-style: normal;
     >img
     {
@@ -66,9 +66,9 @@ $FontForBuyHeader: 60px;
 #info
 {
     width: 50%;
-
+    
     font-family: 'Roboto';
-    font-style: normal;
+font-style: normal;
     font-weight: 500;
     line-height: 160%;
     letter-spacing: 0.15px;
@@ -89,10 +89,11 @@ $FontForBuyHeader: 60px;
     }
     #start
     {
-        background-color: #B1C7DE;
+        background-color: #90CAF9;
         color: $Hcolor;
         font-weight:bolder;
-        border-radius: 10px;
+        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+border-radius: 4px;
         width: 17%;
         line-height: 50px;
         text-align: center;
@@ -155,6 +156,16 @@ $FontForBuyHeader: 60px;
 {
     width: 30px;
 }
+
+.Buy_pictures_text
+{
+    font-size:16px;
+}
+.Buy_pictures_img
+{
+    width: 70px;
+}
+
 }
 @media screen and (min-width: 1000px) and (max-width: 1439px){
     .buy__subtext
@@ -205,6 +216,14 @@ $FontForBuyHeader: 60px;
 #logo_img
 {
     width: 45px;
+}
+.Buy_pictures_text
+{
+    font-size:20px;
+}
+.Buy_pictures_img
+{
+    width: 95px;
 }
 }
 
@@ -257,6 +276,14 @@ $FontForBuyHeader: 60px;
 #logo_img
 {
     width: 55px;
+}
+.Buy_pictures_text
+{
+    font-size:26px;
+}
+.Buy_pictures_img
+{
+    width: 115px;
 }
 }
 
@@ -311,6 +338,14 @@ $FontForBuyHeader: 60px;
 #logo_img
 {
     width: 60px;
+}
+.Buy_pictures_text
+{
+    font-size:32px;
+}
+.Buy_pictures_img
+{
+    width: 140px;
 }
 }
 
@@ -367,6 +402,14 @@ $FontForBuyHeader: 60px;
 {
     width: 60px;
 }
+.Buy_pictures_text
+{
+    font-size:36px;
+}
+.Buy_pictures_img
+{
+    width: 170px;
+}
 }
 
 @media  screen and (min-width: 2000px)
@@ -421,6 +464,14 @@ $FontForBuyHeader: 60px;
 {
     width: 67px;
 }
+.Buy_pictures_text
+{
+    font-size:42px;
+}
+.Buy_pictures_img
+{
+    width: 195px;
+}
 }
 #buy
 {
@@ -458,10 +509,14 @@ letter-spacing: 0.15px;
 #info2
 {
     height: 280px;
-    width: 50%;
+    width: 100%;
 margin-top:5%;
-margin-left: 25%;
 display:flex;
+justify-content: center;
+>div
+{
+    width: 50%;
+    display:flex;
 flex-direction: row;
 justify-content: space-around;
 margin-bottom: 5%;
@@ -470,13 +525,13 @@ margin-bottom: 5%;
     font-family: 'Roboto';
     font-style: normal;
 font-weight: 500;
-font-size: 36px;
 line-height: 43px;
 display: flex;
 flex-direction: column;
 justify-content: space-around;
 align-items: center;
 text-align: center;
+}
 }
 }
 
@@ -569,6 +624,8 @@ margin: 5%;
     }
     #us
     {
+        font-family: 'Roboto';
+font-style: normal;
         width: 80%;
         display: flex;
         flex-wrap: wrap;
