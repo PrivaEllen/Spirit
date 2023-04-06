@@ -30,12 +30,15 @@ class CheckboxAnswer extends React.Component {
         <input
           type="text"
           defaultValue={this.props.value}
+          onChange={(event) => sq.changeAnswerTitle(this.props.Sid, this.props.Qid, this.props.Aid, event.target.value)}
           placeholder={"Вариант ответа"}
         ></input>
       </div>
       <div className="radio-field__edit">
         <FormControlLabel control={
-          <Checkbox 
+          <Checkbox
+            checked={this.props.right}
+            onChange={() => sq.changeAnswerRight(this.props.Sid, this.props.Qid, this.props.Aid)}
             sx={{
               color:"#ffffff56", 
               '&.Mui-checked': {
