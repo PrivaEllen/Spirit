@@ -3,6 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../..';
+import AccInfo from './AccInfo';
 
 const style = {
   position: 'absolute',
@@ -10,11 +11,13 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 565,
-  height: 438,
+  height: 563,
+  padding: 0,
+  background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212',
   border: '1 solid rgba(255, 255, 255, 0.12)',
-  bgcolor: '#808080',
-  boxShadow: 24,
-  p: 4,
+  'box-shadow': '0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)',
+  'border-radius': 4,
+  boxShadow: 24
 };
 
 function AccWin() {
@@ -42,10 +45,10 @@ function AccWin() {
                       <Modal
                         open={open}
                         onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
                         >
-                        <Box sx={style}>g</Box>
+                        <Box sx={style}>
+                          <AccInfo/>
+                        </Box>
                         </Modal>
                       
                     </div>
