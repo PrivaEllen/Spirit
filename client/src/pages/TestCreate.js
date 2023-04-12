@@ -39,11 +39,6 @@ export default function TestCreate(props) {
                 setTestTitle={setTestTitle}
             />
             <Modal active={modalActive} setActive={setModalActive}>{TestTools.innerContent}</Modal>
-            {/* <Button onClick={() => saveTest({
-                testId: props.testId,
-                testName: testTitle,
-                sections: sq.sections
-            })}>Save</Button> */}
         </div>
     )
 }

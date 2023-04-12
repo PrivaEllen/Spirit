@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import Button from '@mui/material/Button';
+import { useContext } from "react";
 
 class TestTools {
     innerContent = ""
@@ -33,6 +34,34 @@ class TestTools {
                                     <Button variant="text">Отмена</Button>
                                     <Button variant="text">Не сохранять</Button>
                                     <Button variant="text">Сохранить</Button>
+                                    {/* <Button onClick={() => saveTest({
+                                        testId: testId,
+                                        name: name,
+                                        description: description,
+                                        idCreator: user._user.id,
+                                        category: category,
+                                        type: typeId,
+                                        img: img,
+                                        sections: sq.sections[
+                                            idSection: idSection,
+                                            name: name,
+                                            description: description,
+                                            id_test: testId,
+                                            questions: sq.sections.questions[
+                                                questionText: questionText,
+                                                idSection: idSection,
+                                                type: type,
+                                                obligatory: obligatory,
+                                                img: img,
+                                                answers: sq.sections.questions.answers[
+                                                    answerId: answerId,
+                                                    text: text,
+                                                    correctness: correctness,
+                                                    idQuestion: idQuestion
+                                                ]
+                                            ]
+                                        ]
+                                    })}>Save</Button> */}
                                 </div>
                             </div>
     }

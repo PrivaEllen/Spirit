@@ -106,16 +106,36 @@ class UserController{
 
     async createTest (req, res, next){
         try{
-            const {name, description, idCreator, category, privat, typeId} = req.body
+            const {name, description, idCreator, category, privat, type} = req.body
             if (req.files != null){
                 const {img} = req.files
                 let fileName = uuid.v4() + ".png"
                 img.mv(path.resolve(__dirname, '..', 'static', fileName))
-                const test = await testService.createTest({name, description, idCreator, category, privat, typeId, img: fileName})
+                const test = await testService.createTest({name, description, idCreator, category, privat, type, img: fileName})
                 return res.json(test)
             }
             else{
-                const test = await testService.createTest({name, description, idCreator, category, privat, typeId})
+                const test = await testService.createTest({name, description, idCreator, category, privat, type})
+                return res.json(test)
+            }
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async changeTest (req, res, next){
+        try{
+            const {testId, name, description, type} = req.body
+            if (req.files != null){
+                const {img} = req.files
+                let fileName = uuid.v4() + ".png"
+                img.mv(path.resolve(__dirname, '..', 'static', fileName))
+                const test = await testService.changeTest({testId, name, description, type, img: fileName})
+                return res.json(test)
+            }
+            else{
+                const test = await testService.createTest({name, description, typeId})
                 return res.json(test)
             }
         }
@@ -168,13 +188,72 @@ class UserController{
         }
     }
 
+    async changeSection (req, res, next){
+        try{
+            const {idSection, name, description} = req.body
+            const section = await testService.changeSection(idSection, name, description)
+            return res.json(section)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async deleteSection(req, res, next){
+        try{
+            const {idSection} = req.body
+            const section = await testService.deleteSection(idSection)
+            return res.json(section)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
     async createQuestion (req, res, next){
         try{
-            const {questionText, idSection, type} = req.body
-            const {img} = req.files
-            let fileName = uuid.v4() + ".png"
-            img.mv(path.resolve(__dirname, '..', 'static', fileName))
-            const question = await testService.createQuestion({questionText, idSection, type, img: fileName})
+            const {questionText, idSection, type, obligatory} = req.body
+            if (req.files != null){
+                const {img} = req.files
+                let fileName = uuid.v4() + ".png"
+                img.mv(path.resolve(__dirname, '..', 'static', fileName))
+                const question = await testService.createQuestion({questionText, idSection, type, obligatory, img: fileName})
+                return res.json(question)
+            }
+            else{
+                const question = await testService.createQuestion({questionText, idSection, type, obligatory})
+                return res.json(question)
+            }
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async changeQuestion (req, res, next){
+        try{
+            const {questionId, questionText, type, obligatory} = req.body
+            if (req.files != null){
+                const {img} = req.files
+                let fileName = uuid.v4() + ".png"
+                img.mv(path.resolve(__dirname, '..', 'static', fileName))
+                const question = await testService.changeQuestion(questionId, questionText, type, obligatory, img)
+                return res.json(question)
+            }
+            else{
+                const question = await testService.changeQuestion(questionId, questionText, type, obligatory)
+                return res.json(question)
+            }
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async deleteQuestion(req, res, next){
+        try{
+            const {questionId} = req.body
+            const question = await testService.deleteQuestion(questionId)
             return res.json(question)
         }
         catch(e){
@@ -184,8 +263,30 @@ class UserController{
 
     async createAnswer (req, res, next){
         try{
-            const {text, idQuestion} = req.body
-            const answer = await testService.createAnswer(text, idQuestion)
+            const {text, correctness, idQuestion} = req.body
+            const answer = await testService.createAnswer(text, correctness, idQuestion)
+            return res.json(answer)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async changeAnswer (req, res, next){
+        try{
+            const {answerId, text, correctness} = req.body
+            const answer = await testService.changeAnswer(answerId, text, correctness)
+            return res.json(answer)
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async deleteAnswer(req, res, next){
+        try{
+            const {answerId} = req.body
+            const answer = await testService.deleteAnswer(answerId)
             return res.json(answer)
         }
         catch(e){
@@ -226,61 +327,43 @@ class UserController{
         }
     }
 
-    // async saveChangedTest(req, res, next){
-    //     try{
-    //         const {name, description, idCreator, category, privat, typeId} = req.body
-    //         if (req.files != null){
-    //             const {img} = req.files
-    //             let fileName = uuid.v4() + ".png"
-    //             img.mv(path.resolve(__dirname, '..', 'static', fileName))
-    //             const test = await testService.createTest({name, description, idCreator, category, privat, typeId, img: fileName})
-    //             return res.json(test)
-    //         }
-    //         else{
-    //             const test = await testService.createTest({name, description, idCreator, category, privat, typeId})
-    //             return res.json(test)
-    //         }
-    //     try {
-    //         const {testId, name, description, idCreator, category, privat, typeId, }
-    //         const { test } = req.body
-    //         req.body.sections[]
-    //         const test = {
-    //             testId: testId,
-    //             name: '',
-    //             sections: [
-    //                 {
-    //                     idSection: 2,
-    //                     name: '',
-    //                     description: '',
-    //                     questions: [
-    //                         {
-    //                             idQuestion: 1,
-    //                             name: 'asdas',
-    //                             answers: [
-    //                                 {idAnswer: 123, text: ''}
-    //                             ]
-    //                         }
-    //                     ]
-    //                 }
-    //             ]
-    //         }
-    //         const test = await Tests.findByPk(body.idTest)
-    //         test.name = body.name
-    //         test.save()
+    async saveTest(req, res, next){
+        try{
+            const {test} = req.body
+            const Test = await this.createTest(test.name, test.description, test.idCreator, test.category, test.type)
+            let array_sections = test.sections
+            array_sections.forEach(element => {
+                let Section = this.createSection(element.name, element.description, element.id_test)
+            });
+            let array_questions = test.sections.questions
+            array_questions.forEach(element => {
+                let Question = this.createQuestion(element.questionText, element.idSection, element.type, element.obligatory)
+            });
+            return res.json(Test)
+        }
+        catch(e){
+            next(e);
+        }
+    }
 
-    //         body.sections.forEach(section => {
-    //             const section = await Tests.findOrBuild({
-
-    //             })
-    //             section.questions.forEach(q => {
-    //                 await Questions.find
-    //             })                
-    //         })
-    //     }
-    //     catch(e){
-
-    //     }
-    // }
+    async saveChangedTest(req, res, next){
+        try{
+            const {test} = req.body
+            const Test = await this.changeTest(test.testId, test.name, test.description, test.idCreator, test.category, test.type)
+            let array_sections = test.sections
+            array_sections.forEach(element => {
+                let Section = this.changeSection(element.idSection, element.name, element.description)
+            });
+            let array_questions = test.sections.questions
+            array_questions.forEach(element => {
+                let Question = this.changeQuestion(element.questionId, element.questionText, element.type, element.obligatory)
+            });
+            return res.json(Test)
+        }
+        catch(e){
+            next(e);
+        }
+    }
 }
 
 module.exports = new UserController()

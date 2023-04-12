@@ -21,6 +21,23 @@ class testService{
         }
     }
 
+    async changeTest({testId, name, description, type, img}){
+        const newTest = Tests.findOne({
+            where:{
+                testId: testId
+            }
+        })
+        newTest.name = name
+        newTest.description = description
+        newTest.type = type
+        newTest.img = img
+        await newTest.save()
+
+        return{
+            newTest: newTest
+        }
+    }
+
     async createSection(name, description, id_test){
         const section = Sections.build({
             name: name,
@@ -45,11 +62,44 @@ class testService{
         }
     }
 
-    async createQuestion({questionText, idSection, type, img}){
+    async changeSection(idSection, name, description){
+        const newSection = Sections.findOne({
+            where:{
+                idSection: idSection
+            }
+        })
+        newSection.name = name
+        newSection.description = description
+        await newSection.save()
+
+        return{
+            newSection: newSection
+        }
+    }
+
+    async deleteSection(idSection){
+        const section = await Sections.destroy({
+            where: {
+                idSection: idSection
+            },
+            include: [{
+                model: Questions,
+                include: [{
+                    model: Answers,
+                }]
+            }]
+        })
+        return {
+            section: section
+        }
+    }
+
+    async createQuestion({questionText, idSection, type, obligatory, img}){
         const question = Questions.build({
             questionText: questionText,
             idSection: idSection,
             type: type,
+            obligatory: obligatory,
             img: img
 
         })
@@ -59,9 +109,40 @@ class testService{
         }
     }
 
-    async createAnswer(text, idQuestion){
+    async changeQuestion({questionId, questionText, type, obligatory, img}){
+        const newQuestion = Questions.findOne({
+            where:{
+                questionId: questionId
+            }
+        })
+        newQuestion.questionText = questionText
+        newQuestion.type = type
+        newQuestion.obligatory = obligatory
+        newQuestion.img = img
+        await newQuestion.save()    
+        return {
+            newQuestion: newQuestion
+        }
+    }
+
+    async deleteQuestion(questionId){
+        const question = await Questions.destroy({
+            where: {
+                questionId: questionId
+            },
+            include: [{
+                model: Answers,
+            }]
+        })
+        return {
+            question: question
+        }
+    }
+
+    async createAnswer(text, correctness, idQuestion){
         const answer = Answers.build({
             text: text,
+            correctness: correctness,
             idQuestion: idQuestion
 
         })
@@ -70,6 +151,33 @@ class testService{
             answer: answer
         }
     }
+
+    async changeAnswer(answerId, text, correctness){
+        const newAnswer = Answers.findOne({
+            where:{
+                answerId: answerId
+            }
+        })
+        newAnswer.text = text,
+        newAnswer.correctness = correctness,
+        
+        await newAnswer.save()    
+        return {
+            newAnswer: newAnswer
+        }
+    }
+
+    async deleteAnswer(answerId){
+        const answer = await Answers.destroy({
+            where: {
+                answerId: answerId
+            }
+        })
+        return {
+            answer: answer
+        }
+    }
+
 }
 
 module.exports = new testService();
