@@ -35,11 +35,34 @@ const Sections = observer((props) => {
                       }/>}
                     </div>
                     {(Sindex === 0)?
-                    <TextOnLine onChange={props.setTitle} text={(Sindex === 0)? props.title : s.title} placeholder={"Название раздела"}/>
+                    <div className="textfield">
+                      <input
+                        type="text" 
+                        defaultValue={s.title} 
+                        onChange={(event) => sq.changeSectionTitle(s.id, event.target.value)}
+                        placeholder={"Название теста"}
+                      ></input>
+                    </div>
+                    // <TextOnLine onChange={() => {sq.changeSectionTitle(s.id)}} text={(Sindex === 0)? props.title : s.title} placeholder={"Название раздела"}/>
                     :
-                    <TextOnLine text={(Sindex === 0)? props.title : s.title} placeholder={"Название раздела"}/>
+                    <div className="textfield">
+                      <input
+                        type="text" 
+                        defaultValue={s.title} 
+                        onChange={(event) => sq.changeSectionTitle(s.id, event.target.value)}
+                        placeholder={"Название раздела"}
+                      ></input>
+                    </div>
+                    // <TextOnLine text={(Sindex === 0)? props.title : s.title} placeholder={"Название раздела"}/>
                     }
-                    <TextOnLine text={s.description} placeholder={"Описание (необязательно)"}/> 
+                    <div className="textfield">
+                      <input
+                        type="text" 
+                        defaultValue={s.description} 
+                        onChange={(event) => sq.changeSectionDescr(s.id, event.target.value)}
+                        placeholder={"Описание (необязательно)"}
+                      ></input>
+                    </div>
                 </div>
                 {s.questions.map((q, Qindex) => {
                   return (
@@ -77,7 +100,7 @@ const Sections = observer((props) => {
                           </Select>
                           </div>
                           <div className="question__buttons">
-                          <Switch defaultChecked={q.isImportant}/>
+                          <Switch onChange={() => sq.changeQuestionImportant(s.id, q.id)} checked={q.isImportant}/>
                           <span>Обязательный вопрос</span>
                           <SmallIcon title="Добавить фото" svg={
                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -124,7 +147,15 @@ const Sections = observer((props) => {
                       <div className="question__content" data-select="10">
                           <div className="question__title">
                             <span>{Qindex+1}.</span>
-                            <TextOnLine placeholder={"Название вопроса"} text={q.title}/>
+                            <div className="textfield">
+                              <input
+                                type="text" 
+                                defaultValue={q.title} 
+                                onChange={(event) => sq.changeQuestionTitle(s.id, q.id, event.target.value)}
+                                placeholder={"Название вопроса"}
+                              ></input>
+                            </div>
+                            {/* <TextOnLine placeholder={"Название вопроса"} text={q.title}/> */}
                           </div>
                           <div className="question__var">
                             {(q.type === 10)?
@@ -136,7 +167,7 @@ const Sections = observer((props) => {
                                 {q.answers.map((a, index) => {
                                 return(
                                     <div style={{marginBottom: "1px"}} key={a.id}>
-                                      <RadioAnswer Sid={s.id} Qid={q.id} Aid={a.id} value={a.title} index={index} q={q}/>
+                                      <RadioAnswer Sid={s.id} Qid={q.id} Aid={a.id} value={a.title} right={a.IsRight} index={index} q={q}/>
                                     </div>
                                 )})}
                                 {
@@ -151,7 +182,7 @@ const Sections = observer((props) => {
                                 {q.answers.map((a, index) => {
                                 return(
                                     <div style={{marginBottom: "1px"}} key={a.id}>
-                                      <CheckboxAnswer Sid={s.id} Qid={q.id} Aid={a.id} value={a.title} index={index} q={q}/>
+                                      <CheckboxAnswer Sid={s.id} Qid={q.id} Aid={a.id} value={a.title} right={a.IsRight} index={index} q={q}/>
                                     </div>
                                 )})}
                                 {

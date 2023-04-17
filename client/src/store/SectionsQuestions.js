@@ -40,6 +40,20 @@ class SQ {
         this.sections = this.sections.filter(section => section.id !== id);
     }
 
+    changeSectionTitle(id, value){
+        this.sections = this.sections.map((section) =>{
+            return (section.id == id) ? {...section, title: value} : section;
+        })
+        // console.log(this.sections[1].title);
+    }
+
+    changeSectionDescr(id, value){
+        this.sections = this.sections.map((section) =>{
+            return (section.id == id) ? {...section, description: value} : section;
+        })
+        // console.log(this.sections[1].description);
+    }
+
     addQuestion(){
         let len = this.sections.length;
 
@@ -91,6 +105,32 @@ class SQ {
                     section.questions
                };
         });
+    }
+    
+    changeQuestionImportant(Sid, Qid){
+        this.sections = this.sections.map((section) => {
+            return {...section, questions:
+                (section.id === Sid)? 
+                    section.questions.map((question) =>{
+                        return (question.id === Qid)? {...question, isImportant: !question.isImportant}: question;
+                    }):
+                    section.questions
+               };
+        });
+        // console.log(this.sections[0].questions[0].isImportant)
+    }
+
+    changeQuestionTitle(Sid, Qid, value){
+        this.sections = this.sections.map((section) => {
+            return {...section, questions:
+                (section.id === Sid)? 
+                    section.questions.map((question) =>{
+                        return (question.id === Qid)? {...question, title: value}: question;
+                    }):
+                    section.questions
+               };
+        });
+        // console.log(this.sections[0].questions[0].title)
     }
 
     addAnswer(Sindex, Qindex){
@@ -150,6 +190,48 @@ class SQ {
                 }
             }
         }
+    }
+
+    changeAnswerTitle(Sid, Qid, Aid, value){
+        this.sections = this.sections.map((section) => {
+            return {...section, questions:
+                 (section.id === Sid)? 
+                    section.questions.map((question) => {
+                        return {...question, answers:
+                            (question.id === Qid)?
+                            question.answers.map((answer) => {
+                                return (answer.id === Aid)?
+                                {...answer, title: value}:
+                                answer;
+                            }):
+                            question.answers
+                        }
+                    }):
+                    section.questions
+                }
+        });
+        // console.log(this.sections[0].questions[0].answers[0].title)
+    }
+    
+    changeAnswerRight(Sid, Qid, Aid){
+        this.sections = this.sections.map((section) => {
+            return {...section, questions:
+                 (section.id === Sid)? 
+                    section.questions.map((question) => {
+                        return {...question, answers:
+                            (question.id === Qid)?
+                            question.answers.map((answer) => {
+                                return (answer.id === Aid)?
+                                {...answer, IsRight: !answer.IsRight}:
+                                answer;
+                            }):
+                            question.answers
+                        }
+                    }):
+                    section.questions
+                }
+        });
+        console.log(this.sections[0].questions[0].answers[0].IsRight)
     }
 }
 
