@@ -4,7 +4,7 @@ const Tests = require('../models/Tests');
 const Sections = require('../models/Sections');
 
 class testService{
-    async createTest({name, description, idCreator, category, privat, typeId, img}){
+    async createTest(name, description, idCreator, category, privat, typeId, img){
         const test = Tests.build({
             name: name,
             description: description,
@@ -94,7 +94,7 @@ class testService{
         }
     }
 
-    async createQuestion({questionText, idSection, type, obligatory, img}){
+    async createQuestion(questionText, idSection, type, obligatory, img){
         const question = Questions.build({
             questionText: questionText,
             idSection: idSection,

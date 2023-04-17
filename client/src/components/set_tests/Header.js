@@ -9,7 +9,7 @@ import AccWin from "./AccWin";
 
 function Header(){
   const {user} = useContext(Context);
-
+  console.log(user._user.id)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {

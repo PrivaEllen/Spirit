@@ -65,9 +65,7 @@ export default function SearchForm() {
             <FormControlLabel value="visible" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Скрытые" className="option__text"/>
           </div>
           <div className="option__container" >
-            <FormControlLabel value="first round" control={<Radio sx={{ color: "#808080", "margin-right": "10px","margin-left": "16px",  '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Первый раунд" className="option__text" />
-            <FormControlLabel value="second round" control={<Radio sx={{ color: "#808080","margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}}/>} label="Второй раунд" className="option__text"/>
-            <FormControlLabel value="final" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label="Финал" className="option__text"/>
+          {user._types.map(temp => <FormControlLabel value="final" control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label={temp.name} className="option__text"/>)}
             </div>
           </RadioGroup>
           </FormControl>

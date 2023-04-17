@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import Button from '@mui/material/Button';
 import { useContext } from "react";
+import { saveTest } from "../services/TestService";
 
 class TestTools {
     innerContent = ""
@@ -33,35 +34,22 @@ class TestTools {
                                 <div className="inner-content__buttons">
                                     <Button variant="text">Отмена</Button>
                                     <Button variant="text">Не сохранять</Button>
-                                    <Button variant="text">Сохранить</Button>
-                                    {/* <Button onClick={() => saveTest({
-                                        testId: testId,
+                                    {/* <Button variant="text" onClick={() => saveTest({test:{
                                         name: name,
                                         description: description,
                                         idCreator: user._user.id,
                                         category: category,
                                         type: typeId,
-                                        img: img,
-                                        sections: sq.sections[
-                                            idSection: idSection,
+                                        sections: sq.sections[{
                                             name: name,
                                             description: description,
-                                            id_test: testId,
-                                            questions: sq.sections.questions[
+                                            questions: sq.sections.questions[{
                                                 questionText: questionText,
-                                                idSection: idSection,
                                                 type: type,
                                                 obligatory: obligatory,
-                                                img: img,
-                                                answers: sq.sections.questions.answers[
-                                                    answerId: answerId,
-                                                    text: text,
-                                                    correctness: correctness,
-                                                    idQuestion: idQuestion
-                                                ]
-                                            ]
-                                        ]
-                                    })}>Save</Button> */}
+                                            }]
+                                        }]                                        
+                                    }})} >Сохранить</Button> */}
                                 </div>
                             </div>
     }

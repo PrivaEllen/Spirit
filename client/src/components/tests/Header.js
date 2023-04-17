@@ -27,7 +27,8 @@ const Header = observer((props) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-
+  console.log(props.testTitle)
+  console.log(sq.sections)
   return (
     <header id="testPageHeader" className="header">
       <div className="header__container"> 
