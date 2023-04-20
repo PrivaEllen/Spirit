@@ -39,7 +39,6 @@ function TestSet() {
                         <Pattern TestName = "Сбор информации" image = "pat3"/>
                         <Pattern TestName = "Тип личности" image = "pat2"/>
                         <Pattern TestName = "Куб в пустыне" />
-                        <Pattern />
                     </div>
                 </div>
             </div>
