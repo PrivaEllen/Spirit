@@ -1,6 +1,6 @@
 import React from 'react'
 import AccInfoForm from './AccInfoForm'
-import Avatar from '@mui/material/Avatar';
+import { Button } from '@mui/material'
 
 export default function AccInfo() {
   return (
@@ -13,19 +13,10 @@ export default function AccInfo() {
         <div className='accInfo__secBlock'>
             <div className='accInfo__secBlock__content'>
                 <span className='accInfo__text'>Ваша компания не зарегистрирована</span>
-                <button>Исправить</button>
+                <Button variant='contained' size='large' fullWidth='true'>Исправить</Button>
             </div>
         </div>
-        <div className='accInfo__BigBlock'>
             <AccInfoForm/>
-            <div className='accInfo__forthBlock'>
-            <Avatar sx={{  width: "120px", height: "120px", background: "#90CAF9", color: "#121212" }} />
-            <div className='photo__text'><span className='text'>Cменить</span></div>
-            <div className='space'></div>
-            <button>Изменить</button>
-            </div>
-
-        </div>
       
     </div>
   )
