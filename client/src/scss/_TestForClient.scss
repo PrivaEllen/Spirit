@@ -108,10 +108,17 @@ flex-grow: 0;
     line-height: 24px;
     letter-spacing: 0.15px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgb(192, 188, 188);
     color: rgba(255, 255, 255, 0.7);
     font-family: 'Roboto';
     font-style: normal;
-   
+   &:hover
+   {
+    border-bottom: 1px solid rgb(255, 255, 255);
+   }
+   &:focus
+   {
+    border-bottom: 1px solid rgb(255, 255, 255);
+   }
 }
 }
