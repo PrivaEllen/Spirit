@@ -68,7 +68,7 @@ function FormQustions(){
           <div className="qustion_block">
           <label className="qust_header_text">{el.id}. {el.title}</label>
           {(el.TypeQst==3)?
-         <div> <input /></div>
+         <div> <input type = 'text' className="Text_Field" placeholder="Поле для ответа"/></div>
           :
           <div>
             {el.answers.map(elem=>( 
