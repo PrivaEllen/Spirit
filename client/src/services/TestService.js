@@ -31,8 +31,8 @@ export const sendTest = async (email) => {
     return $api.post('/send/test', {email})
 }
 
-export const saveChanges = async (id, Name, Surname, company, phone, emailForFeedback, Photo) => {
-    return $api.post('/save/changes', {id, Name, Surname, company, phone, emailForFeedback, Photo})
+export const saveChanges = async (id, Name, Surname, company, phone, emailForFeedback) => {
+    return $api.post('/save/changes', {id, Name, Surname, company, phone, emailForFeedback})
 }
 
 export const renameTest = async (testId, name) => {

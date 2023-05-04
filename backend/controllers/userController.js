@@ -293,7 +293,7 @@ class UserController{
 
     async pass(req, res, next){
         try{
-            return res.redirect(`${process.env.FRONTEND_URL}/view/test`)
+            return res.redirect(`${process.env.FRONTEND_URL}/test/client`)
         }
         catch(e) {
             next(e);

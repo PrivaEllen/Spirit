@@ -14,6 +14,7 @@ function Header(){
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    document.body.style.overflow = "overlay";
   };
 
   const handleClose = () => {

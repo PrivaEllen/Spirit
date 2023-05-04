@@ -229,7 +229,6 @@ class userService {
     }
 
     async send(email){
-        console.log('piska')
         const testLink = uuid.v4()
         await mailService.sendTest(email, `${process.env.BACKEND_URL}/spirit/test/${testLink}`)
     }
