@@ -1,5 +1,5 @@
 
-import { MAIN, LOGIN, REGISTRATION, TESTS, CREATE_TEST, TEST_SET, TEST_FOR_CLIENT} from './utils';
+import { MAIN, LOGIN, REGISTRATION, GET_TEST, CREATE_TEST, TEST_SET, TEST_FOR_CLIENT} from './utils';
 import Land from '../pages/landing';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';

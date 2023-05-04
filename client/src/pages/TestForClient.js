@@ -8,6 +8,7 @@ function TestClient() {
         return(
         <>
        < div id  = "_body">
+                {console.log(1)}
             <Title/>
             <FormQustions/>
             <EndButton/>
