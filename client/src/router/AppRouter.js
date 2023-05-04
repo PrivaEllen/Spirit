@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import { Context } from '../index'
 import {loginRoutes, publicRoutes} from './routes';
-import { getUserTests } from "../services/TestService";
 
 function AppRouter () {
     const {user} = useContext(Context)

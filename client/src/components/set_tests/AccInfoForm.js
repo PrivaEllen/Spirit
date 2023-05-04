@@ -5,7 +5,6 @@ import { Context } from '../..';
 
 function AccInfoForm() {
     const {user} = useContext(Context)
-
     return (
         <div>
             <div className='accInfo__thirdBlock'>
@@ -63,7 +62,7 @@ function AccInfoForm() {
                 name="Mail"
                 type="Mail"
                 variant="standard"
-                defaultValue={user._user.email}
+                defaultValue={user._user.emailForFeedback ? user._user.emailForFeedback : user._user.email}
                 size="medium"
                 label="Почта для обратной связи"
                 fullWidth='true'

@@ -1,15 +1,155 @@
 import { makeAutoObservable } from "mobx";
 import Button from '@mui/material/Button';
-import { useContext } from "react";
-import { saveTest } from "../services/TestService";
+import { TextField } from "@mui/material";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { deleteTest, sendTest } from "../services/TestService";
+import { TEST_SET } from "../router/utils";
+import { saveChangedTest, saveTest } from "../services/TestService"
+import { Formik } from "formik";
+import * as Yup from 'yup';
+import { observer } from "mobx-react-lite";
+
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 class TestTools {
     innerContent = ""
     constructor() {
+      this.validationSchema = Yup.object().shape({
+        email: Yup.string().email('Введите верную почту').required('Обязательно'),
+      })
         makeAutoObservable(this)
     }
 
-    showDeleteMenu() {
+    delete(testId){
+        deleteTest(testId)
+        window.location.assign(TEST_SET)
+    }
+
+    send(testId, sq, user_id, email) {
+        try{
+          if (testId){
+            saveChangedTest({
+              testId: testId,
+              name: sq.sections[0].title,
+              idCreator: user_id,
+              sections: sq.sections.map(section => {
+                return {
+                  name: section.title,
+                  description: section.description,
+                  questions: section.questions.map(question => {
+                    return {
+                      questionText: question.title,
+                      type: question.type,
+                      obligatory: question.isImportant,
+                      answers: question.answers.map(answer => {
+                        return {
+                          text: answer.title,
+                          correctness: answer.IsRight
+                        }
+                      })
+                    }
+                  })
+                }
+              })
+            })
+          }
+          else{
+            saveTest({
+              name: sq.sections[0].title,
+              idCreator: user_id,
+              sections: sq.sections.map(section => {
+                return {
+                  name: section.title,
+                  description: section.description,
+                  questions: section.questions.map(question => {
+                    return {
+                      questionText: question.title,
+                      type: question.type,
+                      obligatory: question.isImportant,
+                      answers: question.answers.map(answer => {
+                        return {
+                          text: answer.title,
+                          correctness: answer.IsRight
+                        }
+                      })
+                    }
+                  })
+                }
+              })
+            })
+          }
+          sendTest(email)
+        }  
+        catch(e){
+          console.log(e)
+        }
+      }    
+
+    save(testId, sq, user_id) {
+        try{
+          if (testId){
+            saveChangedTest({
+              testId: testId,
+              name: sq.sections[0].title,
+              idCreator: user_id,
+              sections: sq.sections.map(section => {
+                return {
+                  name: section.title,
+                  description: section.description,
+                  questions: section.questions.map(question => {
+                    return {
+                      questionText: question.title,
+                      type: question.type,
+                      obligatory: question.isImportant,
+                      answers: question.answers.map(answer => {
+                        return {
+                          text: answer.title,
+                          correctness: answer.IsRight
+                        }
+                      })
+                    }
+                  })
+                }
+              })
+            })
+          }
+          else{
+            saveTest({
+              name: sq.sections[0].title,
+              idCreator: user_id,
+              sections: sq.sections.map(section => {
+                return {
+                  name: section.title,
+                  description: section.description,
+                  questions: section.questions.map(question => {
+                    return {
+                      questionText: question.title,
+                      type: question.type,
+                      obligatory: question.isImportant,
+                      answers: question.answers.map(answer => {
+                        return {
+                          text: answer.title,
+                          correctness: answer.IsRight
+                        }
+                      })
+                    }
+                  })
+                }
+              })
+            })
+          }
+          window.location.assign(TEST_SET)
+        }  
+        catch(e){
+          console.log(e)
+        }
+    }
+
+    showDeleteMenu(testId) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
                                     <h2>Удалить тест?</h2>
@@ -19,11 +159,12 @@ class TestTools {
                                 </div>
                                 <div className="inner-content__buttons">
                                     <Button variant="text">Отмена</Button>
-                                    <Button variant="text">Да, удалить</Button>
+                                    <Button variant="text" onClick={() => this.delete(testId)}>Да, удалить</Button>
                                 </div>
                             </div>
     }
-    showExitMenu() {
+
+    showExitMenu(testId, sq, user_id) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
                                     <h2>Перед выходом вы хотите сохранить изменения?</h2>
@@ -33,25 +174,52 @@ class TestTools {
                                 </div>
                                 <div className="inner-content__buttons">
                                     <Button variant="text">Отмена</Button>
-                                    <Button variant="text">Не сохранять</Button>
-                                    {/* <Button variant="text" onClick={() => saveTest({test:{
-                                        name: name,
-                                        description: description,
-                                        idCreator: user._user.id,
-                                        category: category,
-                                        type: typeId,
-                                        sections: sq.sections[{
-                                            name: name,
-                                            description: description,
-                                            questions: sq.sections.questions[{
-                                                questionText: questionText,
-                                                type: type,
-                                                obligatory: obligatory,
-                                            }]
-                                        }]                                        
-                                    }})} >Сохранить</Button> */}
+                                    <Button variant="text" onClick={() => window.location.assign(TEST_SET)}>Не сохранять</Button>
+                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id)}>Сохранить</Button>
                                 </div>
                             </div>
+    }
+    showGenerateLink(testId, sq, user_id) {
+        this.innerContent = <ThemeProvider theme={darkTheme}>
+                                <div className="inner-content">
+                                <Formik
+                                        initialValues={{
+                                            email: '',
+                                        }}
+                                        validateOnBlur
+                                        onSubmit={(values) => console.log(values)}
+                                        validationSchema={this.validationSchema}
+                                    >
+                                    {({ values, touched, errors, handleBlur, handleChange, handleSubmit }) => (
+                                      <div onSubmit={handleSubmit}>
+                                        <div className="inner-content__header">
+                                          <h2>Отправить</h2>
+                                        </div>
+                                        <div className="inner-content__subtext">
+                                          <p>Электронная почта</p>
+                                        </div>
+                                        <TextField
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            variant="outlined"
+                                            label="Кому"
+                                            fullWidth="true"
+                                            sx={{marginBottom: "16px"}}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.email}
+                                            error={touched && errors.email}
+                                        />
+                                        <div className="inner-content__buttons">
+                                            <Button variant="text">Отмена</Button>
+                                            <Button variant="text" disabled={!values.email} onClick={() => this.send(testId, sq, user_id, values.email)}>Отправить</Button>
+                                        </div>
+                                      </div>
+                                    )}
+                                    </Formik>
+                                </div>
+                            </ThemeProvider>
     }
 }
 

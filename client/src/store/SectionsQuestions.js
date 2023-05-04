@@ -2,24 +2,20 @@ import { makeAutoObservable } from "mobx";
 
 class SQ {
     constructor(){
+        this._flag = 1;
         makeAutoObservable(this);
     }
 
+    IncrementFlag(){
+        this._flag += 1
+    }
+
     sections = [
-        {id:1, title:"Первое знакомство", description:"Расскажите подробнее о вас", 
+        {id:1, title:"", description:"", 
         questions: [
-            {id:1, type:10, title:"Вы владеете английским языком?", isImportant: false, 
-            answers : [{id:1, title:"Нет", IsRight: false},
-                    {id:2, title:"Частично", IsRight: true}]},
-            {id:2, type:10, title:"На какую вакансию вы рассчитываете?", isImportant: true,
-            answers : []},
+            {id:1, type:"oneOfList", title:"", isImportant: false, answers : []},
         ]
-        },
-        {id:2, title:"Пройдите опрос, дизайнер старался", description:"",
-        questions: [
-            {id:1, type:20, title:"Как дела?", isImportant: false, 
-            answers: []},
-        ]},
+        }
     ]
 
     addSection(){
@@ -31,7 +27,7 @@ class SQ {
         this.sections.push(
             {id: newId, title:"", description:"",
                 questions: [
-                    {id:1, type:10, title:"", isImportant: false, answers : []},
+                    {id:1, type:"oneOfList", title:"", isImportant: false, answers : []},
                 ]
             });
     }
@@ -44,14 +40,12 @@ class SQ {
         this.sections = this.sections.map((section) =>{
             return (section.id == id) ? {...section, title: value} : section;
         })
-        // console.log(this.sections[1].title);
     }
 
     changeSectionDescr(id, value){
         this.sections = this.sections.map((section) =>{
             return (section.id == id) ? {...section, description: value} : section;
         })
-        // console.log(this.sections[1].description);
     }
 
     addQuestion(){
@@ -63,7 +57,7 @@ class SQ {
             if (newId <= question.id) newId = question.id + 1;
         }
         this.sections[len-1].questions.push(
-            {id:  newId, type:10, title:"", isImportant: false, answers : []},
+            {id:  newId, type:"oneOfList", title:"", isImportant: false, answers : []},
         );
     }
 
@@ -117,7 +111,6 @@ class SQ {
                     section.questions
                };
         });
-        // console.log(this.sections[0].questions[0].isImportant)
     }
 
     changeQuestionTitle(Sid, Qid, value){
@@ -130,7 +123,6 @@ class SQ {
                     section.questions
                };
         });
-        // console.log(this.sections[0].questions[0].title)
     }
 
     addAnswer(Sindex, Qindex){
@@ -210,7 +202,6 @@ class SQ {
                     section.questions
                 }
         });
-        // console.log(this.sections[0].questions[0].answers[0].title)
     }
     
     changeAnswerRight(Sid, Qid, Aid){

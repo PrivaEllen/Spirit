@@ -33,7 +33,7 @@ function Enter(){
                 onSubmit={(values) => console.log(values)}
                 validationSchema={validationSchema}
             >
-            {({ values, errors, touched, handleBlur, handleChange, handleSubmit }) => (
+            {({ values, handleBlur, handleChange, handleSubmit }) => (
                 <>
                     <div className='container_form_general_enter_card' style={{display: 'flex'}} onSubmit={handleSubmit}>
                         <TextField

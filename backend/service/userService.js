@@ -186,7 +186,7 @@ class userService {
             }]
         })
         return {
-            test: test
+            test: 1
         }
     }
 
@@ -226,6 +226,12 @@ class userService {
         return {
             types: types
         }
+    }
+
+    async send(email){
+        console.log('piska')
+        const testLink = uuid.v4()
+        await mailService.sendTest(email, `${process.env.BACKEND_URL}/spirit/test/${testLink}`)
     }
 }
 

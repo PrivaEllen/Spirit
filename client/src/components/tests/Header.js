@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../images/logo.png"
 import SmallIcon from "./SmallIcon"
 import {Divider, Avatar, Popover, Tooltip} from '@mui/material';
@@ -6,8 +6,27 @@ import { observer } from "mobx-react-lite";
 import TestTools from "../../store/TestTools";
 import backgroundButtons from "../../scripts/change_background";
 import sq from "../../store/SectionsQuestions";
+import { Context } from "../..";
+import { useParams } from "react-router-dom";
 
 const Header = observer((props) => {
+  const {user} = useContext(Context)
+
+  const param  = useParams()
+  const testId = param.testId
+
+  const hiddenFileInput = React.useRef(null);
+  
+  const handle_Click = event => {
+      hiddenFileInput.current.click();
+  };
+
+  const [file, setFile] = useState(`http://localhost:5000/${user._user.Photo}`);
+  function handleChange(e) {
+    console.log(e.target.files);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -26,22 +45,20 @@ const Header = observer((props) => {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
-  console.log(props.testTitle)
-  console.log(sq.sections)
+  
   return (
     <header id="testPageHeader" className="header">
       <div className="header__container"> 
           <div className="header__side">
             <div className="logo">
               <Tooltip title="Главный экран Spirit">
-                <div onClick={() => {props.setModalActive(true); TestTools.showExitMenu()}}>
+                <div onClick={() => {props.setModalActive(true); TestTools.showExitMenu(testId, sq, user._user.id); sq.IncrementFlag()}}>
                   <img src={logo} alt="logo"/>
                 </div>
               </Tooltip>
             </div>
             <div className="header__delete">
-              <SmallIcon onClick={() => {props.setModalActive(true); TestTools.showDeleteMenu()}} title="Удалить тест" svg={
+              <SmallIcon onClick={() => {props.setModalActive(true); TestTools.showDeleteMenu(testId); sq.IncrementFlag()}} title="Удалить тест" svg={
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 31C18 32.1 18.9 33 20 33H28C29.1 33 30 32.1 30 31V19H18V31ZM31 16H27.5L26.5 15H21.5L20.5 16H17V18H31V16Z" fill="white"/>
                 </svg>
@@ -129,19 +146,26 @@ const Header = observer((props) => {
               </div>
             </div>
           </Popover>
-            <SmallIcon title="Просмотр от лица пользователя" svg = {
-              <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11 0.5C6 0.5 1.73 3.61 0 8C1.73 12.39 6 15.5 11 15.5C16 15.5 20.27 12.39 22 8C20.27 3.61 16 0.5 11 0.5ZM11 13C8.24 13 6 10.76 6 8C6 5.24 8.24 3 11 3C13.76 3 16 5.24 16 8C16 10.76 13.76 13 11 13ZM11 5C9.34 5 8 6.34 8 8C8 9.66 9.34 11 11 11C12.66 11 14 9.66 14 8C14 6.34 12.66 5 11 5Z" fill="white"/>
-              </svg>                  
+            <SmallIcon onClick={handle_Click} title="Сменить фотографию теста" svg={
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 16V2C18 0.9 17.1 0 16 0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H16C17.1 18 18 17.1 18 16ZM5.5 10.5L8 13.51L11.5 9L16 15H2L5.5 10.5Z"/>
+              </svg>                          
             }/>
+            <input
+              name="img"
+              ref={hiddenFileInput}
+              onChange={handleChange}
+              style={{display: 'none'}}
+              type='file'
+            />
             <SmallIcon title="Статистика" svg = {
               <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M16 2H11.82C11.4 0.84 10.3 0 9 0C7.7 0 6.6 0.84 6.18 2H2C0.9 2 0 2.9 0 4V20C0 21.1 0.9 22 2 22H16C17.1 22 18 21.1 18 20V4C18 2.9 17.1 2 16 2ZM9 2C9.55 2 10 2.45 10 3C10 3.55 9.55 4 9 4C8.45 4 8 3.55 8 3C8 2.45 8.45 2 9 2ZM16 20H2V4H4V7H14V4H16V20Z" fill="white"/>
               </svg>                  
             }/>
-            <button className="button" id="send" type="button">Отправить</button>
+            <button className="button" id="send" type="button" onClick={() => {props.setModalActive(true); TestTools.showGenerateLink(testId, sq, user._user.id); sq.IncrementFlag()}}>Отправить</button>
             <div className="avatar">
-              <Avatar sx={{ bgcolor: "#90CAF9" }}>N</Avatar>
+              <Avatar src={`http://localhost:5000/${user._user.Photo}`} sx={{ bgcolor: "#90CAF9" }}>N</Avatar>
             </div>
           </div> 
       </div> 
