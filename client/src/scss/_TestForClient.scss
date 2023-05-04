@@ -1,0 +1,124 @@
+$QColor: #ffffff26;
+
+@mixin qtext {
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 24px;
+letter-spacing: 0.4px;
+color: rgba(255, 255, 255, 0.7);
+
+
+}
+#_body
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.qustion_block
+{
+    background-color: $QColor;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 16px 24px;
+    gap: 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    .qust_header_text
+    {
+        @include qtext;
+    }
+
+    .qust_body_text
+    {
+        @include qtext;
+    }
+}
+
+#Qustions
+{
+    width: 100%;
+#Qustions_form
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}    
+}
+#block_button
+{
+width: 60%;
+
+#end_button
+{
+    background: #90CAF9;
+    padding: 1% 2% 1% 2%;
+    /* Elevation/2 */
+    
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 3;
+    flex-grow: 0;
+    z-index: 3;
+
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 24px;
+letter-spacing: 0.4px;
+text-transform: uppercase;
+color: rgba(0, 0, 0, 0.87);
+flex: none;
+order: 1;
+flex-grow: 0;
+    cursor:pointer;
+    &:hover
+    {
+        background-color: darken($color:  #B1C7DE, $amount: 15);
+    }
+}
+}
+
+
+.block_for_textfield
+{
+    width: 100%;
+.Text_Field
+ {
+    all: unset;
+    width: 90%;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(192, 188, 188);
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Roboto';
+    font-style: normal;
+   &:hover
+   {
+    border-bottom: 1px solid rgb(255, 255, 255);
+   }
+   &:focus
+   {
+    border-bottom: 1px solid rgb(255, 255, 255);
+   }
+}
+}
