@@ -56,5 +56,4 @@ const AccInfo = props => {
         </div>
     )
 }
-
 export default observer(AccInfo)

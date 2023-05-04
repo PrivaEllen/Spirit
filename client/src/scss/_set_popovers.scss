@@ -6,6 +6,34 @@
     justify-content: center;
 }
 
+.popover__threePoints{
+    width: 180px;
+    height: 198px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    .popover__threePoints__block__text{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        
+        letter-spacing: 0.15px;
+        color: #FFFFFF;
+        
+    }
+}
+
+.popover__threePoints__block{
+    width: 180px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start
+}
+
 .option{
     height: 42px;
     width: 200px;
@@ -155,3 +183,4 @@
     
     color: #FFFFFF;
 }
+

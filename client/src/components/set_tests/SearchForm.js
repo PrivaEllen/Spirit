@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import SmallIcon from '../tests/SmallIcon'
 import Popover from '@mui/material/Popover';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import { Context } from '../..';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';

@@ -1,7 +1,33 @@
 import React from 'react'
 import { GET_TEST } from '../../router/utils'
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Popover } from '@mui/material';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import SyncIcon from '@mui/icons-material/Sync';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {useState, useContext} from 'react'; 
 
 export default function UserTest(props) {
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+  const [hidden, setHidden] = useState(true);
+
   return (
     <>
       <div className='pattern-block' onClick={() => window.location.assign(GET_TEST + '/' + props.testId)}>
@@ -20,6 +46,42 @@ export default function UserTest(props) {
             <path style={{cursor: 'pointer'}} d="M8 2.5a1.22 1.22 0 0 1 1.25 1.17A1.21 1.21 0 0 1 8 4.84a1.21 1.21 0 0 1-1.25-1.17A1.22 1.22 0 0 1 8 2.5zm0 8.66a1.17 1.17 0 1 1-1.25 1.17A1.21 1.21 0 0 1 8 11.16zm0-4.33a1.17 1.17 0 1 1 0 2.34 1.17 1.17 0 1 1 0-2.34z"/>
             </g>
           </svg>
+
+          <span className='pattern-box__time'>{props.TestTime}</span>
+          <MoreVertIcon onClick={handleClick} color="disabled" />
+          <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+      >
+        <div className='popover__threePoints'>
+          <div className='popover__threePoints__block'>
+            <BarChartIcon color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }}/>
+            <div className='popover__threePoints__block__text'>Статистика</div>
+          </div>
+          <div className='popover__threePoints__block'>
+            <SyncIcon color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }}/>
+            <div className='popover__threePoints__block__text'>Сменить имя</div>
+          </div>
+        
+            {!hidden ? <div className='popover__threePoints__block'> <VisibilityIcon color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }} onClick={() => setHidden(s => !s)}/>
+              <div className='popover__threePoints__block__text'>Вернуть</div></div>
+            : null}
+            {hidden ? <div className='popover__threePoints__block'> <VisibilityOffIcon color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }} onClick={() => setHidden(s => !s)}/>
+              <div className='popover__threePoints__block__text'>Скрыть</div></div>
+            : null}
+          
+          <div className='popover__threePoints__block'>
+            <DeleteOutlineIcon  color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }}/>
+            <div className='popover__threePoints__block__text'>Удалить</div>
+          </div>
+        </div>
+      </Popover>
         </div>
       </div>
     </div>
