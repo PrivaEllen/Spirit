@@ -2,64 +2,6 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import ins from "../../store/InternStore";
 
-// const s =
-// [
-//   {
-//     id: 1,
-//     TypeQst:1,
-//     title: 'Как ваши дела?',
-//     answers: 
-//     [
-//       {
-//         id: 1,
-//         ans: 'Плохо',
-//       },
-//       {
-//         id: 2,
-//         ans: 'Нормально',
-//       },
-//       {
-//         id: 3,
-//         ans: 'Супер',
-//       }
-//     ]
-//   },
-//   {
-//     id: 2,
-//     TypeQst:2,
-//     title:'Ваша любимая еда?',
-//     answers: 
-//     [
-//       {
-//         id: 1,
-//         ans: 'Роллы',
-//       },
-//       {
-//         id: 2,
-//         ans: 'Пицца',
-//       },
-//       {
-//         id: 3,
-//         ans: 'Пельмени',
-//       },
-//       {
-//         id: 4,
-//         ans: 'Борщ',
-//       },
-//       {
-//         id: 5,
-//         ans: 'Сырный суп',
-//       },
-//     ]
-//   },
-//   {
-//     id: 3,
-//     TypeQst:3,
-//     title:'Напишите ваше мнение о Met Gala 2023',
-    
-//   }
-// ]
-
 function FormQustions(){
   return(
     <div id = "Qustions">
