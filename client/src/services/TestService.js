@@ -16,23 +16,25 @@ export const getTypes = async () => {
 }
 
 export const saveTest = async (test) => {
-    return $api.post('/create/test', {test})
+    const {data} = await $api.post('/create/test', {test})
+    return data
 }
 
 export const saveChangedTest = async (test) => {
-    return $api.post('/save/test', {test})
+    const {data} = await $api.post('/save/test', {test})
+    return data
 }
 
 export const deleteTest = async (testId) => {
     return $api.post('/delete/test', {testId})
 }
 
-export const sendTest = async (email) => {
-    return $api.post('/send/test', {email})
+export const sendTest = async (id, email) => {
+    return $api.post('/send/test', {id, email})
 }
 
-export const saveChanges = async (id, Name, Surname, company, phone, emailForFeedback) => {
-    return $api.post('/save/changes', {id, Name, Surname, company, phone, emailForFeedback})
+export const saveChanges = async (formData) => {
+    return $api.post('/save/changes', formData)
 }
 
 export const renameTest = async (testId, name) => {
@@ -41,4 +43,9 @@ export const renameTest = async (testId, name) => {
 
 export const changePrivateOfTest = async (testId) => {
     return $api.post('/change/private', {testId})
+}
+
+export const changePhoto = async (formData) => {
+    const data = await $api.post('change/photo', formData)
+    return data
 }

@@ -4,6 +4,7 @@ export default class TestStore{
     constructor(){
         this._tests = []
         this._templates = []
+        this._img = 'http://localhost:5000/defaultPat.png'
         makeAutoObservable(this)
     }
 
@@ -15,4 +16,8 @@ export default class TestStore{
         this._templates = templates
     }
     
+    setImg(img){
+        console.log(img)
+        this._img = img
+    }
 }

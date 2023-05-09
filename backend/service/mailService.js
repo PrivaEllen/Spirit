@@ -31,7 +31,7 @@ class mailService{
     async sendTest(to, link){
             await this.transporter.sendMail({
             from: process.env.SMTP_USER,
-            to: to.email,
+            to: to,
             subject: "Пройдите тест по ссылке ниже",
             text: '',
             html:

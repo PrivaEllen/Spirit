@@ -4,14 +4,14 @@ const Tests = require('../models/Tests');
 const Sections = require('../models/Sections');
 
 class testService{
-    async createTest(name, idCreator, category, privat, typeId, img){
+    async createTest(name, idCreator, img, typeId, category, privat){
         const test = Tests.build({
             name: name,
             idCreator: idCreator,
             category: category,
             private: privat,
             type: typeId,
-            img: img
+            img: img,
         })
         await test.save()
 

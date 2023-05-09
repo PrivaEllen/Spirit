@@ -69,7 +69,7 @@
     justify-content: space-between;
     padding: 16px;
 
-    width: 565px;
+    width: 530px;
     height: 68px;
 }
 
@@ -86,11 +86,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 24px 16px;
+    padding: 16px 16px;
     gap: 24px;
 
     width: 332px;
-    height: 438px;
+    height: 376px;
     .dop{
         display: flex;
         flex-direction: column;
@@ -125,10 +125,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding: 24px 16px;
+    padding: 16px 16px;
 
     width: 233px;
-    height: 438px;
+    height: 375px;
 
     .photo__text{
         display: flex;
@@ -159,7 +159,6 @@
     .space{
         width: 201px;
         height: 204px;
-
     }
 }
 

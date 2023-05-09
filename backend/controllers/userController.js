@@ -1,9 +1,10 @@
 const userService = require('../service/userService');
-const testService = require('../service/testService')
+const testService = require('../service/testService');
 const {validationResult} = require('express-validator');
 const Errors = require('../middlewear/errors');
 const uuid = require('uuid');
 const path = require('path');
+const userDto = require('../dto/userDto');
 
 class UserController{
     async registration (req, res, next){
@@ -73,16 +74,35 @@ class UserController{
     async saveChanges(req, res, next){
         try{
             const {id, Name, Surname, company, phone, emailForFeedback} = req.body
-            if (req.files != null){
+            if (req.files){
                 const {Photo} = req.files
                 let fileName = uuid.v4() + ".png"
                 Photo.mv(path.resolve(__dirname, '..', 'static', fileName))
                 const hrUser = await userService.saveChanges({id, Name, Surname, company, phone, emailForFeedback, Photo: fileName})
-                return res.json(hrUser)
+                const user = new userDto(hrUser)
+                return res.json(user)
             }
             else{
                 const hrUser = await userService.saveChanges({id, Name, Surname, company, phone, emailForFeedback})
-                return res.json(hrUser)
+                const user = new userDto(hrUser)
+                return res.json(user)
+            }
+            
+        }
+        catch(e){
+            next(e)
+        }
+    }
+
+    async changePhoto(req, res, next){
+        try{
+            const {testId} = req.body
+            if (req.files){
+                const {img} = req.files
+                let fileName = uuid.v4() + ".png"
+                img.mv(path.resolve(__dirname, '..', 'static', fileName))
+                const newImage = await userService.changePhoto(testId, fileName)
+                return res.json(newImage)
             }
         }
         catch(e){
@@ -170,16 +190,7 @@ class UserController{
         try{
             const {test} = req.body
             console.log(test)
-            let createdTest
-            if (req.files != null){
-                const {img} = req.files
-                let fileName = uuid.v4() + ".png"
-                img.mv(path.resolve(__dirname, '..', 'static', fileName))
-                createdTest = await testService.createTest(test.name, test.idCreator, test.category, test.type, {img: fileName})
-            }
-            else{
-                createdTest = await testService.createTest(test.name, test.idCreator, test.category, test.type)
-            }
+            let createdTest = await testService.createTest(test.name, test.idCreator, test.img, test.type, test.category)
 
             if (test.sections){
                 let array_sections = test.sections
@@ -214,7 +225,7 @@ class UserController{
                 }
             }
             
-            return res.json(1);
+            return res.json(createdTest.test.testId);
         }
         catch(e){
             next(e);
@@ -224,20 +235,11 @@ class UserController{
     async saveChangedTest(req, res, next){
         try{
             const {test} = req.body
+            console.log('ahaha')
             console.log(test)
-
             const changedTest = await userService.deleteTest(test.testId)
 
-            let createdTest
-            if (req.files != null){
-                const {img} = req.files
-                let fileName = uuid.v4() + ".png"
-                img.mv(path.resolve(__dirname, '..', 'static', fileName))
-                createdTest = await testService.createTest(test.name, test.idCreator, test.category, test.type, {img: fileName})
-            }
-            else{
-                createdTest = await testService.createTest(test.name, test.idCreator, test.category, test.type)
-            }
+            let createdTest = await testService.createTest(test.name, test.idCreator, test.img, test.type, test.category)
 
             if (test.sections){
                 let array_sections = test.sections
@@ -272,7 +274,7 @@ class UserController{
                 }
             }
             
-            return res.json(1)
+            return res.json(createdTest.test.testId)
         }
         catch(e){
             next(e);
@@ -281,9 +283,8 @@ class UserController{
 
     async send(req, res, next){
         try{
-            console.log('ahaha')
-            const email = req.body
-            await userService.send(email)
+            const {id, email} = req.body
+            await userService.send(id, email)
             return 1
         }
         catch(e){
@@ -291,14 +292,6 @@ class UserController{
         }
     }
 
-    async pass(req, res, next){
-        try{
-            return res.redirect(`${process.env.FRONTEND_URL}/test/client`)
-        }
-        catch(e) {
-            next(e);
-        }
-    }
 }
 
 module.exports = new UserController()

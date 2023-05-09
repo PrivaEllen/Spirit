@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import Button from '@mui/material/Button';
 import { TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { deleteTest, sendTest } from "../services/TestService";
+import { deleteTest, renameTest, sendTest } from "../services/TestService";
 import { TEST_SET } from "../router/utils";
 import { saveChangedTest, saveTest } from "../services/TestService"
 import { Formik } from "formik";
@@ -29,13 +29,14 @@ class TestTools {
         window.location.assign(TEST_SET)
     }
 
-    send(testId, sq, user_id, email) {
+    send(testId, sq, user_id, email, img) {
         try{
           if (testId){
             saveChangedTest({
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
+              img: img,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -55,7 +56,7 @@ class TestTools {
                   })
                 }
               })
-            })
+            }).then(data => sendTest(data, email))
           }
           else{
             saveTest({
@@ -80,22 +81,22 @@ class TestTools {
                   })
                 }
               })
-            })
+            }).then(data => sendTest(data, email))
           }
-          sendTest(email)
         }  
         catch(e){
           console.log(e)
         }
       }    
 
-    save(testId, sq, user_id) {
+    save(testId, sq, user_id, img) {
         try{
           if (testId){
             saveChangedTest({
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
+              img: img,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -149,6 +150,10 @@ class TestTools {
         }
     }
 
+    rename(testId, name){
+      renameTest(testId, name)
+    }
+
     showDeleteMenu(testId) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
@@ -164,7 +169,7 @@ class TestTools {
                             </div>
     }
 
-    showExitMenu(testId, sq, user_id) {
+    showExitMenu(testId, sq, user_id, img) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
                                     <h2>Перед выходом вы хотите сохранить изменения?</h2>
@@ -175,11 +180,11 @@ class TestTools {
                                 <div className="inner-content__buttons">
                                     <Button variant="text">Отмена</Button>
                                     <Button variant="text" onClick={() => window.location.assign(TEST_SET)}>Не сохранять</Button>
-                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id)}>Сохранить</Button>
+                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id, img)}>Сохранить</Button>
                                 </div>
                             </div>
     }
-    showGenerateLink(testId, sq, user_id) {
+    showGenerateLink(testId, sq, user_id, img) {
         this.innerContent = <ThemeProvider theme={darkTheme}>
                                 <div className="inner-content">
                                 <Formik
@@ -209,11 +214,11 @@ class TestTools {
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             value={values.email}
-                                            error={touched && errors.email}
+                                            error={touched.email && errors.email}
                                         />
                                         <div className="inner-content__buttons">
                                             <Button variant="text">Отмена</Button>
-                                            <Button variant="text" disabled={!values.email} onClick={() => this.send(testId, sq, user_id, values.email)}>Отправить</Button>
+                                            <Button variant="text" disabled={!values.email} onClick={() => this.send(testId, sq, user_id, values.email, img)}>Отправить</Button>
                                         </div>
                                       </div>
                                     )}

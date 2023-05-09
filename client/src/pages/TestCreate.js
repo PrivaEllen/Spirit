@@ -14,7 +14,6 @@ function TestCreate(props) {
     const testId = param.testId
 
     useEffect(() => {
-        console.log(sq._flag)
         if (testId && sq._flag == 1){
             getTest(testId).then(data => {
                 let sections = data.userTest.Sections
@@ -77,6 +76,7 @@ function TestCreate(props) {
                 setBgColor={setBgColor}
                 testTitle={testTitle}
                 setTestTitle={setTestTitle}
+                img={props.fileURL}
             />
             <TestEdit
                 testTitle={testTitle}
