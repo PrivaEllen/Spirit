@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Header from "../components/set_tests/Header";
 import Pattern from "../components/set_tests/Pattern";
@@ -24,6 +24,7 @@ function TestSet() {
         getUserTests(user._user.id).then(data => test.setTests(data.userTests))
         getTypes().then(data => user.setTypes(data.types))
     }, [])
+
     return (
         <>
         <div className="TestSet">
@@ -37,10 +38,7 @@ function TestSet() {
                 </div>
                 <div className='Pattern-body' style={{'border-bottom': '1px solid rgba(255, 255, 255, 0.12)'}}>
                     <div className='Pattern__container'>
-                        <Pattern TestName = "Сбор информации" image = "pat3"/>
-                        <Pattern TestName = "Тип личности" image = "pat2"/>
-                        <Pattern TestName = "Куб в пустыне" />
-                        <Pattern />
+                        {test._templates.map(temp => <Pattern key={temp.testId} TestName={temp.name} image={temp.img}/>)}
                     </div>
                 </div>
             </div>
@@ -53,8 +51,7 @@ function TestSet() {
                 <div className='Pattern-body'>
                     <div className='Pattern__container'>
                         <AddTest/>
-                        {test._tests.map(t => <UserTest key={t.id} TestName={t.name} TestTime={t.dateOfCreate} image={t.img}/>)}
-                        <UserTest/>
+                        {test._tests.map(t => <UserTest key={t.testId} TestName={t.name} TestTime={t.dateOfCreate} image={t.img} testId={t.testId}/>)}
                     </div>
                 </div>
             </div>

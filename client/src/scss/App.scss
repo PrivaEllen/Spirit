@@ -3,19 +3,9 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 
-* {
-  box-sizing: border-box;
- 
-}
-
-html {
-  overflow: visible !important;
-}
 
 body {
   margin: 0;
-  overflow: auto !important;
-  padding-right: 0 !important;
 }
 
 .container {
@@ -37,3 +27,5 @@ body {
 @import "set_UserTests";
 @import "set_popovers";
 @import "set_modals";
+@import "set_rename";
+@import "TestForClient";

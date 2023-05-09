@@ -12,10 +12,6 @@ Tests.init({
     type: DataTypes.STRING(100),
     allowNull: false,
   },
-  description: {
-    type: DataTypes.TEXT,
-    allowNull: true
-  },
   idCreator: {
     type: DataTypes.INTEGER,
     references: {
