@@ -52,7 +52,6 @@ function TestClient() {
   return (
     <>
       <div id="_body">
-        <Title />
         <FormQustions />
         <EndButton />
       </div>

@@ -19,6 +19,41 @@ color: rgba(255, 255, 255, 0.7);
     justify-content: space-between;
 }
 
+.section_block
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .section_block_title
+    {
+    background-color: $QColor;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 60px;
+    padding: 16px 24px;
+    gap: 16px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    .qust_header_text
+    {
+        @include qtext;
+    }
+
+    .qust_body_text
+    {
+        @include qtext;
+    }
+    }
+
+
+}
+
 .qustion_block
 {
     background-color: $QColor;
@@ -27,7 +62,6 @@ color: rgba(255, 255, 255, 0.7);
     flex-direction: column;
     align-items: flex-start;
     margin-top: 30px;
-    margin-bottom: 30px;
     padding: 16px 24px;
     gap: 16px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212;
@@ -56,12 +90,33 @@ color: rgba(255, 255, 255, 0.7);
     align-items: center;
 }    
 }
+
+#for_button{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 #block_button
 {
+    
 width: 60%;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
 
+#Warning
+{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0.4px;
+    color: rgba(226, 48, 48, 0.7);
+}
 #end_button
 {
+  
     background: #90CAF9;
     padding: 1% 2% 1% 2%;
     /* Elevation/2 */
@@ -94,7 +149,7 @@ flex-grow: 0;
     }
 }
 }
-
+}
 
 .block_for_textfield
 {
