@@ -18,7 +18,7 @@ class Infotext_2 extends React.Component
     <div id = "frame">
 
     <div id="buy2">
-       <div class ="text_slider">
+       <div className ="text_slider">
         <div><span className ="Header_buy2">АДАПТИРУЕМ ПОД ВАС</span></div>
         <div> <Carousel/></div>
        </div>

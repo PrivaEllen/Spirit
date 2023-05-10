@@ -49,3 +49,38 @@
 .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
     color:#fff;
 }
+
+.radio-field{
+    display: flex;
+    align-items: center;
+    height: 48px;
+    gap: 4px;
+    &:hover{
+        .radio-field__edit{
+            opacity: 1;
+        }
+    }
+    .radio-field__edit{
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        transition: 0.1s;
+    }
+    .textfield{
+        width: 100%;
+        margin-bottom: -5px;
+        margin-right: 20px;
+        input{
+            border: none;
+        }
+    }
+}
+
+.radio-field__ghost{
+    cursor: pointer;
+    .textfield{
+        input{
+            pointer-events: none;
+        }
+    }
+}

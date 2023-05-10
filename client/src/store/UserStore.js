@@ -1,8 +1,8 @@
-import {makeAutoObservable} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import AuthService from '../services/AuthService';
 import axios from 'axios'
 import { SERVER_URL } from '../http/http';
-import { REGISTRATION, TESTS } from '../router/utils';
+import { LOGIN, TEST_SET } from '../router/utils';
 
 export default class UserStore{
     constructor(){
@@ -10,7 +10,12 @@ export default class UserStore{
         this._user = {}
         this._authError = ''
         this._registrError = ''
+        this._types = []
         makeAutoObservable(this)
+    }
+
+    setTypes(types){
+        this._types = types
     }
 
     setIsAuth(bool){
@@ -37,10 +42,12 @@ export default class UserStore{
             this.setIsAuth(true)
             this.setUser(response.data.user)
             this.setAuthError('')
-            window.location.assign(TESTS);
+            console.log(5)
+            window.location.assign(TEST_SET);
         }
         catch(e){
             this.setIsAuth(false)
+            console.log(6)
             this.setAuthError('Логин или пароль не совпадают')
             console.log(e.response?.data?.message)
         }
@@ -52,11 +59,14 @@ export default class UserStore{
             console.log(response)
             localStorage.setItem('token', response.data.accessToken)
             this.setUser(response.data.user)
+            this.setIsAuth(true)
             this.setRegistrError('')
-            window.location.assign(REGISTRATION)
+            console.log(3)
+            window.location.assign(LOGIN)
         }
         catch(e){
             this.setIsAuth(false)
+            console.log(4)
             this.setRegistrError('Данная почта уже занята')
             console.log(e.response?.data?.message)
         }
@@ -79,11 +89,15 @@ export default class UserStore{
         try{
             const response = await axios.get(`${SERVER_URL}/refresh`, {withCredentials: true})
             localStorage.setItem('token', response.data.accessToken)
-            this.setIsAuth(true)
-            this.setUser(response.data.dataUser)
+            console.log(1)
+            runInAction(() => {
+                this.setIsAuth(true)
+                this.setUser(response.data.dataUser)
+            })
         }
         catch(e){
-            console.log(e.response)
+            console.log(e)
+            console.log(2)
         }
     }
 }

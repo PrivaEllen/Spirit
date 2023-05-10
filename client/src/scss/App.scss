@@ -5,10 +5,17 @@
 
 * {
   box-sizing: border-box;
+ 
+}
+
+html {
+  overflow: visible !important;
 }
 
 body {
   margin: 0;
+  overflow: auto !important;
+  padding-right: 0 !important;
 }
 
 .container {
@@ -22,10 +29,15 @@ body {
 @import "_header.scss";
 @import "_form.scss";
 @import "test-header";
-@import "components";
 @import "test-body";
+@import "components";
 @import "landing";
 @import "set_header";
 @import "set_pattern-set";
 @import "set_UserTests";
+
 @import "TestForClient";
+
+@import "set_popovers";
+@import "set_modals";
+

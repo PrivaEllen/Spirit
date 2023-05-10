@@ -1,12 +1,13 @@
 import React from 'react'
 import SmallIcon from '../tests/SmallIcon'
+import { CREATE_TEST } from '../../router/utils'
 
 export default function AddTest() {
   return (
     <>
     <div className='pattern-block'>
       <div className='pattern-block__add'>
-        <SmallIcon svg = {
+        <SmallIcon onClick={() => window.location.assign(CREATE_TEST)} svg = {
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>

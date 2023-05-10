@@ -47,7 +47,7 @@ const Header = observer((props) => {
               }/>
             </div>
             <div className="header__test-title">
-              <h1>{props.testTitle}</h1>
+              <h1>{sq.sections[0].title}</h1>
             </div>
           </div>
           <div className="header__side">
@@ -87,7 +87,7 @@ const Header = observer((props) => {
             onClose={handleClose}
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'left',
+              horizontal: 'left', 
             }}
             transformOrigin={{
               vertical: 'top',

@@ -1,20 +1,31 @@
 import React from "react";
 import TextOnLine from "./TextOnLine"
 import sq from "../../store/SectionsQuestions";
-import {Select, MenuItem, Switch, IconButton} from '@mui/material';
+import {
+  Select, 
+  MenuItem, 
+  Switch, 
+  IconButton,
+  RadioGroup,
+  FormGroup
+} from '@mui/material';
 import { observer } from "mobx-react-lite";
 import SmallIcon from "./SmallIcon";
+import RadioAnswer from "./answers/RadioAnswer";
+import GhostRadioAnswer from "./answers/GhostRadioAnswer"
+import CheckboxAnswer from "./answers/CheckboxAnswer";
+import GhostCheckboxAnswer from "./answers/GhostCheckboxAnswer"
 
 const Sections = observer((props) => {
     return (
       <div>
-          {sq.sections.map((s, index) => {
+          {sq.sections.map((s, Sindex) => {
             return(
               <div className="section-block" key={s.id}>
                 <div className="test-block section">
                     <div className="section__header">
-                      <h2>Раздел {index+1} из {sq.sections.length}</h2>
-                      {(index === 0)? 
+                      <h2>Раздел {Sindex+1} из {sq.sections.length}</h2>
+                      {(Sindex === 0)? 
                       null
                       :
                       <SmallIcon onClick={() => sq.removeSection(s.id)} title="Удалить Секцию" svg={
@@ -23,19 +34,46 @@ const Sections = observer((props) => {
                         </svg>
                       }/>}
                     </div>
-                    <TextOnLine onChange={props.setTitle} text={(index === 0)? props.title : s.title} placeholder={"Название раздела"}/>
-                    <TextOnLine text={s.description} placeholder={"Описание (необязательно)"}/> 
+                    {(Sindex === 0)?
+                    <div className="textfield">
+                      <input
+                        type="text" 
+                        defaultValue={s.title} 
+                        onChange={(event) => sq.changeSectionTitle(s.id, event.target.value)}
+                        placeholder={"Название теста"}
+                      ></input>
+                    </div>
+                    // <TextOnLine onChange={() => {sq.changeSectionTitle(s.id)}} text={(Sindex === 0)? props.title : s.title} placeholder={"Название раздела"}/>
+                    :
+                    <div className="textfield">
+                      <input
+                        type="text" 
+                        defaultValue={s.title} 
+                        onChange={(event) => sq.changeSectionTitle(s.id, event.target.value)}
+                        placeholder={"Название раздела"}
+                      ></input>
+                    </div>
+                    // <TextOnLine text={(Sindex === 0)? props.title : s.title} placeholder={"Название раздела"}/>
+                    }
+                    <div className="textfield">
+                      <input
+                        type="text" 
+                        defaultValue={s.description} 
+                        onChange={(event) => sq.changeSectionDescr(s.id, event.target.value)}
+                        placeholder={"Описание (необязательно)"}
+                      ></input>
+                    </div>
                 </div>
-                {s.questions.map((q, index) => {
+                {s.questions.map((q, Qindex) => {
                   return (
                     <div className="test-block question" key={q.id}>
                       <div className="question__header">
                         <div className="question__select">
                           <Select
-                            defaultValue={10}
+                            value={q.type}
                             displayEmpty
                             variant="outlined"
-                            onChange={() => {console.log(0)}}
+                            onChange={(event) => sq.changeQuestionType(s.id, q.id, event.target.value)}
                             sx={{
                               width: "250px",
                               color: "#fff"
@@ -62,7 +100,7 @@ const Sections = observer((props) => {
                           </Select>
                           </div>
                           <div className="question__buttons">
-                          <Switch />
+                          <Switch onChange={() => sq.changeQuestionImportant(s.id, q.id)} checked={q.isImportant}/>
                           <span>Обязательный вопрос</span>
                           <SmallIcon title="Добавить фото" svg={
                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +112,7 @@ const Sections = observer((props) => {
                             <path d="M18 31C18 32.1 18.9 33 20 33H28C29.1 33 30 32.1 30 31V19H18V31ZM31 16H27.5L26.5 15H21.5L20.5 16H17V18H31V16Z"/>
                             </svg>
                           }/>
-                          {(index === 0)?
+                          {(Qindex === 0)?
                             <div className="small-icon small-icon_disabled">
                                 <IconButton disabled={true} aria-label="delete" color="inherit">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,13 +121,13 @@ const Sections = observer((props) => {
                                 </IconButton>
                             </div> 
                             :
-                            <SmallIcon onClick={() => sq.moveQuestionTop(s.id, index)} title="Выше" svg={
+                            <SmallIcon onClick={() => sq.moveQuestionTop(s.id, Qindex)} title="Выше" svg={
                               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M0 8L1.41 9.41L7 3.83V16H9V3.83L14.58 9.42L16 8L8 0L0 8Z"/>
                               </svg>                                                    
                             }/>
                           }
-                          {(index === s.questions.length-1)?
+                          {(Qindex === s.questions.length-1)?
                             <div className="small-icon small-icon_disabled">
                                 <IconButton disabled={true} aria-label="delete" color="inherit">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -98,7 +136,7 @@ const Sections = observer((props) => {
                                 </IconButton>
                             </div> 
                             :
-                            <SmallIcon onClick={() => sq.moveQuestionDown(s.id, index)} title="Ниже" svg={
+                            <SmallIcon onClick={() => sq.moveQuestionDown(s.id, Qindex)} title="Ниже" svg={
                               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M16 8L14.59 6.59L9 12.17V0H7V12.17L1.42 6.58L0 8L8 16L16 8Z"/>
                               </svg>                                                                            
@@ -106,12 +144,59 @@ const Sections = observer((props) => {
                           }
                         </div>
                       </div>
-                      <div className="question__content">
+                      <div className="question__content" data-select="10">
                           <div className="question__title">
-                            <span>{index+1}.</span>
-                            <TextOnLine text={q.title}/>
+                            <span>{Qindex+1}.</span>
+                            <div className="textfield">
+                              <input
+                                type="text" 
+                                defaultValue={q.title} 
+                                onChange={(event) => sq.changeQuestionTitle(s.id, q.id, event.target.value)}
+                                placeholder={"Название вопроса"}
+                              ></input>
+                            </div>
+                            {/* <TextOnLine placeholder={"Название вопроса"} text={q.title}/> */}
                           </div>
-                          <div className="question_var">
+                          <div className="question__var">
+                            {(q.type === 10)?
+                              <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                name="radio-buttons-group"
+                                defaultValue={"1"}
+                              >
+                                {q.answers.map((a, index) => {
+                                return(
+                                    <div style={{marginBottom: "1px"}} key={a.id}>
+                                      <RadioAnswer Sid={s.id} Qid={q.id} Aid={a.id} value={a.title} right={a.IsRight} index={index} q={q}/>
+                                    </div>
+                                )})}
+                                {
+                                  (q.answers.length === 0)?
+                                  <GhostRadioAnswer Sindex={Sindex} Qindex={Qindex} placeholder={"Добавить ответ"}/>:
+                                  <GhostRadioAnswer Sindex={Sindex} Qindex={Qindex} placeholder={"Следующий вариант"}/>
+                                }
+                              </RadioGroup>
+                              :
+                              (q.type === 20)?
+                              <FormGroup>
+                                {q.answers.map((a, index) => {
+                                return(
+                                    <div style={{marginBottom: "1px"}} key={a.id}>
+                                      <CheckboxAnswer Sid={s.id} Qid={q.id} Aid={a.id} value={a.title} right={a.IsRight} index={index} q={q}/>
+                                    </div>
+                                )})}
+                                {
+                                  (q.answers.length === 0)?
+                                  <GhostCheckboxAnswer Sindex={Sindex} Qindex={Qindex} placeholder={"Добавить ответ"}/>:
+                                  <GhostCheckboxAnswer Sindex={Sindex} Qindex={Qindex} placeholder={"Следующий вариант"}/>
+                                }
+                              </FormGroup>
+                              :
+                              (q.type === 30)?
+                              <TextOnLine placeholder={"Поле для ответа"}/>
+                              :
+                              null
+                            }
                           </div>
                       </div>
                     </div>

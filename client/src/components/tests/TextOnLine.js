@@ -7,7 +7,7 @@ class TextOnLine extends React.Component {
           <input
             type="text" 
             defaultValue={this.props.text} 
-            onChange={(event) => this.props.onChange(event.target.value)}
+            onChange={(this.props.onChange) ? (event) => this.props.onChange(event.target.value) : null}
             placeholder={this.props.placeholder}
           ></input>
         </div>
