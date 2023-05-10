@@ -124,6 +124,17 @@ class userService {
         return currentHrUser
     }
 
+    async changePhoto(testId, img){
+        const currentTest = await Tests.findOne({
+            where:{
+                testId: testId
+            }
+        })
+        currentTest.img = img
+        await currentTest.save()
+        return currentTest.img
+    }
+
     async createTypeOfTest(name){
         const type = await Types.findOne({
             where: {
@@ -186,7 +197,7 @@ class userService {
             }]
         })
         return {
-            test: test
+            test: 1
         }
     }
 
@@ -226,6 +237,10 @@ class userService {
         return {
             types: types
         }
+    }
+
+    async send(testId, email){
+        await mailService.sendTest(email, `${process.env.FRONTEND_URL}/open/test/${testId}`)
     }
 }
 

@@ -1,14 +1,57 @@
-import React, {useState} from "react"
+import React, {useContext, useEffect, useState} from "react"
 import Header from "../components/tests/Header"
 import TestEdit from "../components/tests/TestEdit"
 import Modal from "../components/Modal/Modal"
 import TestTools from "../store/TestTools";
-import { Button } from "@mui/material";
-import { saveTest } from "../services/TestService";
+import { useParams } from "react-router-dom";
+import { getTest } from "../services/TestService";
 import sq from "../store/SectionsQuestions";
+import { Context } from "..";
+import { observer } from "mobx-react-lite";
 
-export default function TestCreate(props) {
-    // модальное окно
+function TestCreate(props) {
+    const param = useParams()
+    const testId = param.testId
+
+    useEffect(() => {
+        if (testId && sq._flag == 1){
+            getTest(testId).then(data => {
+                let sections = data.userTest.Sections
+                for (let i = 0; i < sections.length; i++){
+                    let sq_section = sq.sections[i];
+                    sq_section.title = sections[i].name
+                    sq_section.description = sections[i].description
+
+                    let questions = sections[i].Questions
+                    for (let j = 0; j < questions.length; j++){
+                        let sq_question = sq_section.questions[j]
+                        sq_question.title = questions[j].questionText
+                        sq_question.type = questions[j].type
+                        sq_question.isImportant = questions[j].obligatory
+                        
+                        let answers = questions[j].Answers
+                        for (let k = 0; k < answers.length; k++){
+                            sq.addAnswer(i, j)
+                            let sq_answer = sq_question.answers[k]
+
+                            sq_answer.title = answers[k].text
+                            sq_answer.isImportant = answers[k].correctness
+
+                        }
+
+                        if (j < questions.length - 1){
+                            sq.addQuestion()
+                        }
+                    }
+
+                    if (i < sections.length - 1){
+                        sq.addSection()
+                    }
+                }
+            })
+        }
+    })
+    
     const [modalActive, setModalActive] = useState()
     // цвет фона
     const [bgColor, setBgColor] = useState("round_dark")
@@ -26,6 +69,7 @@ export default function TestCreate(props) {
     const [testTitle, setTestTitle] = useState("Название теста")
     return (
         <div>
+            {console.log(testId)}
             <style>{ `body {background-color: ${color[bgColor]}}` }</style>
             <Header 
                 setModalActive={setModalActive}
@@ -33,17 +77,15 @@ export default function TestCreate(props) {
                 setBgColor={setBgColor}
                 testTitle={testTitle}
                 setTestTitle={setTestTitle}
+                img={props.fileURL}
             />
             <TestEdit
                 testTitle={testTitle}
                 setTestTitle={setTestTitle}
             />
             <Modal active={modalActive} setActive={setModalActive}>{TestTools.innerContent}</Modal>
-            {/* <Button onClick={() => saveTest({
-                testId: props.testId,
-                testName: testTitle,
-                sections: sq.sections
-            })}>Save</Button> */}
         </div>
     )
 }
+
+export default observer(TestCreate)

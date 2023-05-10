@@ -1,6 +1,6 @@
 
 
-import { MAIN, LOGIN, REGISTRATION,  CREATE_TEST, TEST_SET, TEST_FOR_CLIENT} from './utils';
+import { MAIN, LOGIN, REGISTRATION, GET_TEST, CREATE_TEST, TEST_SET, TEST_FOR_CLIENT} from './utils';
 
 import Land from '../pages/landing';
 import Login from '../pages/PageLogin'
@@ -10,10 +10,18 @@ import TestSet from '../pages/PageTestSet';
 import TestClient from '../pages/TestForClient';
 
 export const loginRoutes = [
-    //{
-    //    path: TEST_SET,
-    //    Component: TestSet
-    //}
+    {
+       path: TEST_SET,
+       Component: TestSet
+    },
+    {
+        path: CREATE_TEST,
+        Component: TestCreate
+    },
+    {
+        path: GET_TEST + '/:testId',
+        Component: TestCreate
+    }
 ]
 
 export const publicRoutes = [
@@ -31,18 +39,9 @@ export const publicRoutes = [
     },
     // Этот роут должен быть непубличным!
     {
-        path: CREATE_TEST,
-        Component: TestCreate
-    },
-    
 
-    {
-        path: TEST_FOR_CLIENT,
+        path: TEST_FOR_CLIENT + '/:testId',
         Component: TestClient
     },
 
-    {
-        path: TEST_SET,
-        Component: TestSet
-    }
 ]
