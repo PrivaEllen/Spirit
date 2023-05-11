@@ -29,14 +29,13 @@ class TestTools {
         window.location.assign(TEST_SET)
     }
 
-    send(testId, sq, user_id, email, img) {
+    send(testId, sq, user_id, email) {
         try{
           if (testId){
             saveChangedTest({
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
-              img: img,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -89,14 +88,13 @@ class TestTools {
         }
       }    
 
-    save(testId, sq, user_id, img) {
+    save(testId, sq, user_id) {
         try{
           if (testId){
             saveChangedTest({
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
-              img: img,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -169,7 +167,7 @@ class TestTools {
                             </div>
     }
 
-    showExitMenu(testId, sq, user_id, img) {
+    showExitMenu(testId, sq, user_id) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
                                     <h2>Перед выходом вы хотите сохранить изменения?</h2>
@@ -180,11 +178,11 @@ class TestTools {
                                 <div className="inner-content__buttons">
                                     <Button variant="text">Отмена</Button>
                                     <Button variant="text" onClick={() => window.location.assign(TEST_SET)}>Не сохранять</Button>
-                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id, img)}>Сохранить</Button>
+                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id)}>Сохранить</Button>
                                 </div>
                             </div>
     }
-    showGenerateLink(testId, sq, user_id, img) {
+    showGenerateLink(testId, sq, user_id) {
         this.innerContent = <ThemeProvider theme={darkTheme}>
                                 <div className="inner-content">
                                 <Formik
@@ -218,7 +216,7 @@ class TestTools {
                                         />
                                         <div className="inner-content__buttons">
                                             <Button variant="text">Отмена</Button>
-                                            <Button variant="text" disabled={!values.email} onClick={() => this.send(testId, sq, user_id, values.email, img)}>Отправить</Button>
+                                            <Button variant="text" disabled={!values.email} onClick={() => this.send(testId, sq, user_id, values.email)}>Отправить</Button>
                                         </div>
                                       </div>
                                     )}

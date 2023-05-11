@@ -242,6 +242,7 @@ class userService {
     async send(testId, email){
         await mailService.sendTest(email, `${process.env.FRONTEND_URL}/open/test/${testId}`)
     }
+
 }
 
 

@@ -235,11 +235,12 @@ class UserController{
     async saveChangedTest(req, res, next){
         try{
             const {test} = req.body
-            console.log('ahaha')
-            console.log(test)
+        
+            const img = await testService.getImage(test.testId)
+
             const changedTest = await userService.deleteTest(test.testId)
 
-            let createdTest = await testService.createTest(test.name, test.idCreator, test.img, test.type, test.category)
+            let createdTest = await testService.createTest(test.name, test.idCreator, img, test.type, test.category)
 
             if (test.sections){
                 let array_sections = test.sections

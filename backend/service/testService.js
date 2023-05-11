@@ -71,6 +71,17 @@ class testService{
             answer: answer
         }
     }
+
+    async getImage(testId){
+        const test = await Tests.findOne({
+            where:{
+                testId: testId
+            }
+        })
+
+        const img = test.img
+        return img
+    }
     
 }
 
