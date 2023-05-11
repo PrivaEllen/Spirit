@@ -1,5 +1,7 @@
 
+
 import { MAIN, LOGIN, REGISTRATION, GET_TEST, CREATE_TEST, TEST_SET, TEST_FOR_CLIENT} from './utils';
+
 import Land from '../pages/landing';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';
@@ -37,7 +39,10 @@ export const publicRoutes = [
     },
     // Этот роут должен быть непубличным!
     {
-        path: TEST_FOR_CLIENT + '/:testId',
+
+        path: TEST_FOR_CLIENT+'/:testId' ,
         Component: TestClient
+  
     },
+
 ]
