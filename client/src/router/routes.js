@@ -1,9 +1,10 @@
-import { MAIN, LOGIN, REGISTRATION, CREATE_TEST, TEST_SET} from './utils';
+import { MAIN, LOGIN, REGISTRATION, CREATE_TEST, TEST_SET, STATS} from './utils';
 import Land from '../pages/landing';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';
 import TestCreate from '../pages/TestCreate';
 import TestSet from '../pages/PageTestSet'
+import Statistics from '../pages/Statistics'
 
 
 export const loginRoutes = [
@@ -30,6 +31,11 @@ export const publicRoutes = [
     {
         path: CREATE_TEST,
         Component: TestCreate
+    },
+    // Этот роут должен быть непубличным!
+    {
+        path: STATS,
+        Component: Statistics
     },
     {
         path: TEST_SET,
