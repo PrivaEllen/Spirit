@@ -40,6 +40,11 @@ export const publicRoutes = [
         path: TEST_FOR_CLIENT + '/:testId',
         Component: TestClient
     },
+    // Этот роут должен быть непубличным!
+    {
+        path: STATS,
+        Component: Statistics
+    },
     {
         path: TEST_SET,
         Component: TestSet
