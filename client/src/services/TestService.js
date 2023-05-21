@@ -1,28 +1,13 @@
 import $api from "../http/http";
 
-export const createTest = async (name, description, idCreator, privat, typeId) => {
-    return $api.post('/create/test', {name, description, idCreator, privat, typeId})
-}
-
-export const createSection = async (name, description, id_test) => {
-    return $api.post('/create/section', {name, description, id_test})
-}
-
-export const createQuestion = async (questionText, idSection, type) => {
-    return $api.post('/create/question', {questionText, idSection, type})
-}
-
-export const createAnswer = async (text, idQuestion) => {
-    return $api.post('/create/answer', {text, idQuestion})
-}
-
 export const getUserTests = async (idCreator) => {
     const {data} = await $api.get('/user/tests/' + idCreator)
     return data
 }
 
 export const getTest = async (testId) => {
-    return $api.get('/user/test/' + testId)
+    const {data} = await $api.get('/user/test/' + testId)
+    return data
 }
 
 export const getTypes = async () => {
@@ -30,6 +15,37 @@ export const getTypes = async () => {
     return data
 }
 
-// export const saveTest = async (test) => {
+export const saveTest = async (test) => {
+    const {data} = await $api.post('/create/test', {test})
+    return data
+}
 
-// }
+export const saveChangedTest = async (test) => {
+    const {data} = await $api.post('/save/test', {test})
+    return data
+}
+
+export const deleteTest = async (testId) => {
+    return $api.post('/delete/test', {testId})
+}
+
+export const sendTest = async (id, email) => {
+    return $api.post('/send/test', {id, email})
+}
+
+export const saveChanges = async (formData) => {
+    return $api.post('/save/changes', formData)
+}
+
+export const renameTest = async (testId, name) => {
+    return $api.post('/rename/test', {testId, name})
+}
+
+export const changePrivateOfTest = async (testId) => {
+    return $api.post('/change/private', {testId})
+}
+
+export const changePhoto = async (formData) => {
+    const data = await $api.post('change/photo', formData)
+    return data
+}

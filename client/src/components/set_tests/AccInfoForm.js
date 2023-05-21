@@ -1,13 +1,32 @@
 import React from 'react'
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
-
 import Button from '@mui/material/Button';
 import * as Yup from 'yup';
 import "yup-phone";
 import { Formik } from "formik";
+import { useContext, useState, useRef } from 'react'
+import { observer } from 'mobx-react-lite';
+import { Context } from '../..';
+import { saveChanges } from '../../services/TestService';
+import { TEST_SET } from '../../router/utils';
+import { values } from 'mobx';
 
-export default function AccInfoForm() {
+function AccInfoForm() {
+    const {user} = useContext(Context)
+
+    const hiddenFileInput = React.useRef(null);
+    const handleClick = event => {
+        hiddenFileInput.current.click();
+    };
+
+    const [file, setFile] = useState(null);
+    const [fileURL, setFileURL] = useState(`http://localhost:5000/${user._user.Photo}`)
+    function handle_Change(e) {
+        setFile(e.target.files[0]);
+        setFileURL(URL.createObjectURL(e.target.files[0]))
+    }
+
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
     const validationSchema = Yup.object().shape({
@@ -39,11 +58,11 @@ export default function AccInfoForm() {
         <div className='accInfo__BigBlock'>
         <Formik
                 initialValues={{
-                    Name: 'Мария',
-                    Surname: 'Гаврилова',
-                    Company: '',
-                    Phone: '',
-                    Mail: 'mag2003tag@gmail.com',
+                    Name: user._user.Name,
+                    Surname: user._user.Surname,
+                    Company: user._user.company,
+                    Phone: user._user.phone,
+                    Mail: user._user.emailForFeedback ? user._user.emailForFeedback : user._user.email,
                 }}
                 validateOnBlur
                 onSubmit={(values) => console.log(values)}
@@ -133,11 +152,30 @@ export default function AccInfoForm() {
         </div>
         </div>
         <div className='accInfo__forthBlock'>
-            <Avatar sx={{  width: "120px", height: "120px", background: "#90CAF9", color: "#121212" }} />
-            <div className='photo__text'><span className='text'>Cменить</span></div>
+        <Avatar src={fileURL} sx={{  width: "120px", height: "120px", background: "#90CAF9", color: "#121212" }} />
+        <div className='photo__text'>
+            <span className='text' onClick={handleClick}>Cменить</span>
+            <input
+                name='Photo'
+                ref={hiddenFileInput}
+                onChange={handle_Change}
+                style={{display: 'none'}}
+                type='file'
+            />
+            </div>
             <div className='space'></div>
-            <Button type="submit" disabled={(!values.Name || !values.Surname || !values.Mail  || errors.Mail || errors.Company 
-                || errors.Name || errors.Phone || errors.Surname || (!touched.Name && !touched.Surname && !touched.Phone && !touched.Company && !touched.Mail )) }  variant='contained' size='large' fullWidth='true' >Изменить</Button>
+            <Button onClick={() => {
+                const formData = new FormData()
+                formData.append('id', user._user.id)
+                formData.append('Name', values.Name)
+                formData.append('Surname', values.Surname)
+                formData.append('company', values.Company)
+                formData.append('phone', values.Phone)
+                formData.append('emailForFeedback', values.Mail)
+                formData.append('Photo', file)
+                console.log(formData.get('Photo'))
+                saveChanges(formData).then(res => window.location.assign(TEST_SET))
+            }} type="submit" style={{cursor: 'pointer'}} variant='contained' size='large' fullWidth='true' >Изменить</Button>
         </div>
         </> )}
         </Formik>
@@ -145,3 +183,5 @@ export default function AccInfoForm() {
     </div>
   )
 }
+
+export default observer(AccInfoForm)

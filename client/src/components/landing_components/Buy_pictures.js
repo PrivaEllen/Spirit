@@ -8,9 +8,11 @@ class Buy_pictures extends React.Component
 {
     render()
     {return( <div id="info2">
-    <div><span>Создай тест</span><img src={communicating_pic}/></div>
-    <div><span>Отправь ссылку</span><img src={dia}/></div>
-    <div><span>Получи статистику</span><img src={test}/></div>
+        <div>
+    <div><span className='Buy_pictures_text'>Создай тест</span><img className='Buy_pictures_img' src={communicating_pic}/></div>
+    <div><span className='Buy_pictures_text'>Отправь ссылку</span><img className='Buy_pictures_img' src={dia}/></div>
+    <div><span className='Buy_pictures_text'>Получи статистику</span><img className='Buy_pictures_img' src={test}/></div>
+    </div>
 </div>)
    
     }

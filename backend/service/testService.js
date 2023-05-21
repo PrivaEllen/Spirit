@@ -4,15 +4,14 @@ const Tests = require('../models/Tests');
 const Sections = require('../models/Sections');
 
 class testService{
-    async createTest({name, description, idCreator, category, privat, typeId, img}){
+    async createTest(name, idCreator, img, typeId, category, privat){
         const test = Tests.build({
             name: name,
-            description: description,
             idCreator: idCreator,
             category: category,
             private: privat,
             type: typeId,
-            img: img
+            img: img,
         })
         await test.save()
 
@@ -45,11 +44,12 @@ class testService{
         }
     }
 
-    async createQuestion({questionText, idSection, type, img}){
+    async createQuestion(questionText, idSection, type, obligatory, img){
         const question = Questions.build({
             questionText: questionText,
             idSection: idSection,
             type: type,
+            obligatory: obligatory,
             img: img
 
         })
@@ -59,9 +59,10 @@ class testService{
         }
     }
 
-    async createAnswer(text, idQuestion){
+    async createAnswer(text, correctness, idQuestion){
         const answer = Answers.build({
             text: text,
+            correctness: correctness,
             idQuestion: idQuestion
 
         })
@@ -70,6 +71,7 @@ class testService{
             answer: answer
         }
     }
+    
 }
 
 module.exports = new testService();

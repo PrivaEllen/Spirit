@@ -9,11 +9,12 @@ import AccWin from "./AccWin";
 
 function Header(){
   const {user} = useContext(Context);
-
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    document.body.style.overflow = "overlay";
   };
 
   const handleClose = () => {
@@ -33,7 +34,7 @@ function Header(){
         <div className="header__account">
             <span className="header__account__name">{user._user.Surname} {user._user.Name}</span>
             <div className="avatar">
-                <Avatar  onClick={handleClick} sx={{  width: "49px", height: "49px" }} src={`http://localhost:5000/${user._user.Photo}`}/>
+                <Avatar onClick={handleClick} sx={{  width: "49px", height: "49px", cursor: 'pointer' }} src={`http://localhost:5000/${user._user.Photo}`}/>
                 <Popover
                   id={id}
                   open={open}

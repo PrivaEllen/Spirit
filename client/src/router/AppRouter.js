@@ -3,10 +3,9 @@ import React, { useContext, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import { Context } from '../index'
 import {loginRoutes, publicRoutes} from './routes';
-import { getUserTests } from "../services/TestService";
 
 function AppRouter () {
-    const {user, test} = useContext(Context)
+    const {user} = useContext(Context)
     console.log(user._isAuth)
     useEffect(() => {
         if (localStorage.getItem('token')){
