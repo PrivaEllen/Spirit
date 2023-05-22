@@ -1,14 +1,10 @@
 import {makeAutoObservable} from 'mobx';
-import TestService from '../services/TestService';
-import axios from 'axios'
-import { SERVER_URL } from '../http/http';
-import { REGISTRATION, TEST_SET } from '../router/utils';
 
 export default class TestStore{
     constructor(){
         this._tests = []
         this._templates = []
-        this._types = []
+        this._img = 'http://localhost:5000/defaultPat.png'
         makeAutoObservable(this)
     }
 
@@ -20,4 +16,8 @@ export default class TestStore{
         this._templates = templates
     }
     
+    setImg(img){
+        console.log(img)
+        this._img = img
+    }
 }

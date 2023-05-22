@@ -13,11 +13,10 @@ export default function AccInfo() {
         <div className='accInfo__secBlock'>
             <div className='accInfo__secBlock__content'>
                 <span className='accInfo__text'>Ваша компания не зарегистрирована</span>
-                <Button variant='contained' size='large' fullWidth='true'>Исправить</Button>
+                <Button variant='contained' size='large' fullWidth='true' style={{cursor: 'pointer'}}>Исправить</Button>
             </div>
         </div>
-            <AccInfoForm/>
-      
+        <AccInfoForm/>
     </div>
   )
 }

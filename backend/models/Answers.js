@@ -10,7 +10,7 @@ Answers.init({
   },
   text: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true,
   },
   correctness: {
     type: DataTypes.BOOLEAN,
