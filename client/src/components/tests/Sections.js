@@ -56,7 +56,6 @@ const Sections = observer((props) => {
                         placeholder={"Название теста"}
                       ></input>
                     </div>
-                    // <TextOnLine onChange={() => {sq.changeSectionTitle(s.id)}} text={(Sindex === 0)? props.title : s.title} placeholder={"Название раздела"}/>
                     :
                     <div className="textfield">
                       <input
@@ -66,7 +65,6 @@ const Sections = observer((props) => {
                         placeholder={"Название раздела"}
                       ></input>
                     </div>
-                    // <TextOnLine text={(Sindex === 0)? props.title : s.title} placeholder={"Название раздела"}/>
                     }
                     <div className="textfield">
                       <input
@@ -104,7 +102,7 @@ const Sections = observer((props) => {
                               </svg>
                               <span>Несколько из списка</span>
                             </MenuItem>
-                            <MenuItem value="text">
+                            <MenuItem value="text" onClick={() => sq.addAnswer(s.id-1, q.id-1)}>
                               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M12 12H0V14H12V12ZM12 4H0V6H12V4ZM0 10H18V8H0V10ZM0 18H18V16H0V18ZM0 0V2H18V0H0Z" fill="#ffffff56"/>
                               </svg>
@@ -175,7 +173,7 @@ const Sections = observer((props) => {
                                 placeholder={"Название вопроса"}
                               ></input>
                             </div>
-                            {/* <TextOnLine placeholder={"Название вопроса"} text={q.title}/> */}
+                            
                           </div>
                           <div className="question__var">
                             {(q.type === "oneOfList")?

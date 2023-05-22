@@ -39,6 +39,7 @@ color: rgba(255, 255, 255, 0.7);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212;
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
 
     .qust_header_text
     {
@@ -67,6 +68,7 @@ color: rgba(255, 255, 255, 0.7);
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212;
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
 
     .qust_header_text
     {
@@ -122,7 +124,7 @@ align-items: flex-start;
     /* Elevation/2 */
     
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
+    border-radius: 6px;
     
     /* Inside auto layout */
     

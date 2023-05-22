@@ -40,7 +40,7 @@ const Header = observer((props) => {
           <div className="header__side">
             <div className="logo">
               <Tooltip title="Главный экран Spirit">
-                <div onClick={() => {props.setModalActive(true); TestTools.showExitMenu(testId, sq, user._user.id); sq.IncrementFlag()}}>
+                <div onClick={() => {props.setModalActive(true); TestTools.showExitMenu(testId, sq, user._user.id); sq.IncrementFlag(); console.log(testId, sq)}}>
                   <img src={logo} alt="logo"/>
                 </div>
               </Tooltip>

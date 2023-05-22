@@ -2,6 +2,7 @@ const Questions = require('../models/Questions');
 const Answers = require('../models/Answers')
 const Tests = require('../models/Tests');
 const Sections = require('../models/Sections');
+const internsAnswers = require('../models/internsAnswers');
 
 class testService{
     async createTest(name, idCreator, img, typeId, category, privat){
@@ -78,9 +79,24 @@ class testService{
                 testId: testId
             }
         })
-
+        
         const img = test.img
         return img
+    }
+
+    async createInternsAnswers(text, QuestionId, idAnswer, idIntern){
+        console.log('kiska')
+        console.log(text, QuestionId, idAnswer, idIntern)
+        const internAnswers = internsAnswers.build({
+            text: text,
+            QuestionId: QuestionId,
+            idAnswer: idAnswer,
+            idIntern: idIntern
+        })
+
+        await internAnswers.save()
+        return internAnswers
+
     }
     
 }

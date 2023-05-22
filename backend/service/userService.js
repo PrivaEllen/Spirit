@@ -10,6 +10,8 @@ const Questions = require('../models/Questions');
 const Answers = require('../models/Answers');
 const Sections = require('../models/Sections');
 const Types = require('../models/TypesOfTests');
+const Interns = require('../models/Interns');
+const HrInterns = require('../models/HrandInterns');
 
 class userService {
     async registration(Name, Surname, email, password) {
@@ -239,8 +241,37 @@ class userService {
         }
     }
 
-    async send(testId, email){
-        await mailService.sendTest(email, `${process.env.FRONTEND_URL}/open/test/${testId}`)
+    async send(testId, email, internId){
+        await mailService.sendTest(email, `${process.env.FRONTEND_URL}/open/test/${testId}/${internId}`)
+    }
+
+    async addIntern(email, idHr){
+        const check = await Interns.findOne({
+            where:{
+                email: email
+            }
+        })
+        
+        if (check == null){
+            const intern = Interns.build({
+                email: email
+            })
+            await intern.save()
+            
+            const relation = HrInterns.build({
+                id_intern: intern.internId,
+                id_hr: idHr
+            })
+            await relation.save()
+            return{
+                intern: intern
+            }
+        }
+        else{
+            return{
+                intern: check
+            } 
+        }
     }
 
 }

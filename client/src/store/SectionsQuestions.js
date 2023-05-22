@@ -222,7 +222,7 @@ class SQ {
                     section.questions
                 }
         });
-        console.log(this.sections[0].questions[0].answers[0].IsRight)
+        console.log(this.sections[Sid-1].questions[Qid-1].answers[Aid-1])
     }
 }
 

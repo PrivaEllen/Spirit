@@ -8,7 +8,7 @@ class InS {
     sections = [
         {id:1, title:"", description:"", 
         questions: [
-            {id:1, type:"oneOfList", title:"", isImportant: false,   choise: false, isTrue: false, answers : []},
+            {id:1, type:"", title:"", isImportant: false, choise: false, isTrue: false, answers : []},
         ]
         }
     ]

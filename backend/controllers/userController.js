@@ -235,7 +235,7 @@ class UserController{
     async saveChangedTest(req, res, next){
         try{
             const {test} = req.body
-        
+            console.log(test)
             const img = await testService.getImage(test.testId)
 
             const changedTest = await userService.deleteTest(test.testId)
@@ -282,14 +282,32 @@ class UserController{
         }
     }
 
-    async send(req, res, next){
+    async addIntern(req, res, next){
         try{
-            const {id, email} = req.body
-            await userService.send(id, email)
-            return 1
+            const {testId, email, idHr} = req.body
+            console.log(testId, email, idHr)
+            const result = await userService.addIntern(email, idHr)
+            console.log(result.intern.internId)
+            console.log(testId, email, result.intern.internId)
+            await userService.send(testId, email, result.intern.internId)
+            return 1;
+
         }
         catch(e){
             next(e)
+        }
+    }
+
+    async createInternsAnswers(req, res, next){
+        try{
+            const {internAnswers} = req.body
+            console.log(internAnswers.internAnswers.length)
+            for (let i = 0; i < internAnswers.internAnswers.length; i++){
+                const result = await testService.createInternsAnswers(internAnswers.internAnswers[i].text, internAnswers.internAnswers[i].QuestionId, internAnswers.internAnswers[i].idAnswer, internAnswers.internAnswers[i].idIntern)
+            }
+        }
+        catch(e){
+            next(e);
         }
     }
 

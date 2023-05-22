@@ -29,10 +29,6 @@ export const deleteTest = async (testId) => {
     return $api.post('/delete/test', {testId})
 }
 
-export const sendTest = async (id, email) => {
-    return $api.post('/send/test', {id, email})
-}
-
 export const saveChanges = async (formData) => {
     return $api.post('/save/changes', formData)
 }
@@ -47,5 +43,14 @@ export const changePrivateOfTest = async (testId) => {
 
 export const changePhoto = async (formData) => {
     const data = await $api.post('change/photo', formData)
+    return data
+}
+
+export const addIntern = async (testId, email, idHr) => {
+    return $api.post('add/intern', {testId, email, idHr})
+}
+
+export const createInternsAnswers = async (internAnswers) => {
+    const {data} = await $api.post('/create/intern/answers', {internAnswers})
     return data
 }

@@ -1,10 +1,13 @@
 import React from 'react';
 import { observer } from "mobx-react-lite";
 import ins from "../../store/InternStore";
-
-
+import { createInternsAnswers } from '../../services/TestService';
+import { useParams } from 'react-router-dom';
 
 function EndButton() {
+    const param = useParams();
+    const internId = param.internId;
+
     function check_button(e)
     {
         let flag = true;
@@ -21,7 +24,37 @@ function EndButton() {
         if (flag === true)
         {
             s.innerHTML='';
-            //Здесь должна быть обработка отправления результатов
+            let internAnswers = [];
+            let arr = ins.sections;
+            for (let i = 0; i < arr.length; i++){
+                let arr_questions = arr[i].questions;
+                for (let j = 0; j < arr_questions.length; j++){
+                    let arr_answers = arr_questions[j].answers
+                    for (let k = 0; k < arr_answers.length; k++){
+                        console.log(arr_answers[k].choiseAns)
+                        if (arr_answers[k].choiseAns === true){
+                            internAnswers.push({
+                                text: arr_answers[k].title,
+                                QuestionId: arr_questions[j].questionId,
+                                idAnswer: arr_answers[k].answerId,
+                                idIntern: internId,
+                            })
+                        }
+                    }
+                }
+            }
+            console.log(internAnswers)
+            createInternsAnswers({
+                internAnswers: internAnswers.map(inAns => {
+                    return{
+                        text: inAns.text,
+                        QuestionId: inAns.QuestionId,
+                        idAnswer: inAns.idAnswer,
+                        idIntern: inAns.idIntern
+                    }
+                })
+            })
+
         }
         else
         {

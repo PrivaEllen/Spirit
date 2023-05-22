@@ -15,6 +15,7 @@ function TestClient() {
   useEffect(() => {
     if (testId) {
       getTest(testId).then((data) => {
+        console.log(data)
         let sections = data.userTest.Sections;
         for (let i = 0; i < sections.length; i++) {
           let ins_section = ins.sections[i];
@@ -24,25 +25,27 @@ function TestClient() {
           let questions = sections[i].Questions;
           for (let j = 0; j < questions.length; j++) {
             let ins_question = ins_section.questions[j];
-            ins_question.title = questions[j].questionText;
+
             ins_question.type = questions[j].type;
+            ins_question.title = questions[j].questionText;
             ins_question.isImportant = questions[j].obligatory;
+            ins_question.questionId = questions[j].questionId
 
             let answers = questions[j].Answers;
             for (let k = 0; k < answers.length; k++) {
               ins.addAnswer(i, j);
               let ins_answer = ins_question.answers[k];
-
+              
               ins_answer.title = answers[k].text;
-              ins_answer.isImportant = answers[k].correctness;
+              ins_answer.IsRight = answers[k].correctness;
+              ins_answer.answerId = answers[k].answerId;
             }
 
             if (j < questions.length - 1) {
               ins.addQuestion();
             }
           }
-
-          if (i < sections.length - 1) {
+          if (i < sections.length - 1){
             ins.addSection();
           }
         }
@@ -52,6 +55,7 @@ function TestClient() {
   return (
     <>
       <div id="_body">
+        {console.log(ins)}
         <FormQustions />
         <EndButton />
       </div>
