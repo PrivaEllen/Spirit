@@ -8,8 +8,9 @@ import { getTest } from "../services/TestService";
 import sq from "../store/SectionsQuestions";
 import { Context } from "..";
 import { observer } from "mobx-react-lite";
+import HeaderTemplate from "../components/tests/HeaderTemplate";
 
-function TestCreate(props) {
+function TestTemplate(props) {
     const param = useParams()
     const testId = param.testId
 
@@ -72,7 +73,7 @@ function TestCreate(props) {
         <div>
             {console.log(testId)}
             <style>{ `body {background-color: ${color[bgColor]}}` }</style>
-            <Header 
+            <HeaderTemplate
                 setModalActive={setModalActive}
                 bgColor={bgColor} 
                 setBgColor={setBgColor}
@@ -89,4 +90,4 @@ function TestCreate(props) {
     )
 }
 
-export default observer(TestCreate)
+export default observer(TestTemplate)

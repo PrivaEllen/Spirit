@@ -38,7 +38,7 @@ function TestSet() {
                 </div>
                 <div className='Pattern-body' style={{'border-bottom': '1px solid rgba(255, 255, 255, 0.12)'}}>
                     <div className='Pattern__container'>
-                        {test._templates.map(temp => <Pattern key={temp.testId} TestName={temp.name} image={temp.img}/>)}
+                        {test._templates.map(temp => <Pattern key={temp.testId} TestName={temp.name} image={temp.img} templateId={temp.testId}/>)}
                     </div>
                 </div>
             </div>

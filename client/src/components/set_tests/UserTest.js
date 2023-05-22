@@ -48,12 +48,18 @@ function UserTest(props) {
   };
 
   const [file, setFile] = useState(null);
-  const [fileURL, setFileURL] = useState(`${props.image}`)
+  const [fileURL, setFileURL] = useState(`http://localhost:5000/${props.image}`)
   function handle_Change(e) {
       setFile(e.target.files[0]);
       setFileURL(URL.createObjectURL(e.target.files[0]))
   }
 
+  useEffect(() => {
+    const formData = new FormData()
+    formData.set('testId', props.testId)
+    formData.set('img', file)
+    changePhoto(formData).then(data => console.log(data.data))
+  })
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -63,19 +69,10 @@ function UserTest(props) {
   const handle_Open = () => _setOpen(true);
   const handle_Close = () => _setOpen(false);
 
-  useEffect(() => {
-    if (fileURL != `${props.image}`){
-      const formData = new FormData()
-      formData.set('testId', props.testId)
-      formData.set('img', file)
-      changePhoto(formData).then(data => {test.setImg(data.data); console.log(data.data)})
-    }
-  }, [])
 
   return (
     <>
       <div className='pattern-block'>
-      {console.log(test._img)}
       <img src={fileURL} onClick={() => window.location.assign(GET_TEST + '/' + props.testId)} alt="The first" className='pattern__photo'></img>
       <div className='pattern-box'><span className='pattern-box__text'>{props.TestName}</span></div>
       <div className='pattern-box'>
@@ -125,15 +122,6 @@ function UserTest(props) {
               type='file'
             />
           </div>
-          
-        
-            {/* {!hidden ? <div className='popover__threePoints__block'> <VisibilityIcon color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }} onClick={() => setHidden(s => !s)}/>
-              <div className='popover__threePoints__block__text'>Вернуть</div></div>
-            : null}
-            {hidden ? <div className='popover__threePoints__block'> <VisibilityOffIcon color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }} onClick={() => setHidden(s => !s)}/>
-              <div className='popover__threePoints__block__text'>Скрыть</div></div>
-            : null} */}
-          
           <div className='popover__threePoints__block'>
             <DeleteOutlineIcon  color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }}/>
             <div style={{userSelect: 'none', cursor: 'pointer'}} onClick={() => {deleteTest(props.testId); window.location.assign(TEST_SET)}} className='popover__threePoints__block__text'>Удалить</div>

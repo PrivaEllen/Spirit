@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import Button from '@mui/material/Button';
 import { TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { deleteTest, renameTest, sendTest } from "../services/TestService";
+import { addIntern, deleteTest, renameTest, sendTest } from "../services/TestService";
 import { TEST_SET } from "../router/utils";
 import { saveChangedTest, saveTest } from "../services/TestService"
 import { Formik } from "formik";
@@ -29,14 +29,14 @@ class TestTools {
         window.location.assign(TEST_SET)
     }
 
-    send(testId, sq, user_id, email, img) {
+    send(testId, sq, user_id, email) {
         try{
           if (testId){
+            console.log('change')
             saveChangedTest({
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
-              img: img,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -56,9 +56,10 @@ class TestTools {
                   })
                 }
               })
-            }).then(data => sendTest(data, email))
+            }).then(data => addIntern(data, email, user_id))
           }
           else{
+            console.log('saved')
             saveTest({
               name: sq.sections[0].title,
               idCreator: user_id,
@@ -81,7 +82,7 @@ class TestTools {
                   })
                 }
               })
-            }).then(data => sendTest(data, email))
+            }).then(data => addIntern(data, email, user_id))
           }
         }  
         catch(e){
@@ -89,14 +90,13 @@ class TestTools {
         }
       }    
 
-    save(testId, sq, user_id, img) {
+    save(testId, sq, user_id) {
         try{
           if (testId){
             saveChangedTest({
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
-              img: img,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -154,6 +154,10 @@ class TestTools {
       renameTest(testId, name)
     }
 
+    sendTemplate(testId, email, user_id){
+      addIntern(testId, email, user_id)
+    }
+
     showDeleteMenu(testId) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
@@ -169,7 +173,7 @@ class TestTools {
                             </div>
     }
 
-    showExitMenu(testId, sq, user_id, img) {
+    showExitMenu(testId, sq, user_id) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
                                     <h2>Перед выходом вы хотите сохранить изменения?</h2>
@@ -180,11 +184,11 @@ class TestTools {
                                 <div className="inner-content__buttons">
                                     <Button variant="text">Отмена</Button>
                                     <Button variant="text" onClick={() => window.location.assign(TEST_SET)}>Не сохранять</Button>
-                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id, img)}>Сохранить</Button>
+                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id)}>Сохранить</Button>
                                 </div>
                             </div>
     }
-    showGenerateLink(testId, sq, user_id, img) {
+    showGenerateLink(testId, sq, user_id) {
         this.innerContent = <ThemeProvider theme={darkTheme}>
                                 <div className="inner-content">
                                 <Formik
@@ -218,7 +222,7 @@ class TestTools {
                                         />
                                         <div className="inner-content__buttons">
                                             <Button variant="text">Отмена</Button>
-                                            <Button variant="text" disabled={!values.email} onClick={() => this.send(testId, sq, user_id, values.email, img)}>Отправить</Button>
+                                            <Button variant="text" disabled={!values.email} onClick={() => {this.send(testId, sq, user_id, values.email); window.location.assign(TEST_SET)}}>Отправить</Button>
                                         </div>
                                       </div>
                                     )}
@@ -226,6 +230,49 @@ class TestTools {
                                 </div>
                             </ThemeProvider>
     }
+
+    showTemplateLink(testId, user_id) {
+      this.innerContent = <ThemeProvider theme={darkTheme}>
+                              <div className="inner-content">
+                              <Formik
+                                      initialValues={{
+                                          email: '',
+                                      }}
+                                      validateOnBlur
+                                      onSubmit={(values) => console.log(values)}
+                                      validationSchema={this.validationSchema}
+                                  >
+                                  {({ values, touched, errors, handleBlur, handleChange, handleSubmit }) => (
+                                    <div onSubmit={handleSubmit}>
+                                      <div className="inner-content__header">
+                                        <h2>Отправить</h2>
+                                      </div>
+                                      <div className="inner-content__subtext">
+                                        <p>Электронная почта</p>
+                                      </div>
+                                      <TextField
+                                          id="email"
+                                          name="email"
+                                          type="email"
+                                          variant="outlined"
+                                          label="Кому"
+                                          fullWidth="true"
+                                          sx={{marginBottom: "16px"}}
+                                          onChange={handleChange}
+                                          onBlur={handleBlur}
+                                          value={values.email}
+                                          error={touched.email && errors.email}
+                                      />
+                                      <div className="inner-content__buttons">
+                                          <Button variant="text">Отмена</Button>
+                                          <Button variant="text" disabled={!values.email} onClick={() => this.sendTemplate(testId, values.email, user_id)}>Отправить</Button>
+                                      </div>
+                                    </div>
+                                  )}
+                                  </Formik>
+                              </div>
+                          </ThemeProvider>
+  }
 }
 
 const testTools = new TestTools()

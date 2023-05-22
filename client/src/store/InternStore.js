@@ -8,7 +8,7 @@ class InS {
     sections = [
         {id:1, title:"", description:"", 
         questions: [
-            {id:1, type:"oneOfList", title:"", isImportant: false, answers : []},
+            {id:1, type:"", title:"", isImportant: false, choise: false, isTrue: false, answers : []},
         ]
         }
     ]
@@ -22,7 +22,7 @@ class InS {
         this.sections.push(
             {id: newId, title:"", description:"",
                 questions: [
-                    {id:1, type:"oneOfList", title:"", isImportant: false, answers : []},
+                    {id:1, type:"oneOfList", title:"", isImportant: false,  choise: false, isTrue: false, answers : []},
                 ]
             });
     }
@@ -36,7 +36,7 @@ class InS {
             if (newId <= question.id) newId = question.id + 1;
         }
         this.sections[len-1].questions.push(
-            {id:  newId, type:"oneOfList", title:"", isImportant: false, answers : []},
+            {id:  newId, type:"oneOfList", title:"", isImportant: false,  choise: false, isTrue: false, answers : []},
         );
     }
 
@@ -50,7 +50,7 @@ class InS {
             if (newId <= answer.id) newId = answer.id + 1;
         }
         answers.push(
-            {id: newId, title:"", IsRight: false},
+            {id: newId, title:"", IsRight: false, choiseAns: false},
         );
     }
 
