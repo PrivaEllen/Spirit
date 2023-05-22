@@ -12,13 +12,7 @@ Interns.init({
     type: DataTypes.STRING(255),
     allowNull: false,
     unique: true
-  },
-  Name: {
-    type: DataTypes.STRING(30),
-  },
-  Surname: {
-    type: DataTypes.STRING(50),
-  },
+  }
 }, {
   sequelize, 
   modelName: 'Interns',

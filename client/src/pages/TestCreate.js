@@ -16,6 +16,7 @@ function TestCreate(props) {
     useEffect(() => {
         if (testId && sq._flag == 1){
             getTest(testId).then(data => {
+                console.log(data)
                 let sections = data.userTest.Sections
                 for (let i = 0; i < sections.length; i++){
                     let sq_section = sq.sections[i];
@@ -35,7 +36,7 @@ function TestCreate(props) {
                             let sq_answer = sq_question.answers[k]
 
                             sq_answer.title = answers[k].text
-                            sq_answer.isImportant = answers[k].correctness
+                            sq_answer.IsRight = answers[k].correctness
 
                         }
 

@@ -52,6 +52,7 @@ class RadioAnswer extends React.Component {
         <span style={{whiteSpace: "nowrap"}}>Правильный ответ</span>
         {(this.props.index === 0)?
           <div className="small-icon small-icon_disabled">
+            {/* sq.sections[this.props.Sid-1].questions[this.props.Qid-1].answers[this.props.Aid-1] */}
               <IconButton disabled={true} aria-label="delete" color="inherit">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 8L1.41 9.41L7 3.83V16H9V3.83L14.58 9.42L16 8L8 0L0 8Z"/>

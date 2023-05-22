@@ -37,11 +37,8 @@ Answers.hasOne(internsAnswers, {foreignKey: 'idAnswer'})
 internsAnswers.belongsTo(Interns, {foreignKey: 'idIntern'})
 Interns.hasMany(internsAnswers, {foreignKey: 'idIntern'})
 
-Interns.belongsTo(HrUser, {foreignKey: 'idHr'})
-HrUser.hasMany(Interns, {foreignKey: 'idHr'})
-
-Interns.belongsToMany(HrUser, {through: HrInterns})
-HrUser.belongsToMany(Interns, {through: HrInterns})
+Interns.belongsToMany(HrUser, {through: 'HrInterns', foreignKey: 'id_intern'})
+HrUser.belongsToMany(Interns, {through: 'HrInterns', foreignKey: 'id_hr'})
 
 module.exports = function (){
     sequelize.sync()

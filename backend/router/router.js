@@ -28,8 +28,9 @@ router.post('/save/test', authMiddleware, userController.saveChangedTest)
 router.get('/user/tests/:idCreator', authMiddleware, UserController.getUserTests)
 router.get('/user/test/:testId', authMiddleware, UserController.getTest)
 router.get('/user/types', authMiddleware, UserController.getTypes)
-router.get('open/test/:testId', authMiddleware, UserController.getTest)
+router.get('open/test/:testId/:internId', authMiddleware, UserController.getTest)
 
-router.post('/send/test', authMiddleware, UserController.send)
+router.post('/add/intern', authMiddleware, userController.addIntern)
+router.post('/create/intern/answers', authMiddleware, userController.createInternsAnswers)
 
 module.exports = router
