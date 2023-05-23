@@ -9,14 +9,8 @@ import TestClient from '../pages/TestForClient';
 import TestTemplate from '../pages/TestTemplate';
 
 export const loginRoutes = [
-    {
-       path: TEST_SET,
-       Component: TestSet
-    },
-    {
-        path: CREATE_TEST,
-        Component: TestCreate
-    },
+    
+    
     {
         path: GET_TEST + '/:testId',
         Component: TestCreate
@@ -32,6 +26,14 @@ export const loginRoutes = [
 ]
 
 export const publicRoutes = [
+    {
+        path: CREATE_TEST,
+        Component: TestCreate
+    },
+    {
+        path: TEST_SET,
+        Component: TestSet
+     },
     {
         path: MAIN,
         Component: Land

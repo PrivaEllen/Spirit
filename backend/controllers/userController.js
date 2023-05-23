@@ -9,6 +9,7 @@ const userDto = require('../dto/userDto');
 class UserController{
     async registration (req, res, next){
         try{
+            console.log('kitty')
             const error = validationResult(req)
             if (!error.isEmpty()){
                 return (next(Errors.BadRequest('Ошибка при валидации', error.array())))

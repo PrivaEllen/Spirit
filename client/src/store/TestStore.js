@@ -9,6 +9,7 @@ export default class TestStore{
         makeAutoObservable(this)
     }
 
+
     setTests(test){
         this._tests = test
     }
@@ -17,12 +18,10 @@ export default class TestStore{
         this._templates = templates
     }
     
-    setImgs(id, img){
-        console.log(id, '\n', img)
-        this._imgs[id] = img 
+    setImg(img){
+        console.log(img)
+        this._img = img
     }
 
-    incrementSome(){
-        this._some += 1
-    }
 }
+

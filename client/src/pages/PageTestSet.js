@@ -8,6 +8,7 @@ import AddTest from "../components/set_tests/AddTest";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
 import { getTypes, getUserTests } from "../services/TestService";
+import stc from "../store/SetStore";
 
 const darkTheme = createTheme({
     palette: {
@@ -20,6 +21,8 @@ function TestSet() {
     const {user, test} = useContext(Context)
     
     useEffect(() => {
+        stc._filteredList = stc._all;
+        stc._data = stc._all;
         getUserTests(1).then(data => test.setTemplates(data.userTests))
         getUserTests(user._user.id).then(data => test.setTests(data.userTests))
         getTypes().then(data => user.setTypes(data.types))
@@ -39,6 +42,7 @@ function TestSet() {
                 <div className='Pattern-body' style={{'border-bottom': '1px solid rgba(255, 255, 255, 0.12)'}}>
                     <div className='Pattern__container'>
                         {test._templates.map(temp => <Pattern key={temp.testId} TestName={temp.name} image={temp.img} templateId={temp.testId}/>)}
+                        {stc._data.map((item) => (<p style = {{color: "white"}}>{item.name}</p>))}
                     </div>
                 </div>
             </div>
