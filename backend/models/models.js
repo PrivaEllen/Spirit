@@ -31,6 +31,9 @@ Questions.hasMany(Answers, {foreignKey: 'idQuestion'})
 internsAnswers.belongsTo(Questions, {foreignKey: 'QuestionId'})
 Questions.hasMany(internsAnswers, {foreignKey: 'QuestionId'})
 
+internsAnswers.belongsTo(Tests, {foreignKey: 'idTest'})
+Tests.hasMany(internsAnswers, {foreignKey: 'idTest'})
+
 internsAnswers.belongsTo(Answers, {foreignKey: 'idAnswer'})
 Answers.hasOne(internsAnswers, {foreignKey: 'idAnswer'})
 

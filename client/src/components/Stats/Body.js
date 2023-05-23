@@ -7,8 +7,6 @@ class Body extends React.Component {
       <div className="test-body">
         <div className="test-body__container">
           <Sections
-            // title={this.props.testTitle}
-            // setTitle={this.props.setTestTitle}
           />
         </div>
       </div>

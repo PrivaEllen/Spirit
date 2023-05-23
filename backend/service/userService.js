@@ -268,6 +268,21 @@ class userService {
             }
         }
         else{
+            const relation = await HrInterns.findOne({
+                where:{
+                    id_hr: idHr
+                }
+            })
+
+            if (relation == null){
+                const newRelation = HrInterns.build({
+                    id_intern: check.internId,
+                    id_hr: idHr
+                })
+
+                await newRelation.save()
+            }
+
             return{
                 intern: check
             } 

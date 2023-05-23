@@ -6,7 +6,7 @@ import TestCreate from '../pages/TestCreate';
 import TestSet from '../pages/PageTestSet';
 import TestClient from '../pages/TestForClient';
 import TestTemplate from '../pages/TestTemplate';
-import Statistics from '../pages/Statistics'
+import Statistic from '../pages/Statistic';
 
 export const loginRoutes = [
     {
@@ -28,7 +28,7 @@ export const loginRoutes = [
     {
         path: TEMPLATE+'/:testId',
         Component: TestTemplate
-    }
+    },
 ]
 
 export const publicRoutes = [
@@ -45,7 +45,7 @@ export const publicRoutes = [
         Component: Login
     },
     {
-        path: STATS,
-        Component: Statistics
+        path: STATS + '/:testId',
+        Component: Statistic
     },
 ]

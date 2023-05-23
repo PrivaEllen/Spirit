@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../images/logo.png"
 import SmallIcon from "../tests/SmallIcon"
 import {Divider, Avatar, Popover, Tooltip} from '@mui/material';
@@ -14,8 +14,11 @@ import {
   RadioGroup,
   FormGroup
 } from '@mui/material';
+import { Context } from "../..";
 
 const Header = observer((props) => {
+  const {user} = useContext(Context)
+
   return (
     <header id="testPageHeader" className="header">
       <div className="header__container"> 
@@ -32,7 +35,7 @@ const Header = observer((props) => {
             </div>
           </div>
           <div className="header__side">
-            <Switch/>
+            {/* <Switch/>
             <span className="text">Принимать ответы</span>
             <SmallIcon title="Отправить на почту" svg = {
               <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,9 +46,9 @@ const Header = observer((props) => {
               <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0.998047 14.2515V18.0015H4.74805L15.808 6.94152L12.058 3.19152L0.998047 14.2515ZM18.708 4.04152C19.098 3.65152 19.098 3.02152 18.708 2.63152L16.368 0.291523C15.978 -0.0984766 15.348 -0.0984766 14.958 0.291523L13.128 2.12152L16.878 5.87152L18.708 4.04152Z"/>
               </svg>                               
-            }/>
+            }/> */}
             <div className="avatar">
-              <Avatar sx={{ bgcolor: "#90CAF9" }}>N</Avatar>
+              <Avatar src={`http://localhost:5000/${user._user.Photo}`} sx={{ bgcolor: "#90CAF9" }} />
             </div>
           </div> 
       </div> 

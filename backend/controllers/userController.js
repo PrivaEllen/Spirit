@@ -189,7 +189,6 @@ class UserController{
     async saveTest(req, res, next){
         try{
             const {test} = req.body
-            console.log(test)
             let createdTest = await testService.createTest(test.name, test.idCreator, test.img, test.type, test.category)
 
             if (test.sections){
@@ -235,7 +234,6 @@ class UserController{
     async saveChangedTest(req, res, next){
         try{
             const {test} = req.body
-            console.log(test)
             const img = await testService.getImage(test.testId)
 
             const changedTest = await userService.deleteTest(test.testId)
@@ -285,10 +283,7 @@ class UserController{
     async addIntern(req, res, next){
         try{
             const {testId, email, idHr} = req.body
-            console.log(testId, email, idHr)
             const result = await userService.addIntern(email, idHr)
-            console.log(result.intern.internId)
-            console.log(testId, email, result.intern.internId)
             await userService.send(testId, email, result.intern.internId)
             return 1;
 
@@ -301,13 +296,25 @@ class UserController{
     async createInternsAnswers(req, res, next){
         try{
             const {internAnswers} = req.body
-            console.log(internAnswers.internAnswers.length)
+            console.log(internAnswers)
             for (let i = 0; i < internAnswers.internAnswers.length; i++){
-                const result = await testService.createInternsAnswers(internAnswers.internAnswers[i].text, internAnswers.internAnswers[i].QuestionId, internAnswers.internAnswers[i].idAnswer, internAnswers.internAnswers[i].idIntern)
+                const result = await testService.createInternsAnswers(internAnswers.internAnswers[i].text, internAnswers.internAnswers[i].QuestionId, internAnswers.internAnswers[i].QuestionText, internAnswers.internAnswers[i].QuestionType, internAnswers.internAnswers[i].idAnswer, internAnswers.internAnswers[i].idIntern, internAnswers.internAnswers[i].idTest)
             }
         }
         catch(e){
             next(e);
+        }
+    }
+
+    async getInternsAnswers(req, res, next){
+        try{
+            const {idTest} = req.params
+            const result = await testService.getInternsAnswers(idTest)
+            return res.json(result)
+            
+        }
+        catch(e){
+            next(e)
         }
     }
 

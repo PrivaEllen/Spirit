@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 function EndButton() {
     const param = useParams();
     const internId = param.internId;
+    const idTest = param.testId;
 
     function check_button(e)
     {
@@ -30,27 +31,34 @@ function EndButton() {
                 let arr_questions = arr[i].questions;
                 for (let j = 0; j < arr_questions.length; j++){
                     let arr_answers = arr_questions[j].answers
+                    console.log(arr_questions[j].title)
                     for (let k = 0; k < arr_answers.length; k++){
                         console.log(arr_answers[k].choiseAns)
                         if (arr_answers[k].choiseAns === true){
                             internAnswers.push({
                                 text: arr_answers[k].title,
                                 QuestionId: arr_questions[j].questionId,
+                                QuestionText: arr_questions[j].title,
+                                QuestionType: arr_questions[j].type,
                                 idAnswer: arr_answers[k].answerId,
                                 idIntern: internId,
+                                idTest: idTest
                             })
                         }
                     }
                 }
             }
-            console.log(internAnswers)
+            
             createInternsAnswers({
                 internAnswers: internAnswers.map(inAns => {
                     return{
                         text: inAns.text,
                         QuestionId: inAns.QuestionId,
+                        QuestionText: inAns.QuestionText,
+                        QuestionType: inAns.QuestionType,
                         idAnswer: inAns.idAnswer,
-                        idIntern: inAns.idIntern
+                        idIntern: inAns.idIntern,
+                        idTest: idTest
                     }
                 })
             })

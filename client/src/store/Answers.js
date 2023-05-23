@@ -19,36 +19,12 @@ class QA {
     }
     
     questions = [
-        {id:1, title:"Вы владеете английским языком?", type:10,
-        answers: [
-            {id:1, text:"нет"},
-            {id:2, text:"нет"},
-            {id:3, text:"частично"},
-            {id:4, text:"свободно"},
-            {id:5, text:"норм"},
-            {id:6, text:"1"},
-            {id:7, text:"2"},
-        ]
-        },
-        {id:2, title:"На какую вакансию вы расчитываете?", type:20,
-        answers: [
-            {id:1, text:"Фронтенд разработчик"},
-            {id:2, text:"Бэкенд разработчик"},
-            {id:3, text:"Фронтенд разработчик"},
-            {id:4, text:"Фуллсте разработчик"},
-        ]
-        },
-        {id:3, title:"Кто вы?", type:30,
-        answers: [
-            {id:1, text:"Первый"},
-            {id:2, text:"8"},
-            {id:3, text:"Понятия не имею"},
-            {id:4, text:"че"},
-        ]
+        {id:1, title:"", type:"oneOfList",
+        answers: []
         }
     ]
     
-    createChart10(ctx, index){
+    createChartOne(ctx, index){
         const chart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -92,7 +68,7 @@ class QA {
         chart.update();
     }
 
-    createChart20(ctx, index){
+    createChartSeveral(ctx, index){
         const chart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -140,9 +116,33 @@ class QA {
         chart.update();
     }
 
-    createChart30(){
+    createChartText(){
         const ctx30 = document.getElementById('Chart30');
         console.log(3);
+    }
+
+    addQuestion(){
+        let newId = 1; 
+        for (let i = 0; i < this.questions.length; i++){
+            let question = this.questions[i];
+            if (newId <= question.id) newId = question.id + 1;
+        }
+        this.questions.push(
+            {id: newId, title:"", type:"", answers : []},
+        );
+    }
+
+    addAnswer(Qindex){
+        let answers = this.questions[Qindex].answers
+
+        let newId = 1; 
+        for (let i = 0; i < answers.length; i++){
+            let answer = answers[i];
+            if (newId <= answer.id) newId = answer.id + 1;
+        }
+        answers.push(
+            {id: newId, text:""},
+        );
     }
 }
 
