@@ -19,8 +19,28 @@ class QA {
     }
     
     questions = [
-        {id:1, title:"", type:"oneOfList",
-        answers: []
+        {id:1, title:"Как вас зовут", type:"text", answers: [
+            {id: 1, text: "Елена"},
+            {id: 2, text: "Семен"}
+        ]
+        },
+        {
+            id:2, title:"Сколько вам лет", type:"oneOfList", answers: [
+                {id: 1, text: "18-25"},
+                {id: 2, text: "18-25"}
+            ]
+        },
+        {
+            id:3, title:"У вас есть высшее образование?", type:"oneOfList", answers: [
+                {id: 1, text: "Да"},
+                {id: 2, text: "Да"}
+            ]
+        },
+        {
+            id:4, title:"На какую должность вы претендуете?", type:"severalOfList", answers: [
+                {id: 1, text: "Full-stack-разработчик"},
+                {id: 2, text: "Backend-разработчик"}
+            ]
         }
     ]
     
