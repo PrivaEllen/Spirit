@@ -9,16 +9,6 @@ import React, { useEffect, useState, useMemo, useContext  } from 'react';
 import { observer } from "mobx-react-lite";
 import stc from '../../store/SetStore';
 
-// const names = [{ name: "Indoor" }, { name: "Outdoor" }, { name: "Aquatics" }];
-// var defaultSports = [
-//   { name: "Table Tennis", category: "Indoor" },
-//   { name: "Football", category: "Outdoor" },
-//   { name: "Swimming", category: "Aquatics" },
-//   { name: "Chess", category: "Indoor" },
-//   { name: "BaseBall", category: "Outdoor" }
-// ];
-
-
 const SearchForm = observer((props) => {
   
   const {user, test} = useContext(Context);

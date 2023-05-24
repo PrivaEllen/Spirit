@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import ins from "../../store/InternStore";
 import { createInternsAnswers } from '../../services/TestService';
 import { useParams } from 'react-router-dom';
-import warn from './Warning.png';
+import warn from '../../images/Warning.png';
 import { READY_TEST } from "../../router/utils";
 
 
@@ -68,7 +68,8 @@ function EndButton() {
                     }
                 })
             })
-            window.location.assign(READY_TEST);
+            
+            window.location.assign(READY_TEST + '/' + ins.sections[0].title);
         }
         else
         {

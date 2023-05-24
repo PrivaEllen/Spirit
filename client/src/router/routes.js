@@ -31,7 +31,7 @@ export const loginRoutes = [
         Component: TestTemplate
     },
     {
-        path: READY_TEST+'/:testId'+'/:internId' ,
+        path: READY_TEST + '/:title',
         Component: ReadyTest
     }
 ]
