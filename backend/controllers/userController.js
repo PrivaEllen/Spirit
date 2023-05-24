@@ -8,14 +8,17 @@ const userDto = require('../dto/userDto');
 
 class UserController{
     async registration (req, res, next){
+        debugger;
         try{
             const error = validationResult(req)
             if (!error.isEmpty()){
+                
                 return (next(Errors.BadRequest('Ошибка при валидации', error.array())))
             }
             const {Name, Surname, email, password, Photo} = req.body
             const user = await userService.registration(Name, Surname, email, password, Photo)
             res.cookie('refreshToken', user.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
+            console.log(res.json(user))
             return res.json(user)
         }
         catch(e){

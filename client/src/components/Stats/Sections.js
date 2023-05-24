@@ -29,24 +29,23 @@ const Sections = observer((props) => {
                     </div>
                     <div className="section__body">
                       <p>{q.answers.length} ответа/ов</p>
-                      {(q.type === "oneOfList")? 
+                      {(q.type === 10)? 
                       <div className="chartblock" style={{display: 'flex', margin: '0 auto', justifyContent: 'center', height: '200px', width: '550px'}}>
                         <canvas id="Chart10"></canvas>
                         {document.addEventListener("DOMContentLoaded", function() {
-                          console.log(document.getElementById('Chart10'), Qindex)
-                          qa.createChartOne(document.getElementById('Chart10'), Qindex)
+                          qa.createChart10(document.getElementById('Chart10'), Qindex)
                         })}
                       </div>
                       :
-                      (q.type === "severalOfList")?
+                      (q.type === 20)?
                       <div className="chartblock" style={{display: 'flex', margin: '0 auto', justifyContent: 'center', height: '200px', width: '550px'}}>
                         <canvas id="Chart20"></canvas>
                         {document.addEventListener("DOMContentLoaded", function() {
-                          qa.createChartSeveral(document.getElementById('Chart20'), Qindex)
+                          qa.createChart20(document.getElementById('Chart20'), Qindex)
                         })}
                       </div>
                       :
-                      (q.type === "text")?
+                      (q.type === 30)?
                       <div className="chartblock">
                         <p style={{margin: '10px 0'}}>Последние ответы</p>
                         {q.answers.map((a, aindex) => {

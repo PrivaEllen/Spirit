@@ -31,6 +31,7 @@ class tokenService{
     }
 
     async saveToken(id, refreshToken){
+        console.log(id, refreshToken)
         const tokenData = await Token.findOne({where: {
             user: id
         }})
@@ -39,9 +40,11 @@ class tokenService{
             return tokenData.save()
         }
         const newToken = Token.build({
+            id: id,
             user: id,
             RefreshToken: refreshToken
         })
+        console.log(newToken)
         await newToken.save()
         return newToken
     }
