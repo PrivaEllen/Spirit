@@ -20,17 +20,6 @@ Tests.init({
     },
     onDelete: 'CASCADE'
   },
-  category: {
-    type: DataTypes.ENUM,
-    values: ['template', 'user'],
-    allowNull: false,
-    defaultValue: 'user'
-  },
-  private: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: true
-  },
   type: {
     type: DataTypes.INTEGER,
     references: {
