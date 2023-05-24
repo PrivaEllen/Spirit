@@ -5,13 +5,11 @@ const Sections = require('../models/Sections');
 const internsAnswers = require('../models/internsAnswers');
 
 class testService{
-    async createTest(name, idCreator, img, typeId, category, privat){
+    async createTest(name, idCreator, img, type){
         const test = Tests.build({
             name: name,
             idCreator: idCreator,
-            category: category,
-            private: privat,
-            type: typeId,
+            type: type,
             img: img,
         })
         await test.save()
@@ -84,19 +82,54 @@ class testService{
         return img
     }
 
-    async createInternsAnswers(text, QuestionId, idAnswer, idIntern){
-        console.log('kiska')
-        console.log(text, QuestionId, idAnswer, idIntern)
+    async createInternsAnswers(text, QuestionId, QuestionText, QuestionType, idAnswer, idIntern, idTest){
         const internAnswers = internsAnswers.build({
             text: text,
             QuestionId: QuestionId,
+            QuestionText: QuestionText,
+            QuestionType: QuestionType,
             idAnswer: idAnswer,
-            idIntern: idIntern
+            idIntern: idIntern,
+            idTest: idTest
         })
 
         await internAnswers.save()
         return internAnswers
 
+    }
+
+    async getInternsAnswers(idTest){
+        const test = await Tests.findOne({
+            where:{
+                testId: idTest
+            },
+            include: [{
+                model: Sections,
+                include: [{
+                    model: Questions,
+                }]
+            }]
+        })
+
+        let answers = []
+
+        for (let i = 0; i < test.Sections.length; i++){
+            let mas = test.Sections[i].Questions
+            for (let j = 0; j < mas.length; j++){
+                const answer = await internsAnswers.findAll({
+                    where: {
+                        QuestionId: mas[j].questionId
+                    }
+                })
+
+                answers.push(answer)
+            }
+
+        }
+
+        return {
+            answers: answers
+        }
     }
     
 }

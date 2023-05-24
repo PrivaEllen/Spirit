@@ -241,6 +241,17 @@ class userService {
         }
     }
 
+    async getType(name){
+        const type = await Types.findOne({
+            where:{
+                name: name
+            }
+        })
+        return {
+            id_type: type.typeId
+        }
+    }
+
     async send(testId, email, internId){
         await mailService.sendTest(email, `${process.env.FRONTEND_URL}/open/test/${testId}/${internId}`)
     }
@@ -268,6 +279,21 @@ class userService {
             }
         }
         else{
+            const relation = await HrInterns.findOne({
+                where:{
+                    id_hr: idHr
+                }
+            })
+
+            if (relation == null){
+                const newRelation = HrInterns.build({
+                    id_intern: check.internId,
+                    id_hr: idHr
+                })
+
+                await newRelation.save()
+            }
+
             return{
                 intern: check
             } 

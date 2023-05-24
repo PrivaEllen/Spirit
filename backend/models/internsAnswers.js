@@ -19,6 +19,15 @@ internsAnswers.init({
     },
     onDelete: 'CASCADE'
   },
+  QuestionText: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  QuestionType:{
+    type: DataTypes.ENUM,
+    values: ['oneOfList', 'severalOfList', 'text'],
+    allowNull: false,
+  },
   idAnswer:{
     type: DataTypes.INTEGER,
     references: {
@@ -32,6 +41,14 @@ internsAnswers.init({
     references: {
       model: 'Interns',
       key: 'internId'
+    },
+    onDelete: 'CASCADE'
+  },
+  idTest:{
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'Tests',
+      key: 'testId'
     },
     onDelete: 'CASCADE'
   }

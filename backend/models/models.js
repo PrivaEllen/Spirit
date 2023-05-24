@@ -16,9 +16,6 @@ HrUser.hasOne(Token, {foreignKey: 'id'})
 Tests.belongsTo(HrUser, {foreignKey: 'idCreator'})
 HrUser.hasMany(Tests, {foreignKey: 'idCreator'})
 
-Tests.belongsTo(Types, {foreignKey: 'type'})
-Types.hasMany(Tests, {foreignKey: 'type'})
-
 Sections.belongsTo(Tests, {foreignKey: 'id_test'})
 Tests.hasMany(Sections, {foreignKey: 'id_test'})
 
@@ -30,6 +27,9 @@ Questions.hasMany(Answers, {foreignKey: 'idQuestion'})
 
 internsAnswers.belongsTo(Questions, {foreignKey: 'QuestionId'})
 Questions.hasMany(internsAnswers, {foreignKey: 'QuestionId'})
+
+internsAnswers.belongsTo(Tests, {foreignKey: 'idTest'})
+Tests.hasMany(internsAnswers, {foreignKey: 'idTest'})
 
 internsAnswers.belongsTo(Answers, {foreignKey: 'idAnswer'})
 Answers.hasOne(internsAnswers, {foreignKey: 'idAnswer'})
