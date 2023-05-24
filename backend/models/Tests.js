@@ -21,23 +21,13 @@ Tests.init({
     onDelete: 'CASCADE'
   },
   type: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'Types',
-      key: 'typeId'
-    },
-    onDelete: 'CASCADE',
+    type: DataTypes.TEXT,
     allowNull: true
   },
   dateOfCreate: {
     type: DataTypes.DATEONLY,
     allowNull: false,
     defaultValue: DataTypes.NOW
-  },
-  countSections: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    defaultValue: 0
   },
   img: {
     type: DataTypes.TEXT,

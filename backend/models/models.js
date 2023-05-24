@@ -16,9 +16,6 @@ HrUser.hasOne(Token, {foreignKey: 'id'})
 Tests.belongsTo(HrUser, {foreignKey: 'idCreator'})
 HrUser.hasMany(Tests, {foreignKey: 'idCreator'})
 
-Tests.belongsTo(Types, {foreignKey: 'type'})
-Types.hasMany(Tests, {foreignKey: 'type'})
-
 Sections.belongsTo(Tests, {foreignKey: 'id_test'})
 Tests.hasMany(Sections, {foreignKey: 'id_test'})
 

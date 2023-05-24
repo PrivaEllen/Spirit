@@ -29,7 +29,7 @@ class TestTools {
         window.location.assign(TEST_SET)
     }
 
-    send(testId, sq, user_id, email) {
+    send(testId, sq, user_id, email, value) {
         try{
           if (testId){
             console.log('change')
@@ -37,6 +37,7 @@ class TestTools {
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
+              type: value,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -63,6 +64,7 @@ class TestTools {
             saveTest({
               name: sq.sections[0].title,
               idCreator: user_id,
+              type: value,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -90,13 +92,14 @@ class TestTools {
         }
       }    
 
-    save(testId, sq, user_id) {
+    save(testId, sq, user_id, value) {
         try{
           if (testId){
             saveChangedTest({
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
+              type: value,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -122,6 +125,7 @@ class TestTools {
             saveTest({
               name: sq.sections[0].title,
               idCreator: user_id,
+              type: value,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -173,7 +177,7 @@ class TestTools {
                             </div>
     }
 
-    showExitMenu(testId, sq, user_id) {
+    showExitMenu(testId, sq, user_id, value) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
                                     <h2>Перед выходом вы хотите сохранить изменения?</h2>
@@ -184,11 +188,11 @@ class TestTools {
                                 <div className="inner-content__buttons">
                                     <Button variant="text">Отмена</Button>
                                     <Button variant="text" onClick={() => window.location.assign(TEST_SET)}>Не сохранять</Button>
-                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id)}>Сохранить</Button>
+                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id, value)}>Сохранить</Button>
                                 </div>
                             </div>
     }
-    showGenerateLink(testId, sq, user_id) {
+    showGenerateLink(testId, sq, user_id, value) {
         this.innerContent = <ThemeProvider theme={darkTheme}>
                                 <div className="inner-content">
                                 <Formik
@@ -222,7 +226,7 @@ class TestTools {
                                         />
                                         <div className="inner-content__buttons">
                                             <Button variant="text">Отмена</Button>
-                                            <Button variant="text" disabled={!values.email} onClick={() => {this.send(testId, sq, user_id, values.email)}}>Отправить</Button>
+                                            <Button variant="text" disabled={!values.email} onClick={() => {this.send(testId, sq, user_id, values.email, value)}}>Отправить</Button>
                                         </div>
                                       </div>
                                     )}

@@ -241,6 +241,17 @@ class userService {
         }
     }
 
+    async getType(name){
+        const type = await Types.findOne({
+            where:{
+                name: name
+            }
+        })
+        return {
+            id_type: type.typeId
+        }
+    }
+
     async send(testId, email, internId){
         await mailService.sendTest(email, `${process.env.FRONTEND_URL}/open/test/${testId}/${internId}`)
     }

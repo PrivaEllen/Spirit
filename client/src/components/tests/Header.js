@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import logo from "../../images/logo.png"
 import SmallIcon from "./SmallIcon"
 import {Divider, Avatar, Popover, Tooltip} from '@mui/material';
@@ -9,6 +9,12 @@ import sq from "../../store/SectionsQuestions";
 import { Context } from "../..";
 import { useParams } from "react-router-dom";
 import { STATS } from "../../router/utils";
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControl from '@mui/material/FormControl';
+import stc from '../../store/SetStore';
+import { getTypes } from "../../services/TestService";
 
 const Header = observer((props) => {
   const {user} = useContext(Context)
@@ -34,6 +40,33 @@ const Header = observer((props) => {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
+
+
+  const [value, setValue] = React.useState(null);
+
+  const handleChangeF = (event) => {
+    setValue(event.target.value);
+    stc.TestFilter(event.target.value);
+  };
+
+  const [anchorElF, setAnchorElF] = React.useState(null);
+
+  const handleClickF = (event) => {
+    setAnchorElF(event.currentTarget);
+    document.body.style.overflow = "overlay";
+  };
+
+  const handleCloseF = () => {
+    setAnchorElF(null);
+  };
+
+  useEffect(() => {
+    getTypes().then(data => user.setTypes(data.types))
+    console.log(value)
+}, [])
+
+  const openF = Boolean(anchorElF);
+  const idF = openF ? 'simple-popover' : undefined;
   
   return (
     <header id="testPageHeader" className="header">
@@ -41,7 +74,7 @@ const Header = observer((props) => {
           <div className="header__side">
             <div className="logo">
               <Tooltip title="Главный экран Spirit">
-                <div onClick={() => {props.setModalActive(true); TestTools.showExitMenu(testId, sq, user._user.id); sq.IncrementFlag(); console.log(testId, sq)}}>
+                <div onClick={() => {props.setModalActive(true); TestTools.showExitMenu(testId, sq, user._user.id, value); sq.IncrementFlag(); console.log(testId, sq)}}>
                   <img src={logo} alt="logo"/>
                 </div>
               </Tooltip>
@@ -76,11 +109,41 @@ const Header = observer((props) => {
             </svg>
             }/>
             <Divider orientation="vertical" flexItem sx={{border: "1px solid #ffffff12"}} />
-            <SmallIcon title="Фильтрация тестов" svg = {
+            <SmallIcon title="Фильтрация тестов" onClick={handleClickF} svg = {
               <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7 12H11V10H7V12ZM0 0V2H18V0H0ZM3 7H15V5H3V7Z"/>
               </svg>                  
             }/>
+
+            <Popover
+              id={idF}
+              open={openF}
+              anchorEl={anchorElF}
+              onClose={handleCloseF}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              sx={{ "& .MuiPopover-paper": {background: "none"}}}
+              
+            >
+              <div className="popover-test">
+                <div className="option__container">
+                <FormControl  onClick={handleChangeF}>
+                <RadioGroup defaultValue={"all"} value={value}>
+                <div className="option__container" >
+                  {user._types.map(temp => <FormControlLabel value={temp.name} control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label={temp.name} className="option__text"/>)}
+                  </div>
+                </RadioGroup>
+                </FormControl>
+                </div>
+                </div>
+            </Popover>
+
             <SmallIcon onClick={handleClick} title="Измененить фон" svg = {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M14.1862 23.9533C14.0829 23.9157 13.914 23.8454 13.8107 23.7891C13.6933 23.7328 11.966 22.0345 9.34672 19.4073C5.26296 15.3212 5.06111 15.11 4.96723 14.852C4.8358 14.4908 4.8358 14.0639 4.96723 13.7073C5.06111 13.4634 5.17846 13.3273 6.0891 12.4031C6.65237 11.8355 7.14524 11.3054 7.18749 11.2209C7.333 10.93 7.26729 10.5547 7.0185 10.3342C6.96218 10.2779 6.19236 9.76658 5.31459 9.19893C2.65779 7.48658 1.4092 6.61399 1.0149 6.20115C-0.45901 4.66707 -0.308803 2.16189 1.34348 0.834232C2.77984 -0.329226 4.7607 -0.268238 6.14542 0.970281C6.56319 1.35028 7.55831 2.77176 9.39835 5.62411C9.85367 6.33251 10.2761 6.96584 10.3325 7.02214C10.5531 7.27078 10.9286 7.33646 11.2196 7.19103C11.3041 7.1488 11.8345 6.65621 12.4025 6.09325C13.3366 5.16905 13.4633 5.06584 13.7168 4.96732C13.9421 4.88288 14.0642 4.8688 14.3505 4.88288C15.0171 4.92041 14.726 4.66707 19.4529 9.38658C24.2877 14.2187 23.9966 13.8856 23.9966 14.6081C23.9919 15.1945 23.884 15.3775 23.0485 16.2313C22.0815 17.2212 21.8515 17.3619 21.2178 17.3666H20.8798V17.6997C20.8798 18.075 20.8 18.3424 20.5982 18.6333C20.5231 18.7412 19.8284 19.4589 19.0586 20.2236C17.9179 21.3589 17.6128 21.6357 17.4016 21.7342C17.2608 21.7999 17.1106 21.8562 17.073 21.8562C17.0308 21.8562 16.9651 21.9547 16.9134 22.1049C16.7914 22.4426 16.5942 22.7054 16.0122 23.2636C15.6789 23.5826 15.4301 23.7797 15.2611 23.8594C14.956 24.0002 14.4585 24.0424 14.1862 23.9533ZM15.3832 21.5935C15.3832 21.5654 15.1813 21.1009 14.9373 20.5567C14.6932 20.0125 14.4913 19.5387 14.4913 19.4965C14.4913 19.4542 14.5289 19.3979 14.5758 19.3745C14.6603 19.3276 15.2987 19.6044 16.3642 20.1392L16.7116 20.3175L17.9977 19.032C18.7018 18.3283 19.2792 17.7325 19.2792 17.7138C19.2792 17.6903 18.4953 16.5034 17.533 15.0725C15.7118 12.3609 15.7024 12.3375 15.9746 12.2952C16.0356 12.2858 17.0308 12.9379 18.6455 14.0357L21.2272 15.795L21.828 15.2039L22.4242 14.6081L19.5514 11.737L16.674 8.86115L12.7686 12.7644L8.85855 16.6723L11.7313 19.5434L14.6087 22.4192L14.9936 22.0345C15.2095 21.8187 15.3832 21.6217 15.3832 21.5935ZM14.9044 7.09251L14.2848 6.47325L13.2991 7.44436C12.2476 8.47646 12.0176 8.64535 11.4637 8.79078C10.9286 8.92683 10.3043 8.85646 9.79734 8.60313C9.31386 8.35918 9.07447 8.05424 7.84465 6.16362C6.05624 3.4051 5.48827 2.58411 5.09867 2.19942C3.9017 1.01719 1.90206 1.67399 1.61573 3.3488C1.55001 3.73349 1.62512 4.2214 1.80818 4.58732C2.09452 5.16905 2.58738 5.53498 6.15951 7.84782C8.05118 9.07695 8.35629 9.31621 8.60038 9.79943C8.85385 10.3061 8.92426 10.93 8.78814 11.4649C8.64262 12.0184 8.47364 12.2483 7.44096 13.2992L6.46931 14.2844L7.08891 14.9036L7.70852 15.5229L11.6139 11.6197L15.524 7.71177L14.9044 7.09251Z" fill="white"/>
@@ -140,7 +203,7 @@ const Header = observer((props) => {
               <path d="M16 2H11.82C11.4 0.84 10.3 0 9 0C7.7 0 6.6 0.84 6.18 2H2C0.9 2 0 2.9 0 4V20C0 21.1 0.9 22 2 22H16C17.1 22 18 21.1 18 20V4C18 2.9 17.1 2 16 2ZM9 2C9.55 2 10 2.45 10 3C10 3.55 9.55 4 9 4C8.45 4 8 3.55 8 3C8 2.45 8.45 2 9 2ZM16 20H2V4H4V7H14V4H16V20Z" fill="white"/>
               </svg>
             }/>
-            <button className="button" id="send" type="button" onClick={() => {props.setModalActive(true); TestTools.showGenerateLink(testId, sq, user._user.id); sq.IncrementFlag()}}>Отправить</button>
+            <button className="button" id="send" type="button" onClick={() => {props.setModalActive(true); TestTools.showGenerateLink(testId, sq, user._user.id, value); sq.IncrementFlag()}}>Отправить</button>
             <div className="avatar">
               <Avatar src={`http://localhost:5000/${user._user.Photo}`} sx={{ bgcolor: "#90CAF9" }} />
             </div>

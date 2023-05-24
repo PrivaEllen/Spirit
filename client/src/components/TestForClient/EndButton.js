@@ -75,6 +75,7 @@ function EndButton() {
         {
         s.innerHTML = 'Для завершения теста необходимо ответить на все обязательные вопросы';
         v.src = {warn};
+        {console.log(warn)}
         w.style.width = '650px';
         }
     }

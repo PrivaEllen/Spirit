@@ -52,6 +52,7 @@ function TestSet() {
                 <div className='Pattern-body'>
                     <div className='Pattern__container'>
                         <AddTest/>
+                        {console.log(stc._data)}
                         {stc._data.map(t => <UserTest key={t.testId} TestName={t.name} TestTime={t.dateOfCreate} image={t.img} testId={t.testId}/>)}
                         {/* {test._tests.map(t => <UserTest key={t.testId} TestName={t.name} TestTime={t.dateOfCreate} image={t.img} testId={t.testId}/>)} */}
                     </div>
