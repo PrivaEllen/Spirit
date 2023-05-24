@@ -23,7 +23,7 @@ $FontForBuyHeader: 60px;
     background-color: $Hcolor;
     width: 70%;
     height: 550px;
-    margin-left: 15%;
+  
     margin-top:100px;
     border-radius: 43px;
     color:$BDcolor;
@@ -167,6 +167,8 @@ border-radius: 4px;
 }
 
 }
+
+
 @media screen and (min-width: 1000px) and (max-width: 1439px){
     .buy__subtext
     {
@@ -177,7 +179,7 @@ border-radius: 4px;
         font-size: 33px;
     }
     .container_picture_slider_img{
-        width: 290px;
+        width: 394px;
     }
     .Header_buy2
     {
@@ -482,6 +484,7 @@ border-radius: 4px;
  flex-direction: column;
  justify-content: space-around;
  align-items: flex-start;
+ 
     .buy__subtext
     {
         font-family: 'Roboto';
@@ -604,7 +607,6 @@ line-height: 116.7%;
 {
     background-color: #808080;
     width: 72%;
-    margin-left: 14%;
 
     border-radius: 43px;
     background: linear-gradient(180deg, rgba(28, 28, 31, 0) 10.94%, #7C7D81 49.48%);
@@ -633,7 +635,7 @@ font-style: normal;
         .card
         {
            
-            width: 23%;
+            width: 21%;
             border: 1px solid #F2E3D0;
             border-radius: 26px;
             margin: 1%;

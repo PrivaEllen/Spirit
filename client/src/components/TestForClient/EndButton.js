@@ -3,6 +3,9 @@ import { observer } from "mobx-react-lite";
 import ins from "../../store/InternStore";
 import { createInternsAnswers } from '../../services/TestService';
 import { useParams } from 'react-router-dom';
+import warn from './Warning.png';
+import { READY_TEST } from "../../router/utils";
+
 
 function EndButton() {
     const param = useParams();
@@ -11,17 +14,20 @@ function EndButton() {
 
     function check_button(e)
     {
+        
         let flag = true;
         for (let i=0;i<ins.sections.length;++i)
         {
             for(let j = 0;j<ins.sections[i].questions.length;++j)
             {
-                if (ins.sections[i].questions[j].choise===false)
+                if (ins.sections[i].questions[j].choise===false &&  ins.sections[i].questions[j].isImportant===true)
                     flag = false;
 
             }
         }
-        let s = document.getElementById('Warning');
+        let s = document.getElementById('Warning_name');
+        let v = document.getElementById('Warning_img');
+        let w = document.getElementById('Warning');
         if (flag === true)
         {
             s.innerHTML='';
@@ -62,18 +68,20 @@ function EndButton() {
                     }
                 })
             })
-
+            window.location.assign(READY_TEST);
         }
         else
         {
-        s.innerHTML = 'Введены не все обязательные поля!';
+        s.innerHTML = 'Для завершения теста необходимо ответить на все обязательные вопросы';
+        v.src = {warn};
+        w.style.width = '650px';
         }
     }
     return(
     <div id='for_button'>
         <div id='block_button'> 
             <button id='end_button'  onClick={(e)=>check_button(e)} >Отправить</button>
-            <span id="Warning"></span>
+            <div id="Warning"><img id="Warning_img"></img><span id="Warning_name"></span></div>
         </div>
     </div>
     )
