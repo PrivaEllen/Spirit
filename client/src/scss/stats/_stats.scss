@@ -1,0 +1,68 @@
+.header__side{
+    .text{
+        color: #fff;
+        white-space: nowrap;
+    }
+    span{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        & .MuiSwitch-switchBase{
+            color: #fff;
+        }
+        & .MuiSwitch-switchBase.Mui-checked{
+            color: #90CAF9;
+            & +.MuiSwitch-track{
+                background-color: #90CAF990;    
+            }
+        }
+        & .MuiSwitch-track{
+            background-color: #E0E0E0;
+        }
+    }
+}
+
+.stat-section{
+    margin: 16px 0 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    .stat-section__header{
+        padding: 16px 24px;
+        margin: 0;
+    }
+    .stat-section__buttons{
+        display: flex;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+        .stat-section__button{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 24px;
+            height: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            &.stat-section__button_active{
+                padding-top: 2px;
+                color: #90CAF9;
+                border-bottom: 2px solid #90CAF9;
+            }
+        }
+    }
+}
+
+.var {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 12px;
+
+    padding: 4px 8px;
+    margin-bottom: 8px;
+}

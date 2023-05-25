@@ -15,6 +15,7 @@
         .header__side {
             display: flex;
             align-items: center;
+            gap: 10px;
             .header__test-title{
                 width: 300px;
                 h1{
@@ -24,6 +25,9 @@
                     line-height: 24px;
                     letter-spacing: 0.15px;
                 }
+            }
+            .avatar{
+                padding: 0 4px;
             }
         }
         .header__delete{

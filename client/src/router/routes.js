@@ -1,5 +1,4 @@
-import { MAIN, LOGIN, REGISTRATION, GET_TEST, CREATE_TEST, TEST_SET, TEST_FOR_CLIENT, TEMPLATE} from './utils';
-
+import { MAIN, LOGIN, REGISTRATION, GET_TEST, CREATE_TEST, TEST_SET, TEST_FOR_CLIENT, TEMPLATE, STATS} from './utils';
 import Land from '../pages/landing';
 import Login from '../pages/PageLogin'
 import Registration from '../pages/PageRegistration';
@@ -7,6 +6,7 @@ import TestCreate from '../pages/TestCreate';
 import TestSet from '../pages/PageTestSet';
 import TestClient from '../pages/TestForClient';
 import TestTemplate from '../pages/TestTemplate';
+import Statistic from '../pages/Statistic';
 
 export const loginRoutes = [
     
@@ -22,7 +22,7 @@ export const loginRoutes = [
     {
         path: TEMPLATE+'/:testId',
         Component: TestTemplate
-    }
+    },
 ]
 
 export const publicRoutes = [
@@ -45,5 +45,9 @@ export const publicRoutes = [
     {
         path: LOGIN,
         Component: Login
+    },
+    {
+        path: STATS + '/:testId',
+        Component: Statistic
     },
 ]

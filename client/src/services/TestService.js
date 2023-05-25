@@ -54,3 +54,9 @@ export const createInternsAnswers = async (internAnswers) => {
     const {data} = await $api.post('/create/intern/answers', {internAnswers})
     return data
 }
+
+export const getInternsAnswers = async (idTest) => {
+    console.log(idTest)
+    const {data} = await $api.get('/user/stats/' + idTest)
+    return data
+}

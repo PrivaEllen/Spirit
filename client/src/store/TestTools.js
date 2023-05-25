@@ -56,7 +56,7 @@ class TestTools {
                   })
                 }
               })
-            }).then(data => addIntern(data, email, user_id))
+            }).then(data => addIntern(data, email, user_id).then(window.location.assign(TEST_SET)))
           }
           else{
             console.log('saved')
@@ -222,7 +222,7 @@ class TestTools {
                                         />
                                         <div className="inner-content__buttons">
                                             <Button variant="text">Отмена</Button>
-                                            <Button variant="text" disabled={!values.email} onClick={() => {this.send(testId, sq, user_id, values.email); window.location.assign(TEST_SET)}}>Отправить</Button>
+                                            <Button variant="text" disabled={!values.email} onClick={() => {this.send(testId, sq, user_id, values.email)}}>Отправить</Button>
                                         </div>
                                       </div>
                                     )}
