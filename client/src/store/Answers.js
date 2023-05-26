@@ -3,9 +3,7 @@ import Chart from "chart.js/auto";
 
 class QA {
     constructor(){
-        makeObservable(this, {
-            questions: observable
-        })
+        makeAutoObservable(this)
         Chart.overrides['doughnut'].plugins.legend.position = 'right';
         Chart.overrides['doughnut'].responsive = true;
         Chart.overrides['doughnut'].maintainAspectRatio = false;
@@ -22,11 +20,6 @@ class QA {
     }
     
     questions = []
-    temp = []
-
-    createQuestions(){
-        this.temp = [... this.questions]
-    }
     
     createChartOne(ctx, index){
         console.log('huina')

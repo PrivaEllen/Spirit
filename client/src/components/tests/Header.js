@@ -133,7 +133,7 @@ const Header = observer((props) => {
               <div className="popover-test" style={{height: '170px'}}>
                 <div className="option__container">
                 <FormControl  onClick={handleChangeF}>
-                <RadioGroup defaultValue={test._type} value={value}>
+                <RadioGroup defaultValue={value} value={value}>
                 <div className="option__container">
                   {user._types.map(temp => <FormControlLabel value={temp.name} control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label={temp.name} className="option__text"/>)}
                   </div>

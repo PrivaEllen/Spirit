@@ -30,12 +30,10 @@ function Statistic(){
                     }
                 }
             })
-            qa.createQuestions()
     })
 
     return (
         <div>
-            {console.log(qa)}
             <Header />
             <Body />
         </div>

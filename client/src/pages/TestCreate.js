@@ -72,7 +72,7 @@ function TestCreate(props) {
     const [testTitle, setTestTitle] = useState("Название теста")
     return (
         <div>
-            {console.log(testId)}
+            {console.log(test._type)}
             <style>{ `body {background-color: ${color[bgColor]}}` }</style>
             <Header 
                 setModalActive={setModalActive}
