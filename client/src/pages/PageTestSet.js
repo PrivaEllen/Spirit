@@ -24,7 +24,7 @@ function TestSet() {
         stc._filteredList = stc._all;
         stc._data = stc._all;
         getUserTests(1).then(data => test.setTemplates(data.userTests))
-        getUserTests(user._user.id).then(data => test.setTests(data.userTests))
+        getUserTests(user._user.id).then(data => {test.setTests(data.userTests); stc.setData(data.userTests); stc.setList(data.userTests)})
         getTypes().then(data => user.setTypes(data.types))
     }, [])
 
@@ -55,7 +55,8 @@ function TestSet() {
                 <div className='Pattern-body'>
                     <div className='Pattern__container'>
                         <AddTest/>
-                        {test._tests.map(t => <UserTest key={t.testId} TestName={t.name} TestTime={t.dateOfCreate} image={t.img} testId={t.testId}/>)}
+                        {console.log(stc._data)}
+                        {stc._data.map(t => <UserTest key={t.testId} TestName={t.name} TestTime={t.dateOfCreate} image={t.img} testId={t.testId}/>)}
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ class TestTools {
         window.location.assign(TEST_SET)
     }
 
-    send(testId, sq, user_id, email) {
+    send(testId, sq, user_id, email, value) {
         try{
           if (testId){
             console.log('change')
@@ -37,6 +37,7 @@ class TestTools {
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
+              type: value,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -63,6 +64,7 @@ class TestTools {
             saveTest({
               name: sq.sections[0].title,
               idCreator: user_id,
+              type: value,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -82,7 +84,7 @@ class TestTools {
                   })
                 }
               })
-            }).then(data => addIntern(data, email, user_id))
+            }).then(data => addIntern(data, email, user_id).then(window.location.assign(TEST_SET)))
           }
         }  
         catch(e){
@@ -90,13 +92,14 @@ class TestTools {
         }
       }    
 
-    save(testId, sq, user_id) {
+    save(testId, sq, user_id, value) {
         try{
           if (testId){
             saveChangedTest({
               testId: testId,
               name: sq.sections[0].title,
               idCreator: user_id,
+              type: value,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -122,6 +125,7 @@ class TestTools {
             saveTest({
               name: sq.sections[0].title,
               idCreator: user_id,
+              type: value,
               sections: sq.sections.map(section => {
                 return {
                   name: section.title,
@@ -155,7 +159,7 @@ class TestTools {
     }
 
     sendTemplate(testId, email, user_id){
-      addIntern(testId, email, user_id)
+      addIntern(testId, email, user_id).then(window.location.assign(TEST_SET))
     }
 
     showDeleteMenu(testId) {
@@ -167,13 +171,12 @@ class TestTools {
                                     <p>Это действие не может быть отменено.</p>
                                 </div>
                                 <div className="inner-content__buttons">
-                                    <Button variant="text">Отмена</Button>
                                     <Button variant="text" onClick={() => this.delete(testId)}>Да, удалить</Button>
                                 </div>
                             </div>
     }
 
-    showExitMenu(testId, sq, user_id) {
+    showExitMenu(testId, sq, user_id, value) {
         this.innerContent = <div className="inner-content">
                                 <div className="inner-content__header">
                                     <h2>Перед выходом вы хотите сохранить изменения?</h2>
@@ -182,13 +185,12 @@ class TestTools {
                                     <p>При выборе варианта “Не сохранять” все изменения пропадут</p>
                                 </div>
                                 <div className="inner-content__buttons">
-                                    <Button variant="text">Отмена</Button>
                                     <Button variant="text" onClick={() => window.location.assign(TEST_SET)}>Не сохранять</Button>
-                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id)}>Сохранить</Button>
+                                    <Button variant="text" onClick={() => this.save(testId, sq, user_id, value)}>Сохранить</Button>
                                 </div>
                             </div>
     }
-    showGenerateLink(testId, sq, user_id) {
+    showGenerateLink(testId, sq, user_id, value) {
         this.innerContent = <ThemeProvider theme={darkTheme}>
                                 <div className="inner-content">
                                 <Formik
@@ -221,8 +223,7 @@ class TestTools {
                                             error={touched.email && errors.email}
                                         />
                                         <div className="inner-content__buttons">
-                                            <Button variant="text">Отмена</Button>
-                                            <Button variant="text" disabled={!values.email} onClick={() => {this.send(testId, sq, user_id, values.email)}}>Отправить</Button>
+                                            <Button variant="text" disabled={!values.email} onClick={() => {this.send(testId, sq, user_id, values.email, value)}}>Отправить</Button>
                                         </div>
                                       </div>
                                     )}
@@ -264,7 +265,6 @@ class TestTools {
                                           error={touched.email && errors.email}
                                       />
                                       <div className="inner-content__buttons">
-                                          <Button variant="text">Отмена</Button>
                                           <Button variant="text" disabled={!values.email} onClick={() => this.sendTemplate(testId, values.email, user_id)}>Отправить</Button>
                                       </div>
                                     </div>

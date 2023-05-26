@@ -1,4 +1,3 @@
-
 import SmallIcon from '../tests/SmallIcon'
 import Popover from '@mui/material/Popover';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -10,22 +9,9 @@ import React, { useEffect, useState, useMemo, useContext  } from 'react';
 import { observer } from "mobx-react-lite";
 import stc from '../../store/SetStore';
 
-const names = [{ name: "Indoor" }, { name: "Outdoor" }, { name: "Aquatics" }];
-var defaultSports = [
-  { name: "Table Tennis", category: "Indoor" },
-  { name: "Football", category: "Outdoor" },
-  { name: "Swimming", category: "Aquatics" },
-  { name: "Chess", category: "Indoor" },
-  { name: "BaseBall", category: "Outdoor" }
-];
-
-
 const SearchForm = observer((props) => {
-  //search
   
-
-  //filter
-  const {user} = useContext(Context);
+  const {user, test} = useContext(Context);
   const [value, setValue] = React.useState('all');
 
   const handleChange = (event) => {
@@ -33,11 +19,10 @@ const SearchForm = observer((props) => {
     stc.TestFilter(event.target.value);
   };
   
-  
   useEffect(() => {
-    stc._all = defaultSports;
-  
+    stc._all = test._tests;
   })
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -93,8 +78,8 @@ const SearchForm = observer((props) => {
             
           </div>
           <div className="option__container" >
-          {names.map(temp => <FormControlLabel  value={temp.name} control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label={temp.name} className="option__text"/>)}
-          </div>
+            {user._types.map(temp => <FormControlLabel value={temp.name} control={<Radio sx={{ color: "#808080", "margin-right": "10px", "margin-left": "16px", '&.Mui-checked': {color: "#B0C7DD"}}} />} label={temp.name} className="option__text"/>)}
+            </div>
           </RadioGroup>
           </FormControl>
           </div>

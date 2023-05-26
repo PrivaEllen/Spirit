@@ -14,6 +14,7 @@ class Land extends React.Component
             background: '#F2E3D0',
             display: 'flex', 
             flexDirection: 'column',
+            alignItems: 'center',
           };
         return (
             <div style={ divStyle}>

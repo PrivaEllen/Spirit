@@ -34,7 +34,6 @@ function RenameMenu(props) {
               sx={{marginTop: '8px'}}
             />
             <div className="rename_container_buttons"> 
-              <Button>Отмена</Button>
               <Button onClick={() => {renameTest(props.testId, values.name); window.location.assign(TEST_SET)}}>Да</Button>
             </div>
           </div>
