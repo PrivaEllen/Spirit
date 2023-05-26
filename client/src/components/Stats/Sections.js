@@ -32,8 +32,7 @@ const Sections = observer((props) => {
                       <div className="chartblock" style={{display: 'flex', margin: '0 auto', justifyContent: 'center', height: '200px', width: '550px'}}>
                         <canvas id="Chart10"></canvas>
                         {document.addEventListener("DOMContentLoaded", function() {
-                          console.log(document.getElementById('Chart10'), Qindex)
-                          qa.createChartOne(document.getElementById('Chart10'), Qindex)
+                          qa.createChart10(document.getElementById('Chart10'), Qindex)
                         })}
                       </div>
                       :
