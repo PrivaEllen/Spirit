@@ -1,9 +1,11 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, makeObservable, observable } from "mobx";
 import Chart from "chart.js/auto";
 
 class QA {
     constructor(){
-        makeAutoObservable(this);
+        makeObservable(this, {
+            questions: observable
+        })
         Chart.overrides['doughnut'].plugins.legend.position = 'right';
         Chart.overrides['doughnut'].responsive = true;
         Chart.overrides['doughnut'].maintainAspectRatio = false;
@@ -20,6 +22,11 @@ class QA {
     }
     
     questions = []
+    temp = []
+
+    createQuestions(){
+        this.temp = [... this.questions]
+    }
     
     createChartOne(ctx, index){
         console.log('huina')
@@ -113,12 +120,7 @@ class QA {
         //update
         chart.update();
     }
-
-    createChartText(){
-        const ctx30 = document.getElementById('Chart30');
-        console.log(3);
-    }
-
+    
     addQuestion(){
         let newId = 1; 
         for (let i = 0; i < this.questions.length; i++){

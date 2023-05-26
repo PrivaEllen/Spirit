@@ -171,7 +171,6 @@ class TestTools {
                                     <p>Это действие не может быть отменено.</p>
                                 </div>
                                 <div className="inner-content__buttons">
-                                    <Button variant="text">Отмена</Button>
                                     <Button variant="text" onClick={() => this.delete(testId)}>Да, удалить</Button>
                                 </div>
                             </div>
@@ -186,7 +185,6 @@ class TestTools {
                                     <p>При выборе варианта “Не сохранять” все изменения пропадут</p>
                                 </div>
                                 <div className="inner-content__buttons">
-                                    <Button variant="text">Отмена</Button>
                                     <Button variant="text" onClick={() => window.location.assign(TEST_SET)}>Не сохранять</Button>
                                     <Button variant="text" onClick={() => this.save(testId, sq, user_id, value)}>Сохранить</Button>
                                 </div>
@@ -225,7 +223,6 @@ class TestTools {
                                             error={touched.email && errors.email}
                                         />
                                         <div className="inner-content__buttons">
-                                            <Button variant="text">Отмена</Button>
                                             <Button variant="text" disabled={!values.email} onClick={() => {this.send(testId, sq, user_id, values.email, value)}}>Отправить</Button>
                                         </div>
                                       </div>
@@ -268,7 +265,6 @@ class TestTools {
                                           error={touched.email && errors.email}
                                       />
                                       <div className="inner-content__buttons">
-                                          <Button variant="text">Отмена</Button>
                                           <Button variant="text" disabled={!values.email} onClick={() => this.sendTemplate(testId, values.email, user_id)}>Отправить</Button>
                                       </div>
                                     </div>

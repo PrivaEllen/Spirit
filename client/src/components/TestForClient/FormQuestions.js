@@ -60,7 +60,7 @@ function FormQustions(props){
                 <div className="qustion_block" key={quest.id}>
                 <label className="qust_header_text">{quest.id}. {quest.title} {quest.isImportant===true? <span className="qust_header_text" style={{'color':'red'}}>*</span>:null}</label>
                 {quest.type === 'text'?
-                <div className="block_for_textfield"><input type = 'text' className="Text_Field" value = {input} placeholder="Поле для ответа" onChange={e=>{setInput(e.target.value);
+                <div className="block_for_textfield"><input type = 'text' name = {quest.questionId} className="Text_Field" placeholder="Поле для ответа" onChange={e=>{
                                                       quest.answers[0].title = e.target.value;
                                                       quest.answers[0].choiseAns = true;
                                                       if(e.target.value!==""){
