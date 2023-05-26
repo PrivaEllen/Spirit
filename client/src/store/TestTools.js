@@ -84,7 +84,7 @@ class TestTools {
                   })
                 }
               })
-            }).then(data => addIntern(data, email, user_id))
+            }).then(data => addIntern(data, email, user_id).then(window.location.assign(TEST_SET)))
           }
         }  
         catch(e){
@@ -159,7 +159,7 @@ class TestTools {
     }
 
     sendTemplate(testId, email, user_id){
-      addIntern(testId, email, user_id)
+      addIntern(testId, email, user_id).then(window.location.assign(TEST_SET))
     }
 
     showDeleteMenu(testId) {

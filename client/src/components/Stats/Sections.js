@@ -9,7 +9,6 @@ import handler from "./script";
 const Sections = observer((props) => {
     return (
       <div>
-        {console.log(qa)}
         <div className="section-block">
             <div className="test-block stat-section">
                 <div className="section__header stat-section__header">
@@ -33,7 +32,7 @@ const Sections = observer((props) => {
                       <div className="chartblock" style={{display: 'flex', margin: '0 auto', justifyContent: 'center', height: '200px', width: '550px'}}>
                         <canvas id="Chart10"></canvas>
                         {document.addEventListener("DOMContentLoaded", function() {
-                          console.log(document.getElementById('Chart10'), Qindex)
+                          console.log('ahaha')
                           qa.createChartOne(document.getElementById('Chart10'), Qindex)
                         })}
                       </div>

@@ -54,7 +54,6 @@ function TestSet() {
                         <AddTest/>
                         {console.log(stc._data)}
                         {stc._data.map(t => <UserTest key={t.testId} TestName={t.name} TestTime={t.dateOfCreate} image={t.img} testId={t.testId}/>)}
-                        {/* {test._tests.map(t => <UserTest key={t.testId} TestName={t.name} TestTime={t.dateOfCreate} image={t.img} testId={t.testId}/>)} */}
                     </div>
                 </div>
             </div>

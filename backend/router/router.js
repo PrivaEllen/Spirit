@@ -33,5 +33,6 @@ router.get('open/test/:testId/:internId', authMiddleware, UserController.getTest
 router.post('/add/intern', authMiddleware, userController.addIntern)
 router.post('/create/intern/answers', authMiddleware, userController.createInternsAnswers)
 router.get('/user/stats/:idTest', authMiddleware, UserController.getInternsAnswers)
+router.get('/user/hr/:idTest', authMiddleware, UserController.getStatistic)
 
 module.exports = router

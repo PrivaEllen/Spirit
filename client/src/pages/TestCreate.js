@@ -4,12 +4,13 @@ import TestEdit from "../components/tests/TestEdit"
 import Modal from "../components/Modal/Modal"
 import TestTools from "../store/TestTools";
 import { useParams } from "react-router-dom";
-import { getTest } from "../services/TestService";
+import { getTest, getStatistic } from "../services/TestService";
 import sq from "../store/SectionsQuestions";
 import { Context } from "..";
 import { observer } from "mobx-react-lite";
 
 function TestCreate(props) {
+    const {test} = useContext(Context)
     const param = useParams()
     const testId = param.testId
 
@@ -17,6 +18,7 @@ function TestCreate(props) {
         if (testId && sq._flag == 1){
             getTest(testId).then(data => {
                 console.log(data)
+                test.setType(data.userTest.type)
                 let sections = data.userTest.Sections
                 for (let i = 0; i < sections.length; i++){
                     let sq_section = sq.sections[i];

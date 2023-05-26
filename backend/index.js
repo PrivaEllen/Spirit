@@ -19,11 +19,14 @@ app.use(fileUpload())
 app.use(cookieParser())
 app.use(cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL
+    origin: 'http://localhost:3000'
 }))
 app.use('/spirit', router)
 app.use(except)
 
+process.on('uncaughtException', function (err) {
+    console.log(err);
+}); 
 
 app.listen(port, () => {
     console.log(`Server http://localhost:${port} is working`)

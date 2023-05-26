@@ -33,7 +33,11 @@ export const loginRoutes = [
     {
         path: READY_TEST + '/:title',
         Component: ReadyTest
-    }
+    },
+    {
+        path: STATS + '/:testId',
+        Component: Statistic
+    },
 ]
 
 export const publicRoutes = [
@@ -48,9 +52,5 @@ export const publicRoutes = [
     {
         path: LOGIN,
         Component: Login
-    },
-    {
-        path: STATS + '/:testId',
-        Component: Statistic
-    },
+    }
 ]

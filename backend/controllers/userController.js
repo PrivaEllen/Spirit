@@ -8,14 +8,17 @@ const userDto = require('../dto/userDto');
 
 class UserController{
     async registration (req, res, next){
+        debugger;
         try{
             const error = validationResult(req)
             if (!error.isEmpty()){
+                
                 return (next(Errors.BadRequest('Ошибка при валидации', error.array())))
             }
             const {Name, Surname, email, password, Photo} = req.body
             const user = await userService.registration(Name, Surname, email, password, Photo)
             res.cookie('refreshToken', user.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
+            console.log(res.json(user))
             return res.json(user)
         }
         catch(e){
@@ -188,9 +191,8 @@ class UserController{
 
     async saveTest(req, res, next){
         try{
-            const {test} = req.body          
-
-            let createdTest = await testService.createTest(test.name, test.idCreator, test.img, test.type)
+            const {test} = req.body
+            let createdTest = await testService.createTest(test.name, test.idCreator, test.img, test.type, test.category)
 
             if (test.sections){
                 let array_sections = test.sections
@@ -239,7 +241,7 @@ class UserController{
 
             const changedTest = await userService.deleteTest(test.testId)
 
-            let createdTest = await testService.createTest(test.name, test.idCreator, img, test.type)
+            let createdTest = await testService.createTest(test.name, test.idCreator, img, test.type, test.category)
 
             if (test.sections){
                 let array_sections = test.sections
@@ -283,7 +285,9 @@ class UserController{
 
     async addIntern(req, res, next){
         try{
+            console.log('kkk')
             const {testId, email, idHr} = req.body
+            console.log(testId, email, idHr)
             const result = await userService.addIntern(email, idHr)
             await userService.send(testId, email, result.intern.internId)
             return 1;
@@ -316,6 +320,17 @@ class UserController{
         }
         catch(e){
             next(e)
+        }
+    }
+
+    async getStatistic(req, res, next){
+        try{
+            const {idTest} = req.params
+            const result = await testService.getStatistic(idTest)
+            return res.json(result.hr.idTest)
+        }
+        catch(e){
+
         }
     }
 

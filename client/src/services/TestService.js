@@ -42,7 +42,7 @@ export const changePrivateOfTest = async (testId) => {
 }
 
 export const changePhoto = async (formData) => {
-    const data = await $api.post('change/photo', formData)
+    const data = await $api.post('/change/photo', formData)
     return data
 }
 
@@ -56,7 +56,11 @@ export const createInternsAnswers = async (internAnswers) => {
 }
 
 export const getInternsAnswers = async (idTest) => {
-    console.log(idTest)
     const {data} = await $api.get('/user/stats/' + idTest)
+    return data
+}
+
+export const getStatistic = async (idTest) => {
+    const {data} = await $api.get('/user/hr/' + idTest)
     return data
 }

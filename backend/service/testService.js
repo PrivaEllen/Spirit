@@ -131,6 +131,18 @@ class testService{
             answers: answers
         }
     }
+
+    async getStatistic(idTest){
+        const hr = await internsAnswers.findOne({
+            where:{
+                idTest: idTest
+            }
+        })
+
+        return {
+            hr: hr
+        }
+    }
     
 }
 

@@ -26,7 +26,6 @@ function EndButton() {
             }
         }
         let s = document.getElementById('Warning_name');
-        let v = document.getElementById('Warning_img');
         let w = document.getElementById('Warning');
         if (flag === true)
         {
@@ -74,16 +73,14 @@ function EndButton() {
         else
         {
         s.innerHTML = 'Для завершения теста необходимо ответить на все обязательные вопросы';
-        v.src = {warn};
-        {console.log(warn)}
-        w.style.width = '650px';
+        w.style.width = '630px';
         }
     }
     return(
     <div id='for_button'>
         <div id='block_button'> 
             <button id='end_button'  onClick={(e)=>check_button(e)} >Отправить</button>
-            <div id="Warning"><img id="Warning_img"></img><span id="Warning_name"></span></div>
+            <div id="Warning"><span id="Warning_name"></span></div>
         </div>
     </div>
     )
