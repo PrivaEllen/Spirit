@@ -5,13 +5,11 @@ const Sections = require('../models/Sections');
 const internsAnswers = require('../models/internsAnswers');
 
 class testService{
-    async createTest(name, idCreator, img, typeId, category, privat){
+    async createTest(name, idCreator, img, type){
         const test = Tests.build({
             name: name,
             idCreator: idCreator,
-            category: category,
-            private: privat,
-            type: typeId,
+            type: type,
             img: img,
         })
         await test.save()
@@ -131,6 +129,18 @@ class testService{
 
         return {
             answers: answers
+        }
+    }
+
+    async getStatistic(idTest){
+        const hr = await internsAnswers.findOne({
+            where:{
+                idTest: idTest
+            }
+        })
+
+        return {
+            hr: hr
         }
     }
     

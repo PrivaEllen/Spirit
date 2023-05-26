@@ -4,6 +4,16 @@ import { useState } from 'react';
 import Sections from "../tests/Sections";
 import { bool } from "yup";
 import ins from "../../store/InternStore";
+import {
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  FormGroup,
+  Checkbox,
+} from '@mui/material';
+
+
+
 
 function check_checkbox(quest, ans)
 {
@@ -37,7 +47,7 @@ function FormQustions(props){
                   <div><span className="qust_header_text">{ins.sections[0].title}</span></div>
                 </div>
             </div>
-        {ins.sections.map((sect)=>{
+        {ins.sections.map((sect)=>{ 
           return(
             <div className="section_block" key={sect.id}>
               <div className="section_block_title">
@@ -59,20 +69,58 @@ function FormQustions(props){
                                                       else quest.choise=false;  if(e.target.value===quest.answers[0].title)quest.isTrue=true; else quest.isTrue = false;}}/></div>
                 :
                 <div>
-                  {quest.answers.map((ans)=>{ 
+                  {(quest.type==='oneOfList')?
+                  <div>
+                    <RadioGroup>
+                    {quest.answers.map((ans)=>{
                     return(
                       <div key={ans.id}>
-                      {(quest.type === 'oneOfList')?<div><input type = 'radio' onChange={() => {quest.choise = true;
-                                                          ans.choiseAns = !ans.choiseAns
-                                                          if(ans.IsRight===true){
-                                                            quest.isTrue= !quest.isTrue;
-                                                          }
-                                                          else {
-                                                            quest.isTrue=false;
-                                                          }}} className="OneToMany" name={quest.id} /><span className="qust_body_text">{ans.title}</span></div>:null}
-                      {(quest.type === 'severalOfList')?<div><input type = 'checkbox' onChange={()=>check_checkbox(quest, ans)}  className="ManyToMany"  name={ans.id} /><span className="qust_body_text">{ans.title}</span></div>:null}
+                        <FormControlLabel value={ans.id} control={<Radio   sx={{
+                                                                                  color:"#ffffff56", 
+                                                                                  '&.Mui-checked': {
+                                                                                  color: "#90CAF9",
+                                                                                                  }
+                                                                                 }}
+                                                                            onChange={() => {quest.choise = true;
+                                                                              ans.choiseAns = !ans.choiseAns
+                                                                              if(ans.IsRight===true){
+                                                                                quest.isTrue= !quest.isTrue;
+                                                                              }
+                                                                              else {
+                                                                                quest.isTrue=false;
+                                                                              }
+                                                                            }}
+                                                                    />
+            }/><span className="qust_body_text">{ans.title}</span>
                       </div>
-                  )})}
+                    )
+                  })}
+                    </RadioGroup>
+                  </div>
+                  :
+                  <div>
+                    <FormGroup>
+                  {quest.answers.map((ans)=>{
+                    return(
+                      <div key ={ans.id}>
+                        <FormControlLabel
+                        value={ans.id}
+                        control={<Checkbox
+                          sx={{
+                            color:"#ffffff56",
+                            '&.Mui-checked': {
+                            color: "#90CAF9",
+                            }
+                            }}
+                            onChange={()=>check_checkbox(quest, ans)}
+                               />}
+
+                        /><span className="qust_body_text">{ans.title}</span>
+                      </div>
+                    )})}
+                    </FormGroup>
+                  </div>} 
+                  
                 </div>
                 }
                 </div>

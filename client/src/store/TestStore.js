@@ -6,7 +6,13 @@ export default class TestStore{
         this._templates = []
         this._imgs = []
         this._some = 0
+        this._statistic = 0
+        this._type = ""
         makeAutoObservable(this)
+    }
+
+    setType(val){
+        this._type = val
     }
 
     setTests(test){
@@ -24,5 +30,9 @@ export default class TestStore{
 
     incrementSome(){
         this._some += 1
+    }
+
+    setStatistic(value){
+        this._statistic = value
     }
 }

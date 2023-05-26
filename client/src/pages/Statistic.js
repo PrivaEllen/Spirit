@@ -14,11 +14,12 @@ function Statistic(){
     const {user} = useContext(Context)
 
     useEffect(() => {
-        if (user._isAuth){
             getInternsAnswers(testId).then(data => {
                 console.log(data)
                 let array = data.answers 
                 for (let i = 0; i < array.length; i++){
+                    qa.addQuestion();
+
                     let qa_questions = qa.questions[i]
                     qa_questions.title = array[i][0].QuestionText
                     qa_questions.type = array[i][0].QuestionType
@@ -27,13 +28,8 @@ function Statistic(){
                         qa.addAnswer(i)
                         qa_questions_answers[j].text = array[i][j].text
                     }
-                    if (i < array.length - 1){
-                        qa.addQuestion();
-                    }
                 }
             })
-        }
-        
     })
 
     return (

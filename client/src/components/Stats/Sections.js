@@ -9,7 +9,6 @@ import handler from "./script";
 const Sections = observer((props) => {
     return (
       <div>
-        {console.log(qa)}
         <div className="section-block">
             <div className="test-block stat-section">
                 <div className="section__header stat-section__header">

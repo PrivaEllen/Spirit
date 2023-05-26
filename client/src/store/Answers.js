@@ -16,15 +16,13 @@ class QA {
         Chart.overrides['bar'].responsive = true;
         Chart.overrides['bar'].maintainAspectRatio = false;
         Chart.overrides['bar'].color = '#fff';
+
     }
     
-    questions = [
-        {id:1, title:"", type:"oneOfList",
-        answers: []
-        }
-    ]
+    questions = []
     
     createChartOne(ctx, index){
+        console.log('huina')
         const chart = new Chart(ctx, {
             type: 'doughnut',
             data: {

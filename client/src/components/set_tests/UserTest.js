@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { GET_TEST, TEST_SET } from '../../router/utils'
+import { GET_TEST, STATS, TEST_SET } from '../../router/utils'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Popover } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -13,6 +13,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import { changePhoto, deleteTest } from '../../services/TestService';
 import CollectionsIcon from '@mui/icons-material/Collections';
+import { getStatistic } from '../../services/TestService';
 
 const style = {
   position: 'absolute',
@@ -69,6 +70,9 @@ function UserTest(props) {
   const handle_Open = () => _setOpen(true);
   const handle_Close = () => _setOpen(false);
 
+  useEffect(() => {
+    getStatistic(props.testId).then(data => test.setStatistic(data))
+  })
 
   return (
     <>
@@ -96,7 +100,8 @@ function UserTest(props) {
         <div className='popover__threePoints'>
           <div className='popover__threePoints__block'>
             <BarChartIcon color="disabled" sx={{ fontSize: 24, 'margin-left': 16, 'margin-right': 32  }}/>
-            <div className='popover__threePoints__block__text'>Статистика</div>
+            <div className='popover__threePoints__block__text' style={{userSelect: 'none', cursor: 'pointer'}} onClick={() => {window.location.assign(STATS + '/' + props.testId) 
+            }}>Статистика</div>
           </div>
           <Modal
               open={_open}

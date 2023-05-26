@@ -31,10 +31,8 @@ class userService {
                 activationLink: activationLink
             })
             await registr.save()
-            // console.log(`${process.env.BACKEND_URL}/spirit/activate/${activationLink}`)
-            // console.log(process.env)
+            
             await mailService.sendActivationMail(email, `${process.env.BACKEND_URL}/spirit/activate/${activationLink}`)
-            // console.log(`$http://localhost:5000/spirit/activate/${activationLink}`)
             const user = new userDto(registr)
             const token = tokenService.generateTokens({ ...user })
             await tokenService.saveToken(user.id, token.refreshToken)

@@ -285,7 +285,9 @@ class UserController{
 
     async addIntern(req, res, next){
         try{
+            console.log('kkk')
             const {testId, email, idHr} = req.body
+            console.log(testId, email, idHr)
             const result = await userService.addIntern(email, idHr)
             await userService.send(testId, email, result.intern.internId)
             return 1;
@@ -318,6 +320,17 @@ class UserController{
         }
         catch(e){
             next(e)
+        }
+    }
+
+    async getStatistic(req, res, next){
+        try{
+            const {idTest} = req.params
+            const result = await testService.getStatistic(idTest)
+            return res.json(result.hr.idTest)
+        }
+        catch(e){
+
         }
     }
 
